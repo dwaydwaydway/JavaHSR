@@ -23,7 +23,6 @@ public class SearchCar extends Messenger {
 	int[] quantity;
 	boolean early;
 	
-	public SearchCar();
 	
 	
 	

@@ -8,79 +8,78 @@ import java.sql.SQLException;
 import java.sql.Statement; 
  
 public class jdbcmysql { 
-  private Connection con = null; //Database objects 
-  //連接object 
+  private Connection con = null; 
   private Statement stat = null; 
-  //執行,傳入之sql為完整字串 
-  private ResultSet rs = null; 
-  //結果集 
+  private ResultSet rs = null;
   private PreparedStatement pst = null; 
-  //執行,傳入之sql為預儲之字申,需要傳入變數之位置 
-  //先利用?來做標示 
   
-  private String dropdbSQL = "DROP TABLE User "; 
+  /////////////////////////////////////////////////////
   
-  private String createdbSQL = "CREATE TABLE User (" + 
-    "    id     INTEGER " + 
-    "  , name    VARCHAR(20) " + 
-    "  , passwd  VARCHAR(20))"; 
+  private String insertBooking = "INSERT INTO `booking`"
+	  		+ "(`code`, `uid`, `date`, `ticketsType`, `ticketsCount`, `start`, `end`, `seats`, `payDeadline`, `payment`) "
+	  		+ "VALUES (?,'?','?','?',?,'?','?','?','?',?)";
   
-  private String insertdbSQL = "insert into User(id,name,passwd) values (1,'test','test') " ; 
+  private String insertEearlyDiscount = "INSERT INTO `earlyDiscount`"
+  		+ "(`TrainNo`, `Day`, `discount`, `tickets`) "
+  		+ "VALUES ('?','?',?,?)"; 
   
+  private String insertSeat = "INSERT INTO `seat`(`TrainNo`, `Carriage`, `data`) "
+  		+ "VALUES ('?',?,'?')"; 
+  
+  private String insertStation = "INSERT INTO `station`(`StationID`, `Zh_tw`, `En`, `StationAddress`) "
+  		+ "VALUES ('?','?','?','?')";
+  
+  private String insertTimeTable = "INSERT INTO `timeTable`(`TrainNo`, `Direction`, "
+  		+ "`StartingStationName`, `EndingStationName`, `Nangang`, `Taipei`, `Banciao`, "
+  		+ "`Taoyuan`, `Hsinchu`, `Miaoli`, `Taichung`, `Changhua`, `Yunlin`, `Chiayi`, "
+  		+ "`Tainan`, `Zuoying`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, "
+  		+ "`Saturday`, `Sunday`) VALUES ('?',?,'?','?','?','?','?','?','?','?','?','?'"
+  		+ ",'?','?','?','?',?,?,?,?,?,?,?)";
+  
+  private String insertUniversityDiscount = "INSERT INTO `universityDiscount`(`TrainNo`, "
+  		+ "`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) "
+  		+ "VALUES ('?',?,?,?,?,?,?,?)";
+ 
+  /////////////////////////////////////////////////////
+
   private String selectSQL = "select * from User "; 
   
   public jdbcmysql() 
   { 
     try { 
       Class.forName("com.mysql.cj.jdbc.Driver"); 
-      //註冊driver 
       con = DriverManager.getConnection( 
       "jdbc:mysql://db4free.net:3306/javahsr?useUnicode=true&useSSL=false", 
       "dwaydwaydway","dwaydwaydway"); 
-      //取得connection
- 
-//jdbc:mysql://localhost/test?useUnicode=true&characterEncoding=Big5
-//localhost是主機名,test是database名
-//useUnicode=true&characterEncoding=Big5使用的編碼 
-      
     } 
     catch(ClassNotFoundException e) 
     { 
       System.out.println("DriverClassNotFound :"+e.toString()); 
-    }//有可能會產生sqlexception 
+    }
     catch(SQLException x) { 
       System.out.println("Exception :"+x.toString()); 
     } 
-    
   } 
-  //建立table的方式 
-  //可以看看Statement的使用方式 
-  public void createTable() 
+
+  /////////////////////////////////////////////////////
+
+  public void insertBooking(String code, String uid, String date, String ticketsType,
+		  String ticketsCount, String start, String end, String seats, 
+		  String payDeadline, String payment) 
   { 
     try 
     { 
-      stat = con.createStatement(); 
-      stat.executeUpdate(createdbSQL); 
-    } 
-    catch(SQLException e) 
-    { 
-      System.out.println("CreateDB Exception :" + e.toString()); 
-    } 
-    finally 
-    { 
-      Close(); 
-    } 
-  } 
-  //新增資料 
-  //可以看看PrepareStatement的使用方式 
-  public void insertTable( String name,String passwd) 
-  { 
-    try 
-    { 
-      pst = con.prepareStatement(insertdbSQL); 
-      
-      pst.setString(1, name); 
-      pst.setString(2, passwd); 
+      pst = con.prepareStatement(insertBooking); 
+      pst.setString(1, code); 
+      pst.setString(2, uid); 
+      pst.setString(3, date); 
+      pst.setString(4, ticketsType); 
+      pst.setString(5, ticketsCount); 
+      pst.setString(6, start); 
+      pst.setString(7, end); 
+      pst.setString(8, seats); 
+      pst.setString(9, payDeadline); 
+      pst.setString(10, payment); 
       pst.executeUpdate(); 
     } 
     catch(SQLException e) 
@@ -92,26 +91,152 @@ public class jdbcmysql {
       Close(); 
     } 
   } 
-  //刪除Table, 
-  //跟建立table很像 
-  public void dropTable() 
+  
+  public void insertEearlyDiscount(String TrainNo, String Day, 
+		  String discount, String tickets) 
   { 
     try 
     { 
-      stat = con.createStatement(); 
-      stat.executeUpdate(dropdbSQL); 
+      pst = con.prepareStatement(insertEearlyDiscount); 
+      pst.setString(1, TrainNo); 
+      pst.setString(2, Day); 
+      pst.setString(3, discount); 
+      pst.setString(4, tickets); 
+      pst.executeUpdate(); 
     } 
     catch(SQLException e) 
     { 
-      System.out.println("DropDB Exception :" + e.toString()); 
+      System.out.println("InsertDB Exception :" + e.toString()); 
     } 
     finally 
     { 
       Close(); 
     } 
   } 
-  //查詢資料 
-  //可以看看回傳結果集及取得資料方式 
+  
+  public void insertSeat(String TrainNo, String Carriage, String data) 
+  { 
+    try 
+    { 
+      pst = con.prepareStatement(insertSeat); 
+      pst.setString(1, TrainNo); 
+      pst.setString(2, Carriage); 
+      pst.setString(3, data); 
+      pst.executeUpdate(); 
+    } 
+    catch(SQLException e) 
+    { 
+      System.out.println("InsertDB Exception :" + e.toString()); 
+    } 
+    finally 
+    { 
+      Close(); 
+    } 
+  } 
+  
+  public void insertStation(String StationID, String Zh_tw, String En, String StationAddress) 
+  { 
+    try 
+    { 
+      pst = con.prepareStatement(insertStation); 
+      pst.setString(1, StationID); 
+      pst.setString(2, Zh_tw); 
+      pst.setString(3, En); 
+      pst.setString(4, StationAddress); 
+      pst.executeUpdate(); 
+    } 
+    catch(SQLException e) 
+    { 
+      System.out.println("InsertDB Exception :" + e.toString()); 
+    } 
+    finally 
+    { 
+      Close(); 
+    } 
+  } 
+  
+  public void insertUniversityDiscount(String TrainNo, String Monday, String Tuesday, 
+		  String Wednesday, String Thursday, String Friday, String Saturday, String Sunday) 
+  { 
+    try 
+    { 
+      pst = con.prepareStatement(insertUniversityDiscount); 
+      pst.setString(1, TrainNo); 
+      pst.setString(2, Monday);
+      pst.setString(3, Tuesday); 
+      pst.setString(4, Wednesday); 
+      pst.setString(5, Thursday); 
+      pst.setString(6, Friday); 
+      pst.setString(7, Saturday); 
+      pst.setString(8, Sunday); 
+      pst.executeUpdate(); 
+    } 
+    catch(SQLException e) 
+    { 
+      System.out.println("InsertDB Exception :" + e.toString()); 
+    } 
+    finally 
+    { 
+      Close(); 
+    } 
+  } 
+  
+  public void insertTimeTable(String TrainNo, String Direction, String StartingStationName, 
+		  String EndingStationName, String Nangang, String Taipei, String Banciao, 
+		  String Taoyuan, String Hsinchu, String Miaoli, String Taichung, String Changhua,
+		  String Yunlin, String Chiayi, String Tainan, String Zuoying, String Monday, 
+		  String Tuesday, String Wednesday, String Thursday, String Friday, 
+		  String Saturday, String Sunday) 
+  { 
+    try 
+    { 
+      pst = con.prepareStatement(insertTimeTable); 
+      String temp[] = new String[23];
+      temp[0] = TrainNo;
+      temp[1] = Direction;
+      temp[2] = StartingStationName;
+      temp[3] = EndingStationName;
+      temp[4] = Nangang;
+      temp[5] = Taipei;
+      temp[6] = Banciao;
+      temp[7] = Taoyuan;
+      temp[8] = Hsinchu;
+      temp[9] = Miaoli;
+      temp[10] = Taichung;
+      temp[11] = Changhua;
+      temp[12] = Yunlin;
+      temp[13] = Chiayi;
+      temp[14] = Tainan;
+      temp[15] = Zuoying;
+      temp[16] = Monday;
+      temp[17] = Tuesday;
+      temp[18] = Wednesday;
+      temp[19] = Thursday;
+      temp[20] = Friday;
+      temp[21] = Saturday;
+      temp[22] = Sunday;
+
+      for(int i = 0; i < 23; i++) {
+    	  if(temp[i] == null)
+    		  pst.setNull(i, java.sql.Types.TIME);
+    	  else
+    		  pst.setString(i, temp[i]);
+      }
+      
+      pst.executeUpdate(); 
+    } 
+    catch(SQLException e) 
+    { 
+      System.out.println("InsertDB Exception :" + e.toString()); 
+    } 
+    finally 
+    { 
+      Close(); 
+    } 
+  } 
+  
+  /////////////////////////////////////////////////////
+
   public void SelectTable() 
   { 
     try 
@@ -134,6 +259,7 @@ public class jdbcmysql {
       Close(); 
     } 
   } 
+  
   //完整使用完資料庫後,記得要關閉所有Object 
   //否則在等待Timeout時,可能會有Connection poor的狀況 
   private void Close() 
@@ -167,11 +293,7 @@ public class jdbcmysql {
   { 
     //測看看是否正常 
     jdbcmysql test = new jdbcmysql(); 
-    test.dropTable(); 
-    test.createTable(); 
-    test.insertTable("yku", "12356"); 
-    test.insertTable("yku2", "7890"); 
-    test.SelectTable(); 
+
   
   } 
 }

@@ -12,6 +12,8 @@ public class CounterServer {
 	public enum type {
 		normal, child, elder, disable
 	}
+	SearchCar SearchCar;
+	
 	public void listen() throws ClassNotFoundException {
 		try {
 			ServerSocket server = new ServerSocket(3335);
@@ -37,6 +39,9 @@ public class CounterServer {
 		}
 
 		public void run() {
+			if(msg.getClass() == SearchCar.getClass()) {
+				SearchCar = (SearchCar)msg;
+			}
 			System.out.println(msg.getString);
 		}
 	}
