@@ -32,13 +32,23 @@ public class CounterServer {
 
 	class AddThread extends Thread {
 		private Messenger msg;
-		ObjectInputStream inStream = null;
+		Socket socket;
 		public AddThread(Socket sk) throws IOException, ClassNotFoundException {
-			ObjectInputStream inStream = new ObjectInputStream(sk.getInputStream());
-			this.msg = (Messenger)inStream.readObject();
+			socket = sk;
 		}
 
 		public void run() {
+			ObjectInputStream inStream = null;
+			try {
+				inStream = new ObjectInputStream(socket.getInputStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				this.msg = (Messenger)inStream.readObject();
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
+			}
 			if(msg.getClass() == SearchCar.getClass()) {
 				SearchCar = (SearchCar)msg;
 			}
