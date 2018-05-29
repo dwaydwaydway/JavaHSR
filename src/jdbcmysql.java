@@ -218,9 +218,9 @@ public class jdbcmysql {
 
       for(int i = 0; i < 23; i++) {
     	  if(temp[i] == null)
-    		  pst.setNull(i, java.sql.Types.TIME);
+    		  pst.setNull(i+1, java.sql.Types.TIME);
     	  else
-    		  pst.setString(i, temp[i]);
+    		  pst.setString(i+1, temp[i]);
       }
       
       pst.executeUpdate(); 
