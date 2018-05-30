@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.sql.Statement; 
  
-public class jdbcmysql { 
+public class Database { 
   private Connection con = null; 
   private Statement stat = null; 
   private ResultSet rs = null;
@@ -44,7 +44,7 @@ public class jdbcmysql {
 
   private String selectSQL = "select * from User "; 
   
-  public jdbcmysql() 
+  public Database() 
   { 
     try { 
       Class.forName("com.mysql.cj.jdbc.Driver"); 
@@ -288,11 +288,17 @@ public class jdbcmysql {
     } 
   } 
   
+  /////////////////////////////////////////////////////////////////////
+  
+  public Messenger selectCar(Messenger msg) {
+	  
+	  return null;
+  }
  
   public static void main(String[] args) 
   { 
     //測看看是否正常 
-    jdbcmysql test = new jdbcmysql(); 
+    Database test = new Database(); 
 
   
   } 
