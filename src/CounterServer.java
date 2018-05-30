@@ -18,11 +18,8 @@ public class CounterServer {
 
 	public void listen() throws ClassNotFoundException {
 		try {
-<<<<<<< HEAD
-			ServerSocket server = new ServerSocket(3334);
-=======
+
 			ServerSocket server = new ServerSocket(3336);
->>>>>>> refs/heads/master
 			while (true) {
 				System.out.println("接受連線中");
 				Socket socket = server.accept();
@@ -40,36 +37,13 @@ public class CounterServer {
 	class AddThread extends Thread {
 		private Messenger msg;
 		Socket socket;
-<<<<<<< HEAD
 
-=======
-		ObjectOutputStream os = null;
-		ObjectInputStream is = null;
->>>>>>> refs/heads/master
 		public AddThread(Socket sk) throws IOException, ClassNotFoundException {
 			socket = sk;
 		}
 
 		public void run() {
 			try {
-<<<<<<< HEAD
-				inStream = new ObjectInputStream(socket.getInputStream());
-				this.msg = (Messenger) inStream.readObject();
-				socket.close();
-				if (msg == null)
-					System.out.println("server get nothing");
-				else
-					System.out.println("server get object");
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
-			}
-			if (msg.getClass() == nb.getClass()) {
-				nb = (NormalBooking) msg;
-				System.out.println("sending success");
-				returnMessage(msg);
-			}
-			System.out.println(msg.getString);
-=======
 				os = new ObjectOutputStream(socket.getOutputStream());
 				is = new ObjectInputStream(socket.getInputStream());
 				this.msg = (Messenger)is.readObject();
