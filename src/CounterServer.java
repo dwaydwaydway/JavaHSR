@@ -16,7 +16,7 @@ public class CounterServer {
 	
 	public void listen() throws ClassNotFoundException {
 		try {
-			ServerSocket server = new ServerSocket(3335);
+			ServerSocket server = new ServerSocket(3336);
 			while (true) {
 				System.out.println("接受連線中");
 				Socket socket = server.accept();
@@ -33,26 +33,31 @@ public class CounterServer {
 	class AddThread extends Thread {
 		private Messenger msg;
 		Socket socket;
+		ObjectOutputStream os = null;
+		ObjectInputStream is = null;
 		public AddThread(Socket sk) throws IOException, ClassNotFoundException {
 			socket = sk;
 		}
 
 		public void run() {
-			ObjectInputStream inStream = null;
 			try {
-				inStream = new ObjectInputStream(socket.getInputStream());
-			} catch (IOException e) {
-				e.printStackTrace();
+				os = new ObjectOutputStream(socket.getOutputStream());
+				is = new ObjectInputStream(socket.getInputStream());
+				this.msg = (Messenger)is.readObject();
+			} catch (IOException | ClassNotFoundException e1) {
+				e1.printStackTrace();
 			}
-			try {
-				this.msg = (Messenger)inStream.readObject();
-			} catch (ClassNotFoundException | IOException e) {
-				e.printStackTrace();
-			}
-			if(msg.getClass() == SearchCar.getClass()) {
-				SearchCar = (SearchCar)msg;
-			}
-			System.out.println(msg.getString);
+			if(msg == null) {
+				System.out.println("null object");
+			} else
+				try {
+					os.writeObject(msg);
+					os.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			
 		}
 	}
 
