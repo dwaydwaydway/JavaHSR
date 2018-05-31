@@ -25,6 +25,8 @@ public class Client {
 			Messenger msg = (Messenger) is.readObject();
 			if (msg == null)
 				System.out.println("null");
+			else
+				System.out.println("an object");
 			os.close();
 			is.close();
 			cs.close();

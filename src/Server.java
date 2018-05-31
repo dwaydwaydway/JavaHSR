@@ -4,6 +4,7 @@ import java.io.*;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
 //	public enum station {
@@ -46,7 +47,8 @@ public class Server {
 		private Messenger messageHandler(Messenger msg) {
 			Database database = new Database();
 			if(msg.getClass() == new SearchCar().getClass()) {
-				return database.selectCar(msg);
+				//return database.selectCar(msg);
+				return new SearchCar();
 			}
 			else
 				return null;
@@ -66,6 +68,7 @@ public class Server {
 			Messenger returnMsg = messageHandler(msg);
 
 			try {
+				Scanner sc = new Scanner(System.in);
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {
