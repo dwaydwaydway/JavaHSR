@@ -1,17 +1,19 @@
 
 import java.io.*;
 
+
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-	public enum station {
-		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, Taichung, Tainan, Changhua, Yunlin, Chiayi, Zuoying
-	}
-
-	public enum type {
-		normal, child, elder, disable
-	}
+//	public enum station {
+//		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, Taichung,
+//		Tainan, Changhua, Yunlin, Chiayi, Zuoying
+//	}
+//
+//	public enum type {
+//		normal, child, elder, disable
+//	}
 
 	public void listen() {
 		try {
@@ -25,10 +27,10 @@ public class Server {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("伺服器輸出入發生錯誤");
+			System.out.println("Server error");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("物件錯誤");
+			System.out.println("ClassNotFoundException");
 		}
 	}
 

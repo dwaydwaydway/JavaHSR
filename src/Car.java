@@ -1,25 +1,25 @@
 import SearchCar.station;
 
 public class Car {
-	public enum station {
-		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, 
-		Taichung, Tainan, Changhua, Yunlin, Chiayi, Zuoying
+	public enum Station {
+		NANGANG, TAIPEI, BANQIAO, TAOYUAN, HSINCHU, MIAOLI, 
+		TAICHUNG, TAINAN, CHANGHUA, YUNLIN, CHIAYI, ZUOYING
 	}
-	public enum passengerType {
-		normal, child, elder, disable, student
+	public enum PassengerType {
+		NORMAL, CHILD, ELDER, DISABLE, STUDENT
 	}
-	public enum seat {
-		none, window, aisle
+	public enum Seat {
+		NONE, WINDOW, AISE
 	}
-	public enum carriage {
-		standard, business
+	public enum Carriage {
+		STANDARD, BUSINESS
 	}
 	
 	String carID;
-	// ¤é´Á
-	// ®É¶¡
-	station depart;
-	station arrive;
+	// ï¿½ï¿½ï¿½
+	// ï¿½É¶ï¿½
+	Station depart;
+	Station arrive;
 	int discount; //65, 75, ~
 	
 }
