@@ -1,6 +1,6 @@
  
  
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.DriverManager; 
 import java.sql.PreparedStatement; 
 import java.sql.ResultSet; 
@@ -260,8 +260,8 @@ public class Database {
     } 
   } 
   
-  //§¹¾ã¨Ï¥Î§¹¸ê®Æ®w«á,°O±o­nÃö³¬©Ò¦³Object 
-  //§_«h¦bµ¥«ÝTimeout®É,¥i¯à·|¦³Connection poorªºª¬ªp 
+  //ï¿½ï¿½ï¿½ï¿½Ï¥Î§ï¿½ï¿½ï¿½Æ®wï¿½ï¿½,ï¿½Oï¿½oï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Ò¦ï¿½Object 
+  //ï¿½_ï¿½hï¿½bï¿½ï¿½ï¿½ï¿½Timeoutï¿½ï¿½,ï¿½iï¿½ï¿½|ï¿½ï¿½Connection poorï¿½ï¿½ï¿½ï¿½ï¿½p 
   private void Close() 
   { 
     try 
@@ -297,7 +297,7 @@ public class Database {
  
   public static void main(String[] args) 
   { 
-    //´ú¬Ý¬Ý¬O§_¥¿±` 
+    //ï¿½ï¿½ï¿½Ý¬Ý¬Oï¿½_ï¿½ï¿½ï¿½` 
     Database test = new Database(); 
 
   
