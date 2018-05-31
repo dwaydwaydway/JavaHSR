@@ -74,8 +74,6 @@ public class Server {
 		}
 	}
 
-	
-
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server server = new Server();
 		server.listen();
