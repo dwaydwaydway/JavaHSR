@@ -29,8 +29,8 @@ public class SearchCar extends Messenger {
 //		STANDARD, BUSINESS
 //	}
 	
-	Station depart;
-	Station arrive;
+	String depart;
+	String arrive;
 	PassengerType passengertype;
 	Seat seat;
 	Carriage carriage;
@@ -47,8 +47,8 @@ public class SearchCar extends Messenger {
 	
 	
 	public SearchCar() {
-		depart = null;
-		arrive = null;
+		depart = "TAIPEI";
+		arrive = "TAICHUNG";
 		passengertype = PassengerType.NORMAL;
 		seat = Seat.NONE;
 		carriage = Carriage.STANDARD;
@@ -67,8 +67,8 @@ public class SearchCar extends Messenger {
 		String date_input;
 		date_input = "2018.11.11-13:30";
 		
-		depart = Station.TAIPEI;
-		arrive = Station.TAICHUNG;
+		depart = "TAIPEI";
+		arrive = "TAICHUNG";
 		passengertype = PassengerType.NORMAL;
 		seat = Seat.NONE;
 		carriage = Carriage.STANDARD;
@@ -87,12 +87,12 @@ public class SearchCar extends Messenger {
 	}
 	
 	
-	public Station getDepart() {
+	public String getDepart() {
 		return depart;
 	}
 	
 	
-	public Station getArrive() {
+	public String getArrive() {
 		return arrive;
 	}
 	
@@ -114,11 +114,11 @@ public class SearchCar extends Messenger {
 	}
 	
 	
-	public void setDepart(Station depart) {
+	public void setDepart(String depart) {
 		this.depart = depart;
 	}
 	
-	public void setArrive(Station arrive) {
+	public void setArrive(String arrive) {
 		this.arrive = arrive;
 	}
 	

@@ -23,8 +23,20 @@ public class Client {
 			os.writeObject(a);
 			os.flush();
 			Messenger msg = (Messenger) is.readObject();
-			if (msg == null)
-				System.out.println("null");
+			if(msg == null)
+				System.out.println("client get null");
+			else
+				System.out.println("client not null");
+			if (msg.getClass() == new Result1().getClass()) {
+				Result1 result = new Result1();
+				for(int i = 0; i < result.carList.size(); i++) {
+					Car car = result.carList.get(i);
+					System.out.println("car: " + i);
+					System.out.println(car.arrive);
+					System.out.println(car.depart);
+				}
+			}
+				
 			else
 				System.out.println("an object");
 			os.close();

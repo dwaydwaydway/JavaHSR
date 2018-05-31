@@ -4,6 +4,7 @@ import java.io.*;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Server {
@@ -47,8 +48,7 @@ public class Server {
 		private Messenger messageHandler(Messenger msg) {
 			Database database = new Database();
 			if(msg.getClass() == new SearchCar().getClass()) {
-				//return database.selectCar(msg);
-				return new SearchCar();
+				return database.selectCar((SearchCar)msg);
 			}
 			else
 				return null;
@@ -68,7 +68,10 @@ public class Server {
 			Messenger returnMsg = messageHandler(msg);
 
 			try {
-				Scanner sc = new Scanner(System.in);
+				if(returnMsg == null)
+					System.out.println("server send null");
+				else
+					System.out.println("server not null");
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {

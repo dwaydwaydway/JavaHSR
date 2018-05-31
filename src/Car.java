@@ -1,25 +1,14 @@
-import SearchCar.station;
+import java.io.Serializable;
 
-public class Car {
-	public enum Station {
-		NANGANG, TAIPEI, BANQIAO, TAOYUAN, HSINCHU, MIAOLI, 
-		TAICHUNG, TAINAN, CHANGHUA, YUNLIN, CHIAYI, ZUOYING
+public class Car implements Serializable {
+
+	public Car(String depart, String arrive) {
+		this.depart = depart;
+		this.arrive = arrive;
 	}
-	public enum PassengerType {
-		NORMAL, CHILD, ELDER, DISABLE, STUDENT
-	}
-	public enum Seat {
-		NONE, WINDOW, AISE
-	}
-	public enum Carriage {
-		STANDARD, BUSINESS
-	}
-	
-	String carID;
-	// ���
-	// �ɶ�
-	Station depart;
-	Station arrive;
-	int discount; //65, 75, ~
+	String carID = "123";
+	public String depart;
+	public String arrive;
+	int discount = 0; //65, 75, ~
 	
 }
