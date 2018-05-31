@@ -8,14 +8,6 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Server {
-//	public enum station {
-//		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, Taichung,
-//		Tainan, Changhua, Yunlin, Chiayi, Zuoying
-//	}
-//
-//	public enum type {
-//		normal, child, elder, disable
-//	}
 
 	public void listen() {
 		try {
@@ -70,8 +62,6 @@ public class Server {
 			try {
 				if(returnMsg == null)
 					System.out.println("server send null");
-				else
-					System.out.println("server not null");
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {
