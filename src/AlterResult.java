@@ -1,6 +1,6 @@
 
 
-public class Result2 {
+public class AlterResult extends Messenger{
 	public enum station {
 		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, 
 		Taichung, Tainan, Changhua, Yunlin, Chiayi, Zuoying

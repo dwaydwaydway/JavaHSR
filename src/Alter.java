@@ -1,5 +1,5 @@
 
-public class Alter {
+public class Alter extends Messenger {
 	int ReservationNumber;
 	String ID;
 	int[] quantity;

@@ -25,14 +25,23 @@ public class Client {
 			Messenger msg = (Messenger) is.readObject();
 			if(msg == null)
 				System.out.println("client get null");
-			if (msg.getClass() == new Result1().getClass()) {
-				Result1 result = (Result1)msg;
+			if (msg.getClass() == new Available().getClass()) {
+				Available result = (Available)msg;
 				for(int i = 0; i < result.carList.size(); i++) {
 					Car car = result.carList.get(i);
 					System.out.println("car: " + i);
 					System.out.println(car.arrive);
 					System.out.println(car.depart);
 				}
+			}
+			else if (msg.getClass() == new OrderResult().getClass()) {
+				
+			}
+			else if(msg.getClass() == new Status().getClass()) {
+				
+			}
+			else if(msg.getClass() == new AlterResult().getClass()) {
+				
 			}
 			else
 				System.out.println("can't read result1");

@@ -42,7 +42,16 @@ public class Server {
 			if(msg.getClass() == new SearchCar().getClass()) {
 				return database.selectCar((SearchCar)msg);
 			}
-			else
+			else if(msg.getClass() == new Order().getClass()) {
+				return database.insertOrder((Order)msg);
+			}
+			else if(msg.getClass() == new SearchOrder().getClass()) {
+				return database.selectOrder((Order)msg);
+			}
+			else if(msg.getClass() == new Alter().getClass()) {
+				return database.updateAlter((Alter)msg);
+			}
+			else			
 				return null;
 		}
 		public void run() {
@@ -61,14 +70,13 @@ public class Server {
 
 			try {
 				if(returnMsg == null)
-					System.out.println("server send null");
+					System.out.println("server send null object");
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.out.println("return message IO error");
 			}
-
 		}
 	}
 

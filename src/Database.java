@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-	private Connection con = null;
-	private Statement stat = null;
-	private ResultSet rs = null;
-	private PreparedStatement pst = null;
+	private static Connection con = null;
+	private static Statement stat = null;
+	private static ResultSet rs = null;
+	private static PreparedStatement pst = null;
 
 	/////////////////////////////////////////////////////
 	private String selectCar = "SELECT TrainNo from timeTable WHERE StartingStationName = '?' AND"
@@ -18,7 +18,7 @@ public class Database {
 
 	private String selectCar1 = "SELECT * from timeTable";
 
-	private String insertBooking = "INSERT INTO `booking`"
+	private static String insertBooking = "INSERT INTO `booking`"
 			+ "(`code`, `uid`, `date`, `ticketsType`, `ticketsCount`, `start`, `end`, `seats`, `payDeadline`, `payment`) "
 			+ "VALUES (?,'?','?','?',?,'?','?','?','?',?)";
 
@@ -59,7 +59,7 @@ public class Database {
 
 	/////////////////////////////////////////////////////
 
-	public void insertBooking(String code, String uid, String date, String ticketsType, String ticketsCount,
+	public static void insertBooking(String code, String uid, String date, String ticketsType, String ticketsCount,
 			String start, String end, String seats, String payDeadline, String payment) {
 		try {
 			pst = con.prepareStatement(insertBooking);
@@ -192,24 +192,35 @@ public class Database {
 		}
 	}
 
-	/////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
 
-	public void SelectTable() {
+	public Available selectCar(SearchCar msg) {
 		try {
-			stat = con.createStatement();
-			rs = stat.executeQuery(selectSQL);
-			System.out.println("ID\t\tName\t\tPASSWORD");
+			pst = con.prepareStatement(selectCar1);
+			rs = pst.executeQuery();
+			Available result = new Available();
 			while (rs.next()) {
-				System.out.println(rs.getInt("id") + "\t\t" + rs.getString("name") + "\t\t" + rs.getString("passwd"));
+				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
 			}
+			return result;
 		} catch (SQLException e) {
-			System.out.println("DropDB Exception :" + e.toString());
-		} finally {
-			Close();
+			System.out.println("SQLException");
+			e.printStackTrace();
 		}
+		return null;
+
 	}
 
-	private void Close() {
+	public OrderResult insertOrder(Order msg) {
+		Order order = (Order) msg;
+		insertBooking(order.getCode(), order.getUid(), order.getDate(), order.getTicketsType(), order.getTicketsCount(),
+				order.getStart(), order.getEnd(), order.getSeats(), order.getPayDeadline(), order.getpayment());
+
+		return null;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+	private static void Close() {
 		try {
 			if (rs != null) {
 				rs.close();
@@ -228,27 +239,19 @@ public class Database {
 		}
 	}
 
-	/////////////////////////////////////////////////////////////////////
-
-	public Messenger selectCar(SearchCar msg) {
-		try {
-			pst = con.prepareStatement(selectCar1);
-			rs = pst.executeQuery();
-			Result1 result = new Result1();
-			while (rs.next()) {
-				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
-			}
-			return result;
-		} catch (SQLException e) {
-			System.out.println("SQLException");
-			e.printStackTrace();
-		}
-		return null;
-
-	}
-
 	public static void main(String[] args) {
 		Database test = new Database();
 
 	}
+
+	public Status selectOrder(Order msg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AlterResult updateAlter(Alter msg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
