@@ -2,6 +2,10 @@ import java.io.Serializable;
 
 public class Car implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 753539215733352664L;
 	public Car(String depart, String arrive) {
 		this.depart = depart;
 		this.arrive = arrive;
