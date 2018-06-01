@@ -6,28 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-
-
 public class SearchCar extends Messenger {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-
-//	public enum Station {
-//		NANGANG, TAIPEI, BANQIAO, TAOYUAN, HSINCHU, MIAOLI, 
-//		TAICHUNG, TAINAN, CHANGHUA, YUNLIN, CHIAYI, ZUOYING
-//	}
-//	public enum PassengerType {
-//		NORMAL, CHILD, ELDER, DISABLE, STUDENT
-//	}
-//	public enum Seat {
-//		NONE, WINDOW, AISE
-//	}
-//	public enum Carriage {
-//		STANDARD, BUSINESS
-//	}
 	
 	String depart;
 	String arrive;

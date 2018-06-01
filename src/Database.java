@@ -231,27 +231,24 @@ public class Database {
 	/////////////////////////////////////////////////////////////////////
 
 	public Messenger selectCar(SearchCar msg) {
-	  try {
-		pst = con.prepareStatement(selectCar1);
-		rs = pst.executeQuery();
-		Result1 result = new Result1();
-		while(rs.next()) 
-	      { 
-			//System.out.println(rs.getString("StartingStationName") + rs.getString("EndingStationName"));
-			result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
-	      } 
-		return result;
-	} catch (SQLException e) {
-		System.out.println("SQLException");
-		e.printStackTrace();
+		try {
+			pst = con.prepareStatement(selectCar1);
+			rs = pst.executeQuery();
+			Result1 result = new Result1();
+			while (rs.next()) {
+				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("SQLException");
+			e.printStackTrace();
+		}
+		return null;
+
 	}
-	return null; 
-	  
-  }
 
 	public static void main(String[] args) {
 		Database test = new Database();
-		
 
 	}
 }
