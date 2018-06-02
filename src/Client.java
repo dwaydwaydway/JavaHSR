@@ -33,7 +33,7 @@ public class Client {
 			Scanner scanner1 = new Scanner(System.in);
 			String DEPART = scanner1.nextLine();
 			Station DepartStation = Station.valueOf(DEPART); 
-			a.setDepart(DepartStation);
+			a.setDepart(DEPART);
 			
 			/**
 			 * Set the arrive station
@@ -42,7 +42,7 @@ public class Client {
 			Scanner scanner2 = new Scanner(System.in);
 			String ARRIVE = scanner2.nextLine();
 			Station ArriveStation = Station.valueOf(ARRIVE); 
-			a.setArrive(ArriveStation);
+			a.setArrive(ARRIVE);
 			
 			/**
 			 * Input the passenger type
