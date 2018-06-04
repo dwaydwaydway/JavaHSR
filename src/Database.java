@@ -13,33 +13,32 @@ public class Database {
 	private static PreparedStatement pst = null;
 
 	/////////////////////////////////////////////////////
-	private String selectCar = "SELECT TrainNo from timeTable WHERE StartingStationName = '?' AND"
-			+ " EndingStationName = '?'";
+	private String selectCar = "SELECT TrainNo from timeTable WHERE StartingStationName = ? AND"
+			+ " EndingStationName = ?";
 
 	private String selectCar1 = "SELECT * from timeTable";
 
 	private static String insertBooking = "INSERT INTO `booking`"
 			+ "(`code`, `uid`, `date`, `ticketsType`, `ticketsCount`, `start`, `end`, `seats`, `payDeadline`, `payment`) "
-			+ "VALUES (?,'?','?','?',?,'?','?','?','?',?)";
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 	private String insertEearlyDiscount = "INSERT INTO `earlyDiscount`" + "(`TrainNo`, `Day`, `discount`, `tickets`) "
-			+ "VALUES ('?','?',?,?)";
+			+ "VALUES (?,?,?,?)";
 
-	private String insertSeat = "INSERT INTO `seat`(`TrainNo`, `Carriage`, `data`) " + "VALUES ('?',?,'?')";
+	private String insertSeat = "INSERT INTO `seat`(`TrainNo`, `Carriage`, `data`) " + "VALUES (?,?,?)";
 
 	private String insertStation = "INSERT INTO `station`(`StationID`, `Zh_tw`, `En`, `StationAddress`) "
-			+ "VALUES ('?','?','?','?')";
+			+ "VALUES (?,?,?,?)";
 
 	private String insertTimeTable = "INSERT INTO `timeTable`(`TrainNo`, `Direction`, "
 			+ "`StartingStationName`, `EndingStationName`, `Nangang`, `Taipei`, `Banciao`, "
 			+ "`Taoyuan`, `Hsinchu`, `Miaoli`, `Taichung`, `Changhua`, `Yunlin`, `Chiayi`, "
 			+ "`Tainan`, `Zuoying`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, "
-			+ "`Saturday`, `Sunday`) VALUES ('?',?,'?','?','?','?','?','?','?','?','?','?'"
-			+ ",'?','?','?','?',?,?,?,?,?,?,?)";
+			+ "`Saturday`, `Sunday`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	private String insertUniversityDiscount = "INSERT INTO `universityDiscount`(`TrainNo`, "
 			+ "`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) "
-			+ "VALUES ('?',?,?,?,?,?,?,?)";
+			+ "VALUES (?,?,?,?,?,?,?,?)";
 
 	/////////////////////////////////////////////////////
 
@@ -87,7 +86,12 @@ public class Database {
 			pst.setString(1, TrainNo);
 			pst.setString(2, Day);
 			pst.setString(3, discount);
-			pst.setString(4, tickets);
+			if(tickets == null) {
+				pst.setNull(4, java.sql.Types.INTEGER);
+			}
+			else {
+				pst.setString(4, tickets);
+			}			
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("InsertDB Exception :" + e.toString());
@@ -179,9 +183,9 @@ public class Database {
 
 			for (int i = 0; i < 23; i++) {
 				if (temp[i] == null)
-					pst.setNull(i + 1, java.sql.Types.TIME);
+					pst.setNull((i + 1), java.sql.Types.TIME);
 				else
-					pst.setString(i + 1, temp[i]);
+					pst.setString((i + 1), temp[i]);
 			}
 
 			pst.executeUpdate();
