@@ -34,3 +34,10 @@
 /PassengerType.class
 /Seat.class
 /Carriage.class
+/AlterResult$passengerType.class
+/AlterResult$seat.class
+/AlterResult$station.class
+/AlterResult.class
+/OrderResult.class
+/SearchOrder.class
+/Status.class
