@@ -1,3 +1,4 @@
+package message;
 
 
 public class AlterResult extends Messenger{

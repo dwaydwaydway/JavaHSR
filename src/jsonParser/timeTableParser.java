@@ -1,3 +1,4 @@
+package jsonParser;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,8 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-public class jsonParser {
+import server.*;
+public class timeTableParser {
 
 	public static void main(String[] args) {
 
@@ -17,7 +18,6 @@ public class jsonParser {
 		try {
 			a = (JSONArray) parser.parse(new FileReader("C:\\Users\\USER\\eclipse-workspace\\JavaHSR\\data\\timeTable.json"));
 		} catch (IOException | ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -100,7 +100,6 @@ public class jsonParser {
 			}
 			JSONObject ServiceDay = (JSONObject)GeneralTimetable.get("ServiceDay");
 			
-//			for (int i = 0; i < ServiceDay.size(); i++) {
 				Monday = ServiceDay.get("Monday").toString();
 				Tuesday = ServiceDay.get("Tuesday").toString();
 				Wednesday = ServiceDay.get("Wednesday").toString();
@@ -108,7 +107,6 @@ public class jsonParser {
 				Friday = ServiceDay.get("Friday").toString();
 				Saturday = ServiceDay.get("Saturday").toString();
 				Sunday = ServiceDay.get("Sunday").toString();					
-//			}
 			
 			Database database = new Database();
 			database.insertTimeTable(TrainNo, Direction, StartingStationName, 

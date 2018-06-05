@@ -1,3 +1,4 @@
+package message;
 //This is the first step of ordering the tickets
 
 
@@ -17,7 +18,7 @@ public class SearchCar extends Messenger {
 	PassengerType passengertype;
 	Seat seat;
 	Carriage carriage;
-	int[] quantity = {0,0,0,0,0};
+	public int[] quantity = {0,0,0,0,0};
 	int total;
 	Date depart_time;
 	SimpleDateFormat ft2 = 

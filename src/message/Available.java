@@ -1,3 +1,4 @@
+package message;
 import java.util.LinkedList;
 
 public class Available extends Messenger {
@@ -7,7 +8,7 @@ public class Available extends Messenger {
 	}
 
 	boolean OrderSuccessfully;
-	void addCar(String depart, String arrive) {
+	public void addCar(String depart, String arrive) {
 		Car newCar = new Car(depart, arrive);
 		carList.add(newCar);
 	}

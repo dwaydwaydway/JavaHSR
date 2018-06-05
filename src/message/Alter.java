@@ -1,3 +1,4 @@
+package message;
 
 public class Alter extends Messenger {
 	int ReservationNumber;

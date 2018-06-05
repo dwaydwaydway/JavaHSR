@@ -1,3 +1,4 @@
+package message;
 import java.io.Serializable;
 
 public abstract class Messenger implements Serializable {

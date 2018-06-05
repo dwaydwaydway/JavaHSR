@@ -1,3 +1,4 @@
+package client;
 import java.util.*;
 import java.io.IOException;
 
@@ -9,7 +10,7 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
-
+import message.*;
 public class Client {
 	private static Messenger messengerCreater() {
 		return new SearchCar();

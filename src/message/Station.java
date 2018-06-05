@@ -1,3 +1,4 @@
+package message;
 
 public enum Station {
 		NANGANG, TAIPEI, BANQIAO, TAOYUAN, HSINCHU, MIAOLI, 
