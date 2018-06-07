@@ -19,7 +19,7 @@ public class AlterResult implements Serializable{
 	station depart;
 	station arrive;
 	
-	int depar_time;
+	int depart_time;
 	int arrive_time;
 	passengerType passengertype;
 	seat seat;
