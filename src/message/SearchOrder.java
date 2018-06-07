@@ -1,5 +1,7 @@
 package message;
 
-public class SearchOrder extends Messenger {
+import java.io.Serializable;
+
+public class SearchOrder implements Serializable {
 
 }

@@ -1,6 +1,8 @@
 package message;
 
-public class Alter extends Messenger {
+import java.io.Serializable;
+
+public class Alter implements Serializable {
 	int ReservationNumber;
 	String ID;
 	int[] quantity;

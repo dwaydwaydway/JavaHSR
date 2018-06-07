@@ -1,7 +1,8 @@
 package message;
 
+import java.io.Serializable;
 
-public class AlterResult extends Messenger{
+public class AlterResult implements Serializable{
 	public enum station {
 		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, 
 		Taichung, Tainan, Changhua, Yunlin, Chiayi, Zuoying

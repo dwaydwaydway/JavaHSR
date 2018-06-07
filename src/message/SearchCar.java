@@ -2,12 +2,13 @@ package message;
 //This is the first step of ordering the tickets
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class SearchCar extends Messenger {
+public class SearchCar implements Serializable{
 	/**
 	 * 
 	 */

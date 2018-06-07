@@ -1,5 +1,7 @@
 package message;
 
-public class Status extends Messenger {
+import java.io.Serializable;
+
+public class Status implements Serializable {
 
 }

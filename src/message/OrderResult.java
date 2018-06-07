@@ -1,5 +1,6 @@
 package message;
+import java.io.Serializable;
 import java.util.LinkedList;
-public class OrderResult extends Messenger {
+public class OrderResult implements Serializable {
 
 }

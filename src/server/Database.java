@@ -1,4 +1,5 @@
 package server;
+
 import message.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * This class helps the server to access and alter the database
+ * 
+ * @author Lu
+ * @version 1.0
+ * @since 2018-06-07
+ *
+ */
 public class Database {
 	private static Connection con = null;
 	private static Statement stat = null;
@@ -20,8 +29,8 @@ public class Database {
 	private String selectCar1 = "SELECT * from timeTable";
 
 	private static String insertBooking = "INSERT INTO `booking`"
-			+ "(`code`, `uid`, `date`, `ticketsType`, `ticketsCount`, `start`, `end`, `seats`, `payDeadline`, `payment`) "
-			+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+			+ "(`code`, `uid`, `date`, `ticketsType`, `ticketsCount`, `start`, `end`, `seatType`, `row`, `payDeadline`, `payment`) "
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 	private String insertEearlyDiscount = "INSERT INTO `earlyDiscount`" + "(`TrainNo`, `Day`, `discount`, `tickets`) "
 			+ "VALUES (?,?,?,?)";
@@ -45,22 +54,49 @@ public class Database {
 
 	private String selectSQL = "select * from User ";
 
+	/**
+	 * This is the constructor of the class, it sets up the connection to the
+	 * database.
+	 */
 	public Database() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/javahsr?useUnicode=true&useSSL=false",
 					"dwaydwaydway", "dwaydwaydway");
-		} catch (ClassNotFoundException e) {
-			System.out.println("DriverClassNotFound :" + e.toString());
-		} catch (SQLException x) {
-			System.out.println("Exception :" + x.toString());
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
 	/////////////////////////////////////////////////////
 
+	/**
+	 * This function inserts a set of data to the booking table
+	 * 
+	 * @param code
+	 *            The code of the order
+	 * @param uid
+	 *            The user id of the user
+	 * @param date
+	 *            The date of the boarding day, in the of "year-month-day"
+	 * @param ticketsType
+	 *            The ticket type of the tickets
+	 * @param ticketsCount
+	 *            The quantity of the tickets
+	 * @param start
+	 *            The starting station of the ride
+	 * @param end
+	 *            The ending station of the ride
+	 * @param seatType
+	 *            An upper-case letter ranging A to E representing different seat
+	 *            types
+	 * @param payDeadline
+	 *            The deadline of the payment in the form of "year-month-day"
+	 * @param payment
+	 *            The price of the order
+	 */
 	public static void insertBooking(String code, String uid, String date, String ticketsType, String ticketsCount,
-			String start, String end, String seats, String payDeadline, String payment) {
+			String start, String end, String seatType, String row, String payDeadline, String payment) {
 		try {
 			pst = con.prepareStatement(insertBooking);
 			pst.setString(1, code);
@@ -70,9 +106,10 @@ public class Database {
 			pst.setString(5, ticketsCount);
 			pst.setString(6, start);
 			pst.setString(7, end);
-			pst.setString(8, seats);
-			pst.setString(9, payDeadline);
-			pst.setString(10, payment);
+			pst.setString(8, seatType);
+			pst.setString(9, row);
+			pst.setString(10, payDeadline);
+			pst.setString(11, payment);
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("InsertDB Exception :" + e.toString());
@@ -81,18 +118,29 @@ public class Database {
 		}
 	}
 
+	/**
+	 * This function inserts a set of data to the earlyDiscount table
+	 * 
+	 * @param TrainNo
+	 *            The train number
+	 * @param Day
+	 *            The day of the discount
+	 * @param discount
+	 *            The discount rate
+	 * @param tickets
+	 *            The quantity of the tickets left
+	 */
 	public void insertEearlyDiscount(String TrainNo, String Day, String discount, String tickets) {
 		try {
 			pst = con.prepareStatement(insertEearlyDiscount);
 			pst.setString(1, TrainNo);
 			pst.setString(2, Day);
 			pst.setString(3, discount);
-			if(tickets == null) {
+			if (tickets == null) {
 				pst.setNull(4, java.sql.Types.INTEGER);
-			}
-			else {
+			} else {
 				pst.setString(4, tickets);
-			}			
+			}
 			pst.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("InsertDB Exception :" + e.toString());
@@ -101,20 +149,18 @@ public class Database {
 		}
 	}
 
-	public void insertSeat(String TrainNo, String Carriage, String data) {
-		try {
-			pst = con.prepareStatement(insertSeat);
-			pst.setString(1, TrainNo);
-			pst.setString(2, Carriage);
-			pst.setString(3, data);
-			pst.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("InsertDB Exception :" + e.toString());
-		} finally {
-			Close();
-		}
-	}
-
+	/**
+	 * This function inserts a set of data to the station table
+	 * 
+	 * @param StationID
+	 *            The station id
+	 * @param Zh_tw
+	 *            The Chinese name of the station, in utf-8 encoding
+	 * @param En
+	 *            The English name of the station
+	 * @param StationAddress
+	 *            The address of the station in Chinese, in utf-8 encoding
+	 */
 	public void insertStation(String StationID, String Zh_tw, String En, String StationAddress) {
 		try {
 			pst = con.prepareStatement(insertStation);
@@ -129,6 +175,27 @@ public class Database {
 			Close();
 		}
 	}
+
+	/**
+	 * This function inserts a set of data to the universityDiscount table
+	 * 
+	 * @param TrainNo
+	 *            The train number
+	 * @param Monday
+	 *            The discount rate on this day
+	 * @param Tuesday
+	 *            The discount rate on this day
+	 * @param Wednesday
+	 *            The discount rate on this day
+	 * @param Thursday
+	 *            The discount rate on this day
+	 * @param Friday
+	 *            The discount rate on this day
+	 * @param Saturday
+	 *            The discount rate on this day
+	 * @param Sunday
+	 *            The discount rate on this day
+	 */
 
 	public void insertUniversityDiscount(String TrainNo, String Monday, String Tuesday, String Wednesday,
 			String Thursday, String Friday, String Saturday, String Sunday) {
@@ -150,6 +217,63 @@ public class Database {
 		}
 	}
 
+	/**
+	 * 
+	 * @param TrainNo
+	 *            The train number
+	 * @param Direction
+	 *            The direction of the ride, 0 for heading south and 1 for heading
+	 *            north
+	 * @param StartingStationName
+	 *            The name of the starting station in English
+	 * @param EndingStationName
+	 *            The name of the ending station in English
+	 * @param Nangang
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Taipei
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Banciao
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Taoyuan
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Hsinchu
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Miaoli
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Taichung
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Changhua
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Yunlin
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Chiayi
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Tainan
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Zuoying
+	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 * @param Monday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Tuesday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Wednesday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Thursday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Friday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Saturday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 * @param Sunday
+	 *            An integer indicating whether this train is on servers on this
+	 *            day, 1 for yes and 0 for no
+	 */
 	public void insertTimeTable(String TrainNo, String Direction, String StartingStationName, String EndingStationName,
 			String Nangang, String Taipei, String Banciao, String Taoyuan, String Hsinchu, String Miaoli,
 			String Taichung, String Changhua, String Yunlin, String Chiayi, String Tainan, String Zuoying,
@@ -219,7 +343,8 @@ public class Database {
 	public OrderResult insertOrder(Order msg) {
 		Order order = (Order) msg;
 		insertBooking(order.getCode(), order.getUid(), order.getDate(), order.getTicketsType(), order.getTicketsCount(),
-				order.getStart(), order.getEnd(), order.getSeats(), order.getPayDeadline(), order.getpayment());
+				order.getStart(), order.getEnd(), order.getSeatType(), order.getRow(), order.getPayDeadline(),
+				order.getpayment());
 
 		return null;
 	}

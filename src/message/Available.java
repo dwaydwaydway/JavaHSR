@@ -1,7 +1,8 @@
 package message;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Available extends Messenger {
+public class Available implements Serializable {
 	public LinkedList<Car> carList = null;
 	public Available() {
 		carList = new LinkedList<Car>();

@@ -1,7 +1,8 @@
 package message;
 
+import java.io.Serializable;
 
-public class Order extends Messenger {
+public class Order implements Serializable {
 //	public enum station {
 //		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, 
 //		Taichung, Tainan, Changhua, Yunlin, Chiayi, Zuoying
@@ -54,15 +55,19 @@ public class Order extends Messenger {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public String getSeats() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public String getPayDeadline() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	public String getpayment() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getRow() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getSeatType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

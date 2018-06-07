@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import message.*;
 public class Client {
-	private static Messenger messengerCreater() {
+	private static Object messengerCreater() {
 		return new SearchCar();
 	}
 
@@ -118,7 +118,7 @@ public class Client {
 			
 			os.writeObject(a);
 			os.flush();
-			Messenger msg = (Messenger) is.readObject();
+			Object msg = (Object) is.readObject();
 			if (msg == null)
 				System.out.println("null");
 			if (msg.getClass() == new Available().getClass()) {
