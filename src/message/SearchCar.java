@@ -14,8 +14,8 @@ public class SearchCar implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	String depart;
-	String arrive;
+	Station depart;
+	Station arrive;
 	PassengerType passengertype;
 	Seat seat;
 	Carriage carriage;
@@ -32,8 +32,8 @@ public class SearchCar implements Serializable{
 	
 	
 	public SearchCar() {
-		depart = "TAIPEI";
-		arrive = "TAICHUNG";
+		depart = Station.TAIPEI;
+		arrive = Station.ZUOYING;
 		passengertype = PassengerType.NORMAL;
 		seat = Seat.NONE;
 		carriage = Carriage.STANDARD;
@@ -52,8 +52,8 @@ public class SearchCar implements Serializable{
 		String date_input;
 		date_input = "2018.11.11-13:30";
 		
-		depart = "TAIPEI";
-		arrive = "TAICHUNG";
+		depart = Station.BANQIAO;
+		arrive = Station.HSINCHU;
 		passengertype = PassengerType.NORMAL;
 		seat = Seat.NONE;
 		carriage = Carriage.STANDARD;
@@ -72,12 +72,12 @@ public class SearchCar implements Serializable{
 	}
 	
 	
-	public String getDepart() {
+	public Station getDepart() {
 		return depart;
 	}
 	
 	
-	public String getArrive() {
+	public Station getArrive() {
 		return arrive;
 	}
 	
@@ -99,11 +99,11 @@ public class SearchCar implements Serializable{
 	}
 	
 	
-	public void setDepart(String depart) {
+	public void setDepart(Station depart) {
 		this.depart = depart;
 	}
 	
-	public void setArrive(String arrive) {
+	public void setArrive(Station arrive) {
 		this.arrive = arrive;
 	}
 	

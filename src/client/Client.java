@@ -1,5 +1,7 @@
 package client;
 import java.util.*;
+import message.SearchCar;
+
 import java.io.IOException;
 
 import java.io.ObjectInputStream;
