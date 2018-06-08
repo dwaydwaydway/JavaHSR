@@ -22,5 +22,9 @@ public class Available implements Serializable {
 				remained_none_standard_seat, remained_aisle_standard_seat, early_discount);
 		carList.add(newCar);
 	}
+	
+	public SearchCar getInfo() {
+		return this.info;
+	}
 }
 

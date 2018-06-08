@@ -8,4 +8,8 @@ public class SearchOrder implements Serializable {
 	public SearchOrder(String ID) {
 		this.userID = ID;
 	}
+	
+	public String getUserID() {
+		return this.userID;
+	}
 }

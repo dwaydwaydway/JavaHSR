@@ -13,5 +13,13 @@ public class Order implements Serializable {
 		this.userID = userID;
 	}
 	
-	
+	public String getCarID() {
+		return this.carID;
+	}
+	public String getUserID() {
+		return this.userID;
+	}
+	public SearchCar getInfo() {
+		return this.info;
+	}
 }

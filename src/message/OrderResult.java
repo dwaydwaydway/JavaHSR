@@ -25,4 +25,33 @@ public class OrderResult implements Serializable {
 		this.carriage = carriage;
 		this.early_discount = early_discount;
 	}
+	
+	public String getCarID() {
+		return this.carID;
+	}
+	public String getUserID() {
+		return this.userID;
+	}
+	public String getDepart(){
+		return this.depart;
+	}
+	public String getArrive() {
+		return this.arrive;
+	}
+	public String getDepartTime() {
+		return this.depart_time;
+	}
+	public String getArriveTime() {
+		return this.arrive_time;
+	}
+	public String getPassengerType() {
+		return this.passenger_type;
+	}
+	public String getCarriage() {
+		return this.carriage;
+	}
+	public String getEarlyDiscount() {
+		return this.early_discount;
+	}
+	
 }
