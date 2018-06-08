@@ -73,7 +73,8 @@ public class Server {
 		private Object messageHandler(Object msg) {
 			Database database = new Database();
 			if (msg.getClass() == new SearchCar().getClass()) {
-				return database.selectCar((SearchCar) msg);
+				return new Available();
+				//return database.selectCar((SearchCar) msg);
 			} else if (msg.getClass() == new Order().getClass()) {
 				return database.insertOrder((Order) msg);
 			} else if (msg.getClass() == new SearchOrder().getClass()) {

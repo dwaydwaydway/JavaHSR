@@ -13,11 +13,20 @@ public class Order implements Serializable {
 	private String carID;
 	private String userID;
 	
+	public Order() {
+		info = new SearchCar();
+		carID = "invalid";
+		userID = "invalid";
+	}
+	
+	
 	public Order(SearchCar i, String carID, String userID) {
 		this.info = i;
 		this.carID = carID;
 		this.userID = userID;
 	}
+	
+	
 	
 	public String getCarID() {
 		return this.carID;

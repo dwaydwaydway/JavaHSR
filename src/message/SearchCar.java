@@ -1,11 +1,13 @@
 package message;
 //This is the first step of ordering the tickets
+//all string
 
 
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * After the users input their order, we should generate a SearchCar object to check 
@@ -23,16 +25,23 @@ import java.util.Date;
 public class SearchCar implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	Station depart;
-	Station arrive;
-	PassengerType passengertype;
-	Seat seat;
-	Carriage carriage;
+	String depart;
+	String arrive;
+	String seat;
+	String carriage;
 	public int[] quantity = {0,0,0,0,0};
 	int total;
-	Date depart_time;
+	Date depart_day_temp; // day save in 
+	
+	String depart_day;
+	String depart_dayofweek;
 	SimpleDateFormat ft2 = 
-		      new SimpleDateFormat ("yyyy.MM.dd-HH:mm");
+		      new SimpleDateFormat ("yyyy-MM-dd");
+	
+	SimpleDateFormat dayofweek = new SimpleDateFormat("E", Locale.ENGLISH);
+	
+	int hour;
+	int minute;
 
 	//boolean early;   //early should be verified on server or data base
 	
@@ -41,97 +50,144 @@ public class SearchCar implements Serializable{
 	
 	
 	public SearchCar() {
-		depart = Station.TAIPEI;
-		arrive = Station.ZUOYING;
-		passengertype = PassengerType.NORMAL;
-		seat = Seat.NONE;
-		carriage = Carriage.STANDARD;
+		depart = "TAIPEI";
+		arrive = "ZUOYING";
+		seat = "NONE";
+		carriage = "STANDARD";
 		quantity[0] = 0;
 		quantity[1] = 0;
 		quantity[2] = 0;
 		quantity[3] = 0;
 		quantity[4] = 0;
 		total = getTotal();
-		depart_time =  new Date();   //the current time
+		hour = 00;
+		minute = 30;
+		depart_day_temp =  new Date();   //the current time
+		
+		depart_day = ft2.format(depart_day_temp);
+		
+		depart_dayofweek = dayofweek.format(depart_day_temp);
 	}
 	
 	
 	//for testing
 	public SearchCar(int x) {
 		String date_input;
-		date_input = "2018.11.11-13:30";
+		date_input = "2018-11-11";
 		
-		depart = Station.BANQIAO;
-		arrive = Station.HSINCHU;
-		passengertype = PassengerType.NORMAL;
-		seat = Seat.NONE;
-		carriage = Carriage.STANDARD;
+		depart = "BANQIAO";
+		arrive = "HSINCHU";
+		seat = "NONE";
+		carriage = "STANDARD";
 		quantity[0] = 1;
 		quantity[1] = 0;
 		quantity[2] = 0;
 		quantity[3] = 0;
 		quantity[4] = 0;
 		total = getTotal();
+		hour = 13;
+		minute = 20;
+		
 	   try { 
-           depart_time = ft2.parse(date_input);
+           depart_day_temp = ft2.parse(date_input);
        } 
 	   catch (ParseException e) { 
            System.out.println("Unparseable using " + ft2); 
 	   }
+	   
+	   
+		depart_day = ft2.format(depart_day_temp);
+		
+		depart_dayofweek = dayofweek.format(depart_day_temp);
 	}
 	
 	
-	public Station getDepart() {
+	public String getDepart() {
 		return depart;
 	}
 	
 	
-	public Station getArrive() {
+	public String getArrive() {
 		return arrive;
 	}
 	
-	public PassengerType getPassenerType() {
-		return passengertype;
-	}
 
-	public Seat getSeat() {
+	public String getSeat() {
 		return seat;
 	}
 	
-	public Carriage getCarriage() {
+	public String getCarriage() {
 		return carriage;
 	}
 	
-	public Date getDepartTime() {
-		return depart_time;
+	public String getDepartDay() {
+		return depart_day;
 		
 	}
-	
-	
-	public void setDepart(Station depart) {
-		this.depart = depart;
+	public int getHour() {
+		return hour;
 	}
 	
-	public void setArrive(Station arrive) {
+	public int getMinute() {
+		return minute;
+	}
+	
+	
+	public String getDayofWeek() {
+		return depart_dayofweek;
+	}
+	
+	
+	
+	public void setDepart(String string) {
+		this.depart = string;
+	}
+	
+	public void setArrive(String arrive) {
 		this.arrive = arrive;
 	}
 	
-	public void setPassenerType(PassengerType passengertype) {
-		this.passengertype = passengertype;
-	}
 
-	public void setSeat(Seat seat) {
+
+	public void setSeat(String seat) {
 		this.seat = seat;
 	}
 	
-	public void setCarriage(Carriage carriage) {
+	public void setCarriage(String carriage) {
 		this.carriage = carriage;
 	}
 	
-	public void setDepartTime(Date date) {
-		this.depart_time = date;
+	public void setDepartDay(String inputDate) {
+		
+		
+		//input(string) turn into date in depart_day_temp;
+		try { 
+	           depart_day_temp = ft2.parse(inputDate);
+	       } 
+		   catch (ParseException e) { 
+	           System.out.println("Unparseable using " + ft2); 
+		   }
+		
+		//use depart_day_temp(date) to print out depart_day(String) and depart_dayofweek
+
+			   depart_day = ft2.format(depart_day_temp);
+			   depart_dayofweek = dayofweek.format(depart_day_temp);
+		   
+
+		
+		
 		
 	}
+	public void setHour(int hour) {
+		this.hour = hour;
+	}
+	
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+	
+	
+	
 	
 	
 	public int getTotal() {
@@ -144,9 +200,8 @@ public class SearchCar implements Serializable{
 	
 	public String toString() {
 		String output = null;
-		output = "Depart from " + this.getDepart() + " at " + this.getDepartTime() + "\n";
+		output = "Depart from " + this.getDepart() + " at " + this.getDepartDay() + " at " + this.getHour() + " : " + this.getMinute() + "\n";
 		output = output + "Arrive at " + this.getArrive() + "\n";
-		output = output + "PassengerType is " + this.getPassenerType() + "\n";
 		output = output + "Seat is " + this.getSeat() + "\n";
 		output = output + "Tickets of Normal  " + quantity[0] + "\n";
 		output = output + "Tickets of Child   " + quantity[1] + "\n";
@@ -154,6 +209,7 @@ public class SearchCar implements Serializable{
 		output = output + "Tickets of Disable " + quantity[3] + "\n";
 		output = output + "Tickets of Student " + quantity[4] + "\n";
 		output = output + "Sum of tickets " + this.getTotal() + "\n";
+		output = output + "Day of week is " + this.getDayofWeek();
 		
 		return output;
 

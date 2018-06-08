@@ -29,6 +29,13 @@ public class OrderResult implements Serializable {
 	private String carriage;
 	private String early_discount;  //65,75...or none
 	
+	
+	public OrderResult() {
+		carID = userID = depart = arrive = depart_time = arrive_time = passenger_type = carriage = early_discount = "invalid";
+	}
+	
+	
+	
 	public OrderResult(String carID, String userID, String depart, String arrive, 
 			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount)
 	{
