@@ -7,13 +7,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * After the users input their order, we should generate a SearchCar object to check 
+ * whether there is any car meeting their order in the database.
+ *Information:
+ * 1.depart station
+ * 2.arrive station
+ * 3.passenger type(NORMAL, CHILD, ELDER, DISABLE, STUDENT)
+ * 4.seat(NONE, WINDOW, AISE)
+ * 5.carriage(STANDARD, BUSINESS)
+ * 6.quantity(it means the numbers of different kinds of tickets the user want to buy)
+ * 7.total(the total number of the tickets that user wants to buy)
+ * 8.depart time
+ */
 public class SearchCar implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	Station depart;
 	Station arrive;
 	PassengerType passengertype;

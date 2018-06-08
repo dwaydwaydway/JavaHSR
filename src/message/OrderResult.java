@@ -1,6 +1,23 @@
 package message;
 import java.io.Serializable;
 import java.util.LinkedList;
+
+/**
+ * After checking the SearchOrder in the database, we should create an object of OrderResult, and
+ * returnif to Client.
+ * 
+ * Information:
+ * 1.carID;
+ * 2.userID;
+ * 3.depart station;
+ * 4.arrive station;
+ * 5.depart_time;
+ * 6.arrive_time;
+ * 7.passenger_type;
+ * 8.carriage;
+ * 9.early_discount(65,75...or none)
+ *
+ */
 public class OrderResult implements Serializable {
 	private String carID;
 	private String userID;

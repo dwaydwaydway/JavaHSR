@@ -1,11 +1,9 @@
 package message;
 import java.io.Serializable;
-
+/**
+ * This class contains what kinds of information a Car object should have
+ */
 public class Car implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 753539215733352664L;
 	
 	private String carID;
