@@ -1,4 +1,4 @@
-package jsonParser;
+package databaseSetter;
 import server.*;
 
 import java.io.BufferedReader;

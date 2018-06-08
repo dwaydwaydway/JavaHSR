@@ -35,7 +35,7 @@ public class Database {
 	private String insertEearlyDiscount = "INSERT INTO `earlyDiscount`" + "(`TrainNo`, `Day`, `discount`, `tickets`) "
 			+ "VALUES (?,?,?,?)";
 
-	private String insertSeat = "INSERT INTO `seat`(`TrainNo`, `Carriage`, `data`) " + "VALUES (?,?,?)";
+	private String insertSeatIndex = "INSERT INTO `seatIndex`(`TrainNo`, `BusinessWin`, `BusinessAle`, `NormalWin`, `NormalMid`, `NormalAle`, `Disable`, `Day`) VALUES (?,?,?,?,?,?,?,?)";
 
 	private String insertStation = "INSERT INTO `station`(`StationID`, `Zh_tw`, `En`, `StationAddress`) "
 			+ "VALUES (?,?,?,?)";
@@ -49,6 +49,18 @@ public class Database {
 	private String insertUniversityDiscount = "INSERT INTO `universityDiscount`(`TrainNo`, "
 			+ "`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) "
 			+ "VALUES (?,?,?,?,?,?,?,?)";
+	
+	private String insertNormalWin = "INSERT INTO `NormalWin`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
+
+	private String insertNormalMid = "INSERT INTO `NormalMid`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
+	
+	private String insertNormalAisle = "INSERT INTO `NormalAisle`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
+
+	private String insertBusinessWin = "INSERT INTO `BusinessWin`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
+
+	private String insertBusinessAisle = "INSERT INTO `BusinessAisle`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
+
+	private String insertDisable = "INSERT INTO `Disable`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
 
 	/////////////////////////////////////////////////////
 
@@ -70,6 +82,108 @@ public class Database {
 
 	/////////////////////////////////////////////////////
 
+	public void insertNormalWin(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertNormalWin);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertNormalMid(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertNormalMid);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertNormalAisle(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertNormalAisle);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertBusinessWin(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertBusinessWin);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertDisable(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertDisable);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertBusinessAisle(String Carriage, String Row, String Side) {
+		try {
+			pst = con.prepareStatement(insertBusinessAisle);
+			pst.setString(1, Carriage);
+			pst.setString(2, Row);
+			pst.setString(3, Side);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
+	
+	public void insertSeatIndex(String TrainNo, String BusinessWin, String BusinessAle, String NormalWin, String NormalMid, String NormalAle, String Disable, String Day) {
+		try {
+			pst = con.prepareStatement(insertSeatIndex);
+			pst.setString(1, TrainNo);
+			pst.setString(2, BusinessWin);
+			pst.setString(3, BusinessAle);
+			pst.setString(4, NormalWin);
+			pst.setString(5, NormalMid);
+			pst.setString(6, NormalAle);
+			pst.setString(7, Disable);
+			pst.setString(8, Day);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("InsertDB Exception :" + e.toString());
+		} finally {
+			Close();
+		}
+	}
 	/**
 	 * This function inserts a set of data to the booking table
 	 * 
@@ -323,31 +437,22 @@ public class Database {
 
 	/////////////////////////////////////////////////////////////////////
 
-	public Available selectCar(SearchCar msg) {
-		try {
-			pst = con.prepareStatement(selectCar1);
-			rs = pst.executeQuery();
-			Available result = new Available();
-			while (rs.next()) {
-				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
-			}
-			return result;
-		} catch (SQLException e) {
-			System.out.println("SQLException");
-			e.printStackTrace();
-		}
-		return null;
-
-	}
-
-	public OrderResult insertOrder(Order msg) {
-		Order order = (Order) msg;
-		insertBooking(order.getCode(), order.getUid(), order.getDate(), order.getTicketsType(), order.getTicketsCount(),
-				order.getStart(), order.getEnd(), order.getSeatType(), order.getRow(), order.getPayDeadline(),
-				order.getpayment());
-
-		return null;
-	}
+//	public Available selectCar(SearchCar msg) {
+//		try {
+//			pst = con.prepareStatement(selectCar1);
+//			rs = pst.executeQuery();
+//			Available result = new Available();
+//			while (rs.next()) {
+//				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
+//			}
+//			return result;
+//		} catch (SQLException e) {
+//			System.out.println("SQLException");
+//			e.printStackTrace();
+//		}
+//		return null;
+//
+//	}
 
 	////////////////////////////////////////////////////////////////////////////////////
 	private static void Close() {
@@ -369,18 +474,20 @@ public class Database {
 		}
 	}
 
-	public static void main(String[] args) {
-		Database test = new Database();
-
-	}
-
-	public Status selectOrder(Order msg) {
-		// TODO Auto-generated method stub
+	public Object selectCar(SearchCar msg) {
+		try {
+			pst = con.prepareStatement(selectCar1);
+			rs = pst.executeQuery();
+			Available result = new Available();
+			while (rs.next()) {
+				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("SQLException");
+			e.printStackTrace();
+		}
 		return null;
-	}
-
-	public AlterResult updateAlter(Alter msg) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

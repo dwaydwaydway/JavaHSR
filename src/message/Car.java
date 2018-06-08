@@ -7,7 +7,6 @@ public class Car implements Serializable {
 	private static final long serialVersionUID = 753539215733352664L;
 	
 	private String carID;
-	private String userID;
 	private String depart;
 	private String arrive;
 	private String depart_time;
