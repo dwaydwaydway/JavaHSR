@@ -2,3 +2,10 @@
 /stationParser.class
 /timeTableParser.class
 /universityDiscountParser.class
+/BusinessAisle.class
+/BusinessWin.class
+/Disable.class
+/NormalAisle.class
+/NormalMid.class
+/NormalWin.class
+/seatInit.class

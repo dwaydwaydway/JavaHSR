@@ -59,6 +59,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.SystemColor;
 import javax.swing.SpinnerNumberModel;
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 
 
@@ -82,7 +85,10 @@ public class ClientGUI extends JFrame {
 	private JTextField txtElder;
 	private JTextField txtDisable;
 	private JTextField txtStudent;
+	private JTextField txtCarid;
+	private JTextField txtDepartTime;
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -120,6 +126,28 @@ public class ClientGUI extends JFrame {
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
+		
+		
+		
+		JPanel Available = new JPanel();
+		Available.setBackground(Color.MAGENTA);
+		Available.setBounds(0, 0, 824, 314);
+		layeredPane.add(Available);
+		Available.setLayout(null);
+		
+		txtCarid = new JTextField();
+		txtCarid.setEditable(false);
+		txtCarid.setText("CarID");
+		txtCarid.setBounds(0, 0, 60, 20);
+		Available.add(txtCarid);
+		txtCarid.setColumns(10);
+		
+		txtDepartTime = new JTextField();
+		txtDepartTime.setText("Depart Time");
+		txtDepartTime.setEditable(false);
+		txtDepartTime.setColumns(10);
+		txtDepartTime.setBounds(60, 0, 100, 20);
+		Available.add(txtDepartTime);
 		
 		
 		
@@ -264,13 +292,6 @@ public class ClientGUI extends JFrame {
 		Search.setBackground(Color.YELLOW);
 		Search.setBounds(0, 0, 824, 314);
 		layeredPane.add(Search);
-		
-		
-		
-		JPanel Available = new JPanel();
-		Available.setBackground(Color.MAGENTA);
-		Available.setBounds(0, 0, 824, 314);
-		layeredPane.add(Available);
 		
 		JPanel BookingHistoryResult = new JPanel();
 		BookingHistoryResult.setBackground(Color.BLUE);
@@ -424,6 +445,7 @@ public class ClientGUI extends JFrame {
 						boolean vail = true;
 
 						SearchCar SearchCarMessage = new SearchCar();
+						
 						SearchCarMessage.setDepart(comdepartStation.getSelectedItem().toString());
 						SearchCarMessage.setArrive(comarriveStation.getSelectedItem().toString());
 						SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
