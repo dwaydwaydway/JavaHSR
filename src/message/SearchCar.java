@@ -21,6 +21,7 @@ import java.util.Locale;
  * 6.quantity(it means the numbers of different kinds of tickets the user want to buy)
  * 7.total(the total number of the tickets that user wants to buy)
  * 8.depart time
+ * 9.direction(it's a boolean type, 1 means toward north)
  */
 public class SearchCar implements Serializable{
 	
@@ -42,6 +43,8 @@ public class SearchCar implements Serializable{
 	
 	int hour;
 	int minute;
+	
+	boolean direction;  
 
 	//boolean early;   //early should be verified on server or data base
 	
@@ -137,6 +140,9 @@ public class SearchCar implements Serializable{
 		return depart_dayofweek;
 	}
 	
+	public boolean getDirection() {
+		return direction;
+	}
 	
 	
 	public void setDepart(String string) {
@@ -172,10 +178,6 @@ public class SearchCar implements Serializable{
 
 			   depart_day = ft2.format(depart_day_temp);
 			   depart_dayofweek = dayofweek.format(depart_day_temp);
-		   
-
-		
-		
 		
 	}
 	public void setHour(int hour) {
@@ -186,7 +188,9 @@ public class SearchCar implements Serializable{
 		this.minute = minute;
 	}
 	
-	
+	public void setDirection(boolean NorthOrSouth) {
+		this.direction = NorthOrSouth;
+	}
 	
 	
 	

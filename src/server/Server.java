@@ -75,12 +75,12 @@ public class Server {
 			if (msg.getClass() == new SearchCar().getClass()) {
 				return new Available();
 				//return database.selectCar((SearchCar) msg);
-			} else if (msg.getClass() == new Order().getClass()) {
-				return database.insertOrder((Order) msg);
-			} else if (msg.getClass() == new SearchOrder().getClass()) {
-				return database.selectOrder((Order) msg);
-			} else if (msg.getClass() == new Alter().getClass()) {
-				return database.updateAlter((Alter) msg);
+//			} else if (msg.getClass() == new Order().getClass()) {
+//				return database.insertOrder((Order) msg);
+//			} else if (msg.getClass() == new SearchOrder().getClass()) {
+//				return database.selectOrder((Order) msg);
+//			} else if (msg.getClass() == new Alter().getClass()) {
+//				return database.updateAlter((Alter) msg);
 			} else
 				return null;
 		}
