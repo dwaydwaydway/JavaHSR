@@ -111,7 +111,9 @@ public class SearchCar implements Serializable{
 		return arrive;
 	}
 	
-
+	public String getTime() {
+		return hour + ":" + minute;
+	}
 	public String getSeat() {
 		return seat;
 	}

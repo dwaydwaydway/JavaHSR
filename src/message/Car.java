@@ -12,7 +12,6 @@ public class Car implements Serializable {
 	private String depart_time;
 	private String arrive_time;
 	private String remained_window_business_seat;
-	private String remained_none_business_seat;
 	private String remained_aisle_business_seat;
 	private String remained_window_standard_seat;
 	private String remained_none_standard_seat;
@@ -23,8 +22,7 @@ public class Car implements Serializable {
 	 * Constructor of Car
 	 */
 	public Car(String carID, String depart, String arrive, String depart_time, String arrive_time, 
-			String remained_window_business_seat, String remained_none_business_seat, 
-			String remained_aisle_business_seat, String remained_window_standard_seat, 
+			String remained_window_business_seat, String remained_aisle_business_seat, String remained_window_standard_seat, 
 			String remained_none_standard_seat, String remained_aisle_standard_seat, String early_discount)
 	{
 		this.carID = carID;
@@ -34,7 +32,6 @@ public class Car implements Serializable {
 		this.depart_time = depart_time;
 		this.remained_aisle_business_seat = remained_aisle_business_seat;
 		this.remained_aisle_standard_seat = remained_aisle_standard_seat;
-		this.remained_none_business_seat = remained_none_business_seat;
 		this.remained_none_standard_seat = remained_none_standard_seat;
 		this.remained_window_business_seat = remained_window_business_seat;
 		this.remained_window_standard_seat = remained_window_standard_seat;
@@ -61,9 +58,6 @@ public class Car implements Serializable {
 	}
 	public String getRemained_Aisle_Standard_Seat() {
 		return this.remained_aisle_standard_seat;
-	}
-	public String getRemained_None_Business_Seat() {
-		return this.remained_none_business_seat;
 	}
 	public String getRemained_None_Standard_Seat() {
 		return this.remained_none_standard_seat;

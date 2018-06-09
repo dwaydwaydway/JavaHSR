@@ -1,5 +1,5 @@
 package message;
 
 	public enum Seat {
-		NONE, WINDOW, AISE
+		NONE, WINDOW, AISLE
 	}

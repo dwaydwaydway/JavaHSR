@@ -23,8 +23,31 @@ public class Database {
 	private static PreparedStatement pst = null;
 
 	/////////////////////////////////////////////////////
-	private String selectCar = "SELECT TrainNo from timeTable WHERE StartingStationName = ? AND"
-			+ " EndingStationName = ?";
+	private String selectCar = 
+			"SELECT a.TrainNo, a.?, a.?, \r\n" + 
+			"	   b.NormalWin, b.NormalMid, b.NormalAle, b.BusinessWin, b.BusinessAle,\r\n" + 
+			"      c.early, c.tickets,\r\n" + 
+			"      d.? AS college\r\n" + 
+			"FROM \r\n" + 
+			"	(SELECT * FROM timeTable t WHERE t. = 1 \r\n" + 
+			"          				   AND t.Direction = ? \r\n" + 
+			"         				   AND t.? < \"?\"\r\n" + 
+			"      				       AND t.? IS NOT NULL) a\r\n" + 
+			"LEFT JOIN \r\n" + 
+			"	(SELECT * FROM  seatIndex WHERE Day = \"?\") b\r\n" + 
+			"ON a.TrainNo = b.TrainNo\r\n" + 
+			"\r\n" + 
+			"LEFT JOIN\r\n" + 
+			"	(SELECT e1.*, e2.tickets FROM (SELECT TrainNo, MIN(discount) AS early FROM earlyDiscount WHERE Day = \"?\" \r\n" + 
+			"           																					 AND tickets != 0  \r\n" + 
+			"          																  GROUP BY TrainNo) e1\r\n" + 
+			"     																	  LEFT JOIN	earlyDiscount e2					   \r\n" + 
+			"     ON e1.TrainNo = e2.TrainNo) c    \r\n" + 
+			"ON a.TrainNO = c.TrainNo\r\n" + 
+			"\r\n" + 
+			"LEFT JOIN\r\n" + 
+			"	(SELECT TrainNo, ? FROM universityDiscount) d\r\n" + 
+			"ON a.TrainNO = d.TrainNo";
 
 	private String selectCar1 = "SELECT * from timeTable";
 
@@ -49,11 +72,11 @@ public class Database {
 	private String insertUniversityDiscount = "INSERT INTO `universityDiscount`(`TrainNo`, "
 			+ "`Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) "
 			+ "VALUES (?,?,?,?,?,?,?,?)";
-	
+
 	private String insertNormalWin = "INSERT INTO `NormalWin`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
 
 	private String insertNormalMid = "INSERT INTO `NormalMid`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
-	
+
 	private String insertNormalAisle = "INSERT INTO `NormalAisle`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
 
 	private String insertBusinessWin = "INSERT INTO `BusinessWin`(`Carriage`, `Row`, `Side`) VALUES (?, ?, ?)";
@@ -95,7 +118,7 @@ public class Database {
 			Close();
 		}
 	}
-	
+
 	public void insertNormalMid(String Carriage, String Row, String Side) {
 		try {
 			pst = con.prepareStatement(insertNormalMid);
@@ -109,7 +132,7 @@ public class Database {
 			Close();
 		}
 	}
-	
+
 	public void insertNormalAisle(String Carriage, String Row, String Side) {
 		try {
 			pst = con.prepareStatement(insertNormalAisle);
@@ -123,7 +146,7 @@ public class Database {
 			Close();
 		}
 	}
-	
+
 	public void insertBusinessWin(String Carriage, String Row, String Side) {
 		try {
 			pst = con.prepareStatement(insertBusinessWin);
@@ -137,7 +160,7 @@ public class Database {
 			Close();
 		}
 	}
-	
+
 	public void insertDisable(String Carriage, String Row, String Side) {
 		try {
 			pst = con.prepareStatement(insertDisable);
@@ -151,7 +174,7 @@ public class Database {
 			Close();
 		}
 	}
-	
+
 	public void insertBusinessAisle(String Carriage, String Row, String Side) {
 		try {
 			pst = con.prepareStatement(insertBusinessAisle);
@@ -165,8 +188,9 @@ public class Database {
 			Close();
 		}
 	}
-	
-	public void insertSeatIndex(String TrainNo, String BusinessWin, String BusinessAle, String NormalWin, String NormalMid, String NormalAle, String Disable, String Day) {
+
+	public void insertSeatIndex(String TrainNo, String BusinessWin, String BusinessAle, String NormalWin,
+			String NormalMid, String NormalAle, String Disable, String Day) {
 		try {
 			pst = con.prepareStatement(insertSeatIndex);
 			pst.setString(1, TrainNo);
@@ -184,6 +208,7 @@ public class Database {
 			Close();
 		}
 	}
+
 	/**
 	 * This function inserts a set of data to the booking table
 	 * 
@@ -343,29 +368,41 @@ public class Database {
 	 * @param EndingStationName
 	 *            The name of the ending station in English
 	 * @param Nangang
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Taipei
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Banciao
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Taoyuan
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Hsinchu
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Miaoli
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Taichung
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Changhua
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Yunlin
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Chiayi
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Tainan
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Zuoying
-	 *            The departing time of the ride at this station, in the form of "hour:minute"
+	 *            The departing time of the ride at this station, in the form of
+	 *            "hour:minute"
 	 * @param Monday
 	 *            An integer indicating whether this train is on servers on this
 	 *            day, 1 for yes and 0 for no
@@ -437,22 +474,23 @@ public class Database {
 
 	/////////////////////////////////////////////////////////////////////
 
-//	public Available selectCar(SearchCar msg) {
-//		try {
-//			pst = con.prepareStatement(selectCar1);
-//			rs = pst.executeQuery();
-//			Available result = new Available();
-//			while (rs.next()) {
-//				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
-//			}
-//			return result;
-//		} catch (SQLException e) {
-//			System.out.println("SQLException");
-//			e.printStackTrace();
-//		}
-//		return null;
-//
-//	}
+	// public Available selectCar(SearchCar msg) {
+	// try {
+	// pst = con.prepareStatement(selectCar1);
+	// rs = pst.executeQuery();
+	// Available result = new Available();
+	// while (rs.next()) {
+	// result.addCar(rs.getString("StartingStationName"),
+	// rs.getString("EndingStationName"));
+	// }
+	// return result;
+	// } catch (SQLException e) {
+	// System.out.println("SQLException");
+	// e.printStackTrace();
+	// }
+	// return null;
+	//
+	// }
 
 	////////////////////////////////////////////////////////////////////////////////////
 	private static void Close() {
@@ -476,11 +514,25 @@ public class Database {
 
 	public Object selectCar(SearchCar msg) {
 		try {
-			pst = con.prepareStatement(selectCar1);
+			pst = con.prepareStatement(selectCar);
+			pst.setString(1, msg.getDepart());
+			pst.setString(2, msg.getArrive());
+			pst.setString(3, msg.getDepartDay());
+			pst.setString(4, msg.getDepartDay());
+			pst.setString(5, msg.getDirection());
+			pst.setString(6, msg.getDepart());
+			pst.setString(7, msg.getTime());
+			pst.setString(8, msg.getArrive());
+			pst.setString(9, msg.getDepartDay());
+			pst.setString(10, msg.getDepartDay());
+			pst.setString(11, msg.getDepartDay());
 			rs = pst.executeQuery();
 			Available result = new Available();
 			while (rs.next()) {
-				result.addCar(rs.getString("StartingStationName"), rs.getString("EndingStationName"));
+				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(),msg.getArrive().toString(), 
+						rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
+						rs.getString("BusinessWin"), rs.getString("BusinessAle"), rs.getString("NormalWin"),
+						rs.getString("NormalMid"), rs.getString("NormalAle"), rs.getString("early"));
 			}
 			return result;
 		} catch (SQLException e) {
