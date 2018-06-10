@@ -62,6 +62,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.JTextPane;
 
 
 
@@ -91,6 +92,12 @@ public class ClientGUI extends JFrame {
 	
 	private Available info1;
 	private Available info2;
+	private JTextField txtSeatwindow;
+	private JTextField txtSeataisle;
+	private JTextField txtSeatnone;
+	private JTextField txtEarlybird;
+	private JTextField txtPleaseInputThe;
+	private JTextField textField_3;
 
 	
 	/**
@@ -114,7 +121,7 @@ public class ClientGUI extends JFrame {
 	 */
 	public ClientGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 400);
+		setBounds(100, 100, 1004, 544);
 		this.setTitle("HSR Ticket System");
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(238, 238, 238));
@@ -130,6 +137,106 @@ public class ClientGUI extends JFrame {
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
+		
+		
+		
+		JPanel Available = new JPanel();
+		Available.setBackground(Color.LIGHT_GRAY);
+		Available.setBounds(0, 0, 972, 437);
+		layeredPane.add(Available);
+		Available.setLayout(null);
+		
+		txtCarid = new JTextField();
+		txtCarid.setBackground(Color.PINK);
+		txtCarid.setForeground(Color.BLACK);
+		txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtCarid.setEditable(false);
+		txtCarid.setText("CarID");
+		txtCarid.setBounds(0, 0, 100, 20);
+		Available.add(txtCarid);
+		txtCarid.setColumns(10);
+		
+		txtDepartTime = new JTextField();
+		txtDepartTime.setBackground(Color.PINK);
+		txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDepartTime.setText("Depart Time");
+		txtDepartTime.setEditable(false);
+		txtDepartTime.setColumns(10);
+		txtDepartTime.setBounds(100, 0, 100, 20);
+		Available.add(txtDepartTime);
+		
+		txtArriveTime = new JTextField();
+		txtArriveTime.setBackground(Color.PINK);
+		txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtArriveTime.setEditable(false);
+		txtArriveTime.setText("Arrive Time");
+		txtArriveTime.setBounds(200, 0, 100, 20);
+		Available.add(txtArriveTime);
+		txtArriveTime.setColumns(10);
+		
+		txtSeatwindow = new JTextField();
+		txtSeatwindow.setEditable(false);
+		txtSeatwindow.setBackground(Color.PINK);
+		txtSeatwindow.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeatwindow.setText("Seat_Window");
+		txtSeatwindow.setBounds(300, 0, 100, 20);
+		Available.add(txtSeatwindow);
+		txtSeatwindow.setColumns(10);
+		
+		txtSeataisle = new JTextField();
+		txtSeataisle.setEditable(false);
+		txtSeataisle.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeataisle.setBackground(Color.PINK);
+		txtSeataisle.setText("Seat_Aisle");
+		txtSeataisle.setBounds(400, 0, 100, 20);
+		Available.add(txtSeataisle);
+		txtSeataisle.setColumns(10);
+		
+		txtSeatnone = new JTextField();
+		txtSeatnone.setEditable(false);
+		txtSeatnone.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeatnone.setBackground(Color.PINK);
+		txtSeatnone.setText("Seat_None");
+		txtSeatnone.setBounds(500, 0, 100, 20);
+		Available.add(txtSeatnone);
+		txtSeatnone.setColumns(10);
+		
+		txtEarlybird = new JTextField();
+		txtEarlybird.setEditable(false);
+		txtEarlybird.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtEarlybird.setBackground(Color.PINK);
+		txtEarlybird.setText("EarlyBird");
+		txtEarlybird.setBounds(600, 0, 100, 20);
+		Available.add(txtEarlybird);
+		txtEarlybird.setColumns(10);
+		
+		txtPleaseInputThe = new JTextField();
+		txtPleaseInputThe.setEditable(false);
+		txtPleaseInputThe.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtPleaseInputThe.setBackground(new Color(221, 160, 221));
+		txtPleaseInputThe.setText("Please input the CarID you want :  ");
+		txtPleaseInputThe.setBounds(0, 312, 250, 20);
+		Available.add(txtPleaseInputThe);
+		txtPleaseInputThe.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(250, 312, 100, 20);
+		Available.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+				
+			}
+		});
+		btnConfirm.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnConfirm.setBackground(new Color(238, 232, 170));
+		btnConfirm.setBounds(445, 312, 89, 31);
+		Available.add(btnConfirm);
 		
 		
 		
@@ -216,7 +323,6 @@ public class ClientGUI extends JFrame {
 		comSeat.setModel(new DefaultComboBoxModel(Seat.values()));
 		comSeat.setBounds(135, 49, 110, 20);
 		Booking.add(comSeat);
-		JDatePanelImpl datePanel;
 		JDatePickerImpl departDay = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 		departDay.setDoubleClickAction(true);
 		departDay.setButtonFocusable(true);
@@ -259,15 +365,6 @@ public class ClientGUI extends JFrame {
 		Booking.add(textField_1);
 		
 
-
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		JRadioButton rdbtnReturnTrip = new JRadioButton("Return Trip");
@@ -553,38 +650,7 @@ public class ClientGUI extends JFrame {
 		
 		btnNewButton_3.setBounds(360, 260, 117, 25);
 		Booking.add(btnNewButton_3);
-		
-		
-		
-		JPanel Available = new JPanel();
-		Available.setBackground(Color.LIGHT_GRAY);
-		Available.setBounds(0, 0, 824, 314);
-		layeredPane.add(Available);
-		Available.setLayout(null);
-		
-		txtCarid = new JTextField();
-		txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtCarid.setEditable(false);
-		txtCarid.setText("CarID");
-		txtCarid.setBounds(0, 0, 100, 20);
-		Available.add(txtCarid);
-		txtCarid.setColumns(10);
-		
-		txtDepartTime = new JTextField();
-		txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtDepartTime.setText("Depart Time");
-		txtDepartTime.setEditable(false);
-		txtDepartTime.setColumns(10);
-		txtDepartTime.setBounds(100, 0, 100, 20);
-		Available.add(txtDepartTime);
-		
-		txtArriveTime = new JTextField();
-		txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtArriveTime.setEditable(false);
-		txtArriveTime.setText("Arrive Time");
-		txtArriveTime.setBounds(200, 0, 136, 20);
-		Available.add(txtArriveTime);
-		txtArriveTime.setColumns(10);
+		JDatePanelImpl datePanel;
 		
 		JPanel Search = new JPanel();
 		Search.setBackground(Color.YELLOW);
