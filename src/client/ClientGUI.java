@@ -87,6 +87,10 @@ public class ClientGUI extends JFrame {
 	private JTextField txtStudent;
 	private JTextField txtCarid;
 	private JTextField txtDepartTime;
+	private JTextField txtArriveTime;
+	
+	private Available info1;
+	private Available info2;
 
 	
 	/**
@@ -126,28 +130,6 @@ public class ClientGUI extends JFrame {
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
-		
-		
-		
-		JPanel Available = new JPanel();
-		Available.setBackground(Color.MAGENTA);
-		Available.setBounds(0, 0, 824, 314);
-		layeredPane.add(Available);
-		Available.setLayout(null);
-		
-		txtCarid = new JTextField();
-		txtCarid.setEditable(false);
-		txtCarid.setText("CarID");
-		txtCarid.setBounds(0, 0, 60, 20);
-		Available.add(txtCarid);
-		txtCarid.setColumns(10);
-		
-		txtDepartTime = new JTextField();
-		txtDepartTime.setText("Depart Time");
-		txtDepartTime.setEditable(false);
-		txtDepartTime.setColumns(10);
-		txtDepartTime.setBounds(60, 0, 100, 20);
-		Available.add(txtDepartTime);
 		
 		
 		
@@ -219,15 +201,6 @@ public class ClientGUI extends JFrame {
 		Booking.add(txtTo);
 		
 		
-		UtilDateModel model = new UtilDateModel();
-		model.setSelected(true);
-		Properties p = new Properties();
-		p.put("text.today", "Today");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-		
-		
 		
 		JComboBox comarriveStation = new JComboBox();
 		comarriveStation.setModel(new DefaultComboBoxModel(Station.values()));
@@ -243,7 +216,10 @@ public class ClientGUI extends JFrame {
 		comSeat.setModel(new DefaultComboBoxModel(Seat.values()));
 		comSeat.setBounds(135, 49, 110, 20);
 		Booking.add(comSeat);
+		JDatePanelImpl datePanel;
 		JDatePickerImpl departDay = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		departDay.setDoubleClickAction(true);
+		departDay.setButtonFocusable(true);
 		departDay.setSize(150, 20);
 		departDay.setLocation(220, 72);
 		Booking.add(departDay);
@@ -282,26 +258,363 @@ public class ClientGUI extends JFrame {
 		textField_1.setBounds(0, 118, 130, 20);
 		Booking.add(textField_1);
 		
+
+
 		
-		JPanel Booking_History = new JPanel();
-		Booking_History.setBackground(Color.ORANGE);
-		Booking_History.setBounds(0, 0, 824, 314);
-		layeredPane.add(Booking_History);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		JRadioButton rdbtnReturnTrip = new JRadioButton("Return Trip");
+		rdbtnReturnTrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(rdbtnReturnTrip.isSelected()) {
+
+					Booking.add(datePicker_return_trip);
+					Booking.add(txtInbound);
+					Booking.add(departHour_re);
+					Booking.add(textField_2);
+					Booking.add(departMinute_re);
+					Booking.repaint();
+					Booking.revalidate();
+				}
+				else {
+					Booking.remove(datePicker_return_trip);
+					Booking.remove(txtInbound);
+					Booking.remove(departHour_re);
+					Booking.remove(textField_2);
+					Booking.remove(departMinute_re);
+					Booking.repaint();
+					Booking.revalidate();
+
+				}
+			}
+		});
+		rdbtnReturnTrip.setBounds(0, 95, 130, 20);
+		Booking.add(rdbtnReturnTrip);
+		
+		txtNormal = new JTextField();
+		txtNormal.setText("Normal");
+		txtNormal.setEditable(false);
+		txtNormal.setColumns(10);
+		txtNormal.setBounds(135, 118, 50, 20);
+		Booking.add(txtNormal);
+		
+		JSpinner normalTicket = new JSpinner();
+		normalTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		normalTicket.setBounds(190, 118, 40, 20);
+		Booking.add(normalTicket);
+		
+		txtChild = new JTextField();
+		txtChild.setText("Child");
+		txtChild.setEditable(false);
+		txtChild.setColumns(10);
+		txtChild.setBounds(235, 118, 50, 20);
+		Booking.add(txtChild);
+		
+		JSpinner childTicket = new JSpinner();
+		childTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		childTicket.setBounds(290, 118, 40, 20);
+		Booking.add(childTicket);
+		
+		txtElder = new JTextField();
+		txtElder.setText("Elder");
+		txtElder.setEditable(false);
+		txtElder.setColumns(10);
+		txtElder.setBounds(335, 118, 50, 20);
+		Booking.add(txtElder);
+		
+		JSpinner elderTicket = new JSpinner();
+		elderTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		elderTicket.setBounds(390, 118, 40, 20);
+		Booking.add(elderTicket);
+		
+		txtDisable = new JTextField();
+		txtDisable.setText("Disable");
+		txtDisable.setEditable(false);
+		txtDisable.setColumns(10);
+		txtDisable.setBounds(135, 141, 50, 20);
+		Booking.add(txtDisable);
+		
+		JSpinner disableTicket = new JSpinner();
+		disableTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		disableTicket.setBounds(190, 141, 40, 20);
+		Booking.add(disableTicket);
+		
+		txtStudent = new JTextField();
+		txtStudent.setFont(new Font("Dialog", Font.PLAIN, 11));
+		txtStudent.setText("Student");
+		txtStudent.setEditable(false);
+		txtStudent.setColumns(10);
+		txtStudent.setBounds(235, 141, 50, 20);
+		Booking.add(txtStudent);
+		
+		JSpinner studentTicket = new JSpinner();
+		studentTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		studentTicket.setBounds(290, 141, 40, 20);
+		Booking.add(studentTicket);
+		
+		JButton btnNewButton_3 = new JButton("Search Car");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean vail = true;
+
+				SearchCar SearchCarMessage = new SearchCar();
+				
+				SearchCarMessage.setDepart(comdepartStation.getSelectedItem().toString());
+				SearchCarMessage.setArrive(comarriveStation.getSelectedItem().toString());
+				SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
+				SearchCarMessage.setCarriage(comCarriage.getSelectedItem().toString());
+				SearchCarMessage.quantity[0] = (int) normalTicket.getValue();
+			    SearchCarMessage.quantity[1] = (int) childTicket.getValue(); 
+				SearchCarMessage.quantity[2] = (int) elderTicket.getValue();
+				SearchCarMessage.quantity[3] = (int) disableTicket.getValue();
+				SearchCarMessage.quantity[4] = (int) studentTicket.getValue();
+				SearchCarMessage.setHour((int)departHour.getValue());
+				SearchCarMessage.setMinute((int)departMinute.getValue());
+				SearchCarMessage.setDepartDay(departDay.getJFormattedTextField().getText().toString());
+				
+				System.out.println(SearchCarMessage.toString());
+				
+				if(SearchCarMessage.getTotal()==0) {
+					//do nothing at f0llowing function
+					System.out.println("The quantity of tickets must not be zero");
+					vail = false;
+				}
+				
+				if(SearchCarMessage.getDepart().equals(SearchCarMessage.getArrive())) {
+					//do nothing at following function
+					System.out.println("The Depart Station can not be Arrive Station");
+					vail = false;
+				}
+				
+				if(SearchCarMessage.getHour() < 0 || SearchCarMessage.getHour()>=24  || SearchCarMessage.getMinute() >= 60 || SearchCarMessage.getMinute() < 0) {
+					//do nothing at following function
+					System.out.println("Invaild time setting");
+					vail = false;
+				}
+
+				if((int)departHour_re.getValue() < 0 || (int)departHour_re.getValue()>=24  || (int)departMinute_re.getValue() >= 60 || (int)departMinute_re.getValue() < 0) {
+					//do nothing at following function
+					System.out.println("Invaild time setting");
+					vail = false;
+				}
+				
+				//if no return trip order ---> send the SearchCar Message to server
+				if(!rdbtnReturnTrip.isSelected() && vail) {
+					try {
+						Scanner sc = new Scanner(System.in);
+						Socket cs = new Socket("127.0.0.1", 3588); 
+						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+						
+						os.writeObject(SearchCarMessage);
+						os.flush();
+						Object msg = (Object) is.readObject();
+						if (msg == null)
+							System.out.println("null");
+						if (msg.getClass() == new Available().getClass()) {
+							System.out.println("success_without return trip");
+							
+							//switch pane
+							layeredPane.removeAll();
+	//						layeredPane.repaint();
+		//					layeredPane.revalidate();
+							
+							layeredPane.add(Available);
+							layeredPane.repaint();
+							layeredPane.revalidate();
+							
+							}
+						else
+							System.out.println("can't read result1");
+						os.close();
+						is.close();
+						cs.close();
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+						System.out.println("connection error");
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.out.println("IO error");
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+						System.out.println("Class Not Found error");
+					}
+					
+				}
+				
+				
+				// if return trip is ordered
+				else if(rdbtnReturnTrip.isSelected() && vail) {
+					
+					try {
+						Scanner sc = new Scanner(System.in);
+						Socket cs = new Socket("127.0.0.1", 3588); 
+						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+						
+						os.writeObject(SearchCarMessage);
+						os.flush();
+						Object msg = (Object) is.readObject();
+						if (msg == null)
+							System.out.println("null");
+						
+						// if the first arraylist is back, send another searchcar
+						if (msg.getClass() == new Available().getClass()) {
+							System.out.println("success_1");
+							
+							//change some parameter of searchcarmessage
+							SearchCarMessage.setArrive(comdepartStation.getSelectedItem().toString());
+							SearchCarMessage.setDepart(comarriveStation.getSelectedItem().toString());
+							SearchCarMessage.setHour((int)departHour_re.getValue());
+							SearchCarMessage.setMinute((int)departMinute_re.getValue());
+							SearchCarMessage.setDepartDay(datePicker_return_trip.getJFormattedTextField().getText().toString());
+							System.out.println(SearchCarMessage.toString());
+							
+							
+							
+							//send again
+							
+						try {
+							sc = new Scanner(System.in);
+							cs = new Socket("127.0.0.1", 3588); 
+							os = new ObjectOutputStream(cs.getOutputStream());
+							is = new ObjectInputStream(cs.getInputStream());
+							
+							os.writeObject(SearchCarMessage);
+							os.flush();
+							
+							msg = (Object) is.readObject();
+
+							if (msg == null)
+								System.out.println("null");
+							
+							// if the first arraylist is back, send another searchcar
+							if (msg.getClass() == new Available().getClass()) {
+								System.out.println("success_2");}
+							else
+								System.out.println("can't read result1");
+							os.close();
+							is.close();
+							cs.close();
+															
+						} catch (UnknownHostException e) {
+							e.printStackTrace();
+							System.out.println("connection error");
+						} catch (IOException e) {
+							e.printStackTrace();
+							System.out.println("IO error");
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+							System.out.println("Class Not Found error");
+						}
+							
+							
+							
+							
+							//switch pane
+							layeredPane.removeAll();
+							layeredPane.add(Available);
+							layeredPane.repaint();
+							layeredPane.revalidate();
+							
+							}
+						else
+							System.out.println("can't read result1");
+						os.close();
+						is.close();
+						cs.close();
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+						System.out.println("connection error");
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.out.println("IO error");
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+						System.out.println("Class Not Found error");
+					}
+					
+				}
+
+				
+
+				
+			}
+		});
+		
+		
+		
+		btnNewButton_3.setBounds(360, 260, 117, 25);
+		Booking.add(btnNewButton_3);
+		
+		
+		
+		JPanel Available = new JPanel();
+		Available.setBackground(Color.LIGHT_GRAY);
+		Available.setBounds(0, 0, 824, 314);
+		layeredPane.add(Available);
+		Available.setLayout(null);
+		
+		txtCarid = new JTextField();
+		txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtCarid.setEditable(false);
+		txtCarid.setText("CarID");
+		txtCarid.setBounds(0, 0, 100, 20);
+		Available.add(txtCarid);
+		txtCarid.setColumns(10);
+		
+		txtDepartTime = new JTextField();
+		txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDepartTime.setText("Depart Time");
+		txtDepartTime.setEditable(false);
+		txtDepartTime.setColumns(10);
+		txtDepartTime.setBounds(100, 0, 100, 20);
+		Available.add(txtDepartTime);
+		
+		txtArriveTime = new JTextField();
+		txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtArriveTime.setEditable(false);
+		txtArriveTime.setText("Arrive Time");
+		txtArriveTime.setBounds(200, 0, 136, 20);
+		Available.add(txtArriveTime);
+		txtArriveTime.setColumns(10);
 		
 		JPanel Search = new JPanel();
 		Search.setBackground(Color.YELLOW);
 		Search.setBounds(0, 0, 824, 314);
 		layeredPane.add(Search);
 		
-		JPanel BookingHistoryResult = new JPanel();
-		BookingHistoryResult.setBackground(Color.BLUE);
-		BookingHistoryResult.setBounds(0, 0, 824, 314);
-		layeredPane.add(BookingHistoryResult);
-		
 		JPanel SearchResult = new JPanel();
 		SearchResult.setBackground(Color.GREEN);
 		SearchResult.setBounds(0, 0, 824, 314);
 		layeredPane.add(SearchResult);
+		
+		
+		UtilDateModel model = new UtilDateModel();
+		model.setSelected(true);
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		
+		
+		JPanel Booking_History = new JPanel();
+		Booking_History.setBackground(Color.ORANGE);
+		Booking_History.setBounds(0, 0, 824, 314);
+		layeredPane.add(Booking_History);
+		
+		JPanel BookingHistoryResult = new JPanel();
+		BookingHistoryResult.setBackground(Color.BLUE);
+		BookingHistoryResult.setBounds(0, 0, 824, 314);
+		layeredPane.add(BookingHistoryResult);
 		
 
 		//return option
@@ -338,295 +651,9 @@ public class ClientGUI extends JFrame {
 				JSpinner departMinute_re = new JSpinner();
 				departMinute_re.setBounds(435, 95, 40, 20);
 				
-
-
-				
-		
-		
-		
-		
-		
-				
-				
-				
-				
-				JRadioButton rdbtnReturnTrip = new JRadioButton("Return Trip");
-				rdbtnReturnTrip.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						if(rdbtnReturnTrip.isSelected()) {
-
-							Booking.add(datePicker_return_trip);
-							Booking.add(txtInbound);
-							Booking.add(departHour_re);
-							Booking.add(textField_2);
-							Booking.add(departMinute_re);
-							Booking.repaint();
-							Booking.revalidate();
-						}
-						else {
-							Booking.remove(datePicker_return_trip);
-							Booking.remove(txtInbound);
-							Booking.remove(departHour_re);
-							Booking.remove(textField_2);
-							Booking.remove(departMinute_re);
-							Booking.repaint();
-							Booking.revalidate();
-
-						}
-					}
-				});
-				rdbtnReturnTrip.setBounds(0, 95, 130, 20);
-				Booking.add(rdbtnReturnTrip);
-				
-				txtNormal = new JTextField();
-				txtNormal.setText("Normal");
-				txtNormal.setEditable(false);
-				txtNormal.setColumns(10);
-				txtNormal.setBounds(135, 118, 50, 20);
-				Booking.add(txtNormal);
-				
-				JSpinner normalTicket = new JSpinner();
-				normalTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				normalTicket.setBounds(190, 118, 40, 20);
-				Booking.add(normalTicket);
-				
-				txtChild = new JTextField();
-				txtChild.setText("Child");
-				txtChild.setEditable(false);
-				txtChild.setColumns(10);
-				txtChild.setBounds(235, 118, 50, 20);
-				Booking.add(txtChild);
-				
-				JSpinner childTicket = new JSpinner();
-				childTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				childTicket.setBounds(290, 118, 40, 20);
-				Booking.add(childTicket);
-				
-				txtElder = new JTextField();
-				txtElder.setText("Elder");
-				txtElder.setEditable(false);
-				txtElder.setColumns(10);
-				txtElder.setBounds(335, 118, 50, 20);
-				Booking.add(txtElder);
-				
-				JSpinner elderTicket = new JSpinner();
-				elderTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				elderTicket.setBounds(390, 118, 40, 20);
-				Booking.add(elderTicket);
-				
-				txtDisable = new JTextField();
-				txtDisable.setText("Disable");
-				txtDisable.setEditable(false);
-				txtDisable.setColumns(10);
-				txtDisable.setBounds(135, 141, 50, 20);
-				Booking.add(txtDisable);
-				
-				JSpinner disableTicket = new JSpinner();
-				disableTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				disableTicket.setBounds(190, 141, 40, 20);
-				Booking.add(disableTicket);
-				
-				txtStudent = new JTextField();
-				txtStudent.setFont(new Font("Dialog", Font.PLAIN, 11));
-				txtStudent.setText("Student");
-				txtStudent.setEditable(false);
-				txtStudent.setColumns(10);
-				txtStudent.setBounds(235, 141, 50, 20);
-				Booking.add(txtStudent);
-				
-				JSpinner studentTicket = new JSpinner();
-				studentTicket.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				studentTicket.setBounds(290, 141, 40, 20);
-				Booking.add(studentTicket);
-				
-				JButton btnNewButton_3 = new JButton("Search Car");
-				btnNewButton_3.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						boolean vail = true;
-
-						SearchCar SearchCarMessage = new SearchCar();
-						
-						SearchCarMessage.setDepart(comdepartStation.getSelectedItem().toString());
-						SearchCarMessage.setArrive(comarriveStation.getSelectedItem().toString());
-						SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
-						SearchCarMessage.setCarriage(comCarriage.getSelectedItem().toString());
-						SearchCarMessage.quantity[0] = (int) normalTicket.getValue();
-					    SearchCarMessage.quantity[1] = (int) childTicket.getValue(); 
-						SearchCarMessage.quantity[2] = (int) elderTicket.getValue();
-						SearchCarMessage.quantity[3] = (int) disableTicket.getValue();
-						SearchCarMessage.quantity[4] = (int) studentTicket.getValue();
-						SearchCarMessage.setHour((int)departHour.getValue());
-						SearchCarMessage.setMinute((int)departMinute.getValue());
-						SearchCarMessage.setDepartDay(departDay.getJFormattedTextField().getText().toString());
-						
-						System.out.println(SearchCarMessage.toString());
-						
-						if(SearchCarMessage.getTotal()==0) {
-							//do nothing at f0llowing function
-							System.out.println("The quantity of tickets must not be zero");
-							vail = false;
-						}
-						
-						if(SearchCarMessage.getDepart().equals(SearchCarMessage.getArrive())) {
-							//do nothing at following function
-							System.out.println("The Depart Station can not be Arrive Station");
-							vail = false;
-						}
-						
-						if(SearchCarMessage.getHour() < 0 || SearchCarMessage.getHour()>=24  || SearchCarMessage.getMinute() >= 60 || SearchCarMessage.getMinute() < 0) {
-							//do nothing at following function
-							System.out.println("Invaild time setting");
-							vail = false;
-						}
-
-						if((int)departHour_re.getValue() < 0 || (int)departHour_re.getValue()>=24  || (int)departMinute_re.getValue() >= 60 || (int)departMinute_re.getValue() < 0) {
-							//do nothing at following function
-							System.out.println("Invaild time setting");
-							vail = false;
-						}
-						
-						//if no return trip order ---> send the SearchCar Message to server
-						if(!rdbtnReturnTrip.isSelected() && vail) {
-							try {
-								Scanner sc = new Scanner(System.in);
-								Socket cs = new Socket("127.0.0.1", 3588); 
-								ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
-								ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-								
-								os.writeObject(SearchCarMessage);
-								os.flush();
-								Object msg = (Object) is.readObject();
-								if (msg == null)
-									System.out.println("null");
-								if (msg.getClass() == new Available().getClass()) {
-									System.out.println("success_without return trip");
-									
-									//switch pane
-									layeredPane.removeAll();
-									layeredPane.add(Available);
-									layeredPane.repaint();
-									layeredPane.revalidate();
-									
-									}
-								else
-									System.out.println("can't read result1");
-								os.close();
-								is.close();
-								cs.close();
-							} catch (UnknownHostException e) {
-								e.printStackTrace();
-								System.out.println("connection error");
-							} catch (IOException e) {
-								e.printStackTrace();
-								System.out.println("IO error");
-							} catch (ClassNotFoundException e) {
-								e.printStackTrace();
-								System.out.println("Class Not Found error");
-							}
-							
-						}
-						
-						
-						// if return trip is ordered
-						else if(rdbtnReturnTrip.isSelected() && vail) {
-							
-							try {
-								Scanner sc = new Scanner(System.in);
-								Socket cs = new Socket("127.0.0.1", 3588); 
-								ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
-								ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-								
-								os.writeObject(SearchCarMessage);
-								os.flush();
-								Object msg = (Object) is.readObject();
-								if (msg == null)
-									System.out.println("null");
-								
-								// if the first arraylist is back, send another searchcar
-								if (msg.getClass() == new Available().getClass()) {
-									System.out.println("success_1");
-									
-									//change some parameter of searchcarmessage
-									SearchCarMessage.setArrive(comdepartStation.getSelectedItem().toString());
-									SearchCarMessage.setDepart(comarriveStation.getSelectedItem().toString());
-									SearchCarMessage.setHour((int)departHour_re.getValue());
-									SearchCarMessage.setMinute((int)departMinute_re.getValue());
-									SearchCarMessage.setDepartDay(datePicker_return_trip.getJFormattedTextField().getText().toString());
-									System.out.println(SearchCarMessage.toString());
-									
-									
-									
-									//send again
-									
-								try {
-									sc = new Scanner(System.in);
-									cs = new Socket("127.0.0.1", 3588); 
-									os = new ObjectOutputStream(cs.getOutputStream());
-									is = new ObjectInputStream(cs.getInputStream());
-									
-									os.writeObject(SearchCarMessage);
-									os.flush();
-									
-									msg = (Object) is.readObject();
-
-									if (msg == null)
-										System.out.println("null");
-									
-									// if the first arraylist is back, send another searchcar
-									if (msg.getClass() == new Available().getClass()) {
-										System.out.println("success_2");}
-									else
-										System.out.println("can't read result1");
-									os.close();
-									is.close();
-									cs.close();
-																	
-								} catch (UnknownHostException e) {
-									e.printStackTrace();
-									System.out.println("connection error");
-								} catch (IOException e) {
-									e.printStackTrace();
-									System.out.println("IO error");
-								} catch (ClassNotFoundException e) {
-									e.printStackTrace();
-									System.out.println("Class Not Found error");
-								}
-									
-									
-									
-									
-									//switch pane
-									layeredPane.removeAll();
-									layeredPane.add(Available);
-									layeredPane.repaint();
-									layeredPane.revalidate();
-									
-									}
-								else
-									System.out.println("can't read result1");
-								os.close();
-								is.close();
-								cs.close();
-							} catch (UnknownHostException e) {
-								e.printStackTrace();
-								System.out.println("connection error");
-							} catch (IOException e) {
-								e.printStackTrace();
-								System.out.println("IO error");
-							} catch (ClassNotFoundException e) {
-								e.printStackTrace();
-								System.out.println("Class Not Found error");
-							}
-							
-						}
-
-						
-
-						
-					}
-				});
-				btnNewButton_3.setBounds(360, 260, 117, 25);
-				Booking.add(btnNewButton_3);
+				/**
+				 * As we push the button, "Search Car"
+				 */
 		
 		
 
