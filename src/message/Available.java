@@ -18,6 +18,7 @@ public class Available implements Serializable {
 	}
 
 	private boolean OrderSuccessfully;
+	
 	public void addCar(String carID, String depart, String arrive, String depart_time, String arrive_time, 
 			String remained_window_business_seat, String remained_none_business_seat, 
 			String remained_aisle_business_seat, String remained_window_standard_seat, 

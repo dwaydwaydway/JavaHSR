@@ -98,6 +98,8 @@ public class ClientGUI extends JFrame {
 	private JTextField txtEarlybird;
 	private JTextField txtPleaseInputThe;
 	private JTextField textField_3;
+	private JTextField txtUserid;
+	private JTextField userID_input;
 
 	
 	/**
@@ -252,6 +254,32 @@ public class ClientGUI extends JFrame {
 		btnConfirm.setBackground(new Color(238, 232, 170));
 		btnConfirm.setBounds(445, 312, 89, 31);
 		Available.add(btnConfirm);
+		
+		
+		
+
+		JPanel Search = new JPanel();
+		Search.setBackground(Color.YELLOW);
+		Search.setBounds(0, 0, 972, 437);
+		layeredPane.add(Search);
+		Search.setLayout(null);
+		
+		txtUserid = new JTextField();
+		txtUserid.setHorizontalAlignment(SwingConstants.CENTER);
+		txtUserid.setEditable(false);
+		txtUserid.setText("UserID");
+		txtUserid.setBounds(10, 10, 100, 20);
+		Search.add(txtUserid);
+		txtUserid.setColumns(10);
+		
+		userID_input = new JTextField();
+		userID_input.setBounds(120, 10, 200, 20);
+		Search.add(userID_input);
+		userID_input.setColumns(10);
+		
+		JButton btnSearch = new JButton("Search");
+		btnSearch.setBounds(330, 10, 80, 20);
+		Search.add(btnSearch);
 		
 		
 		
@@ -728,14 +756,6 @@ public class ClientGUI extends JFrame {
 			}
 		});
 		
-		
-		
-
-		JPanel Search = new JPanel();
-		Search.setBackground(Color.YELLOW);
-		Search.setBounds(0, 0, 824, 314);
-		layeredPane.add(Search);
-		
 		JPanel SearchResult = new JPanel();
 		SearchResult.setBackground(Color.GREEN);
 		SearchResult.setBounds(0, 0, 824, 314);
@@ -815,5 +835,10 @@ public class ClientGUI extends JFrame {
 		});
 		btnNewButton_2.setHorizontalAlignment(SwingConstants.LEFT);
 		panel.add(btnNewButton_2);
+	}
+	private static class __Tmp {
+		private static void __tmp() {
+			  javax.swing.JPanel __wbp_panel = new javax.swing.JPanel();
+		}
 	}
 }
