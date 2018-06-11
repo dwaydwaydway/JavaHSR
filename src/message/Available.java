@@ -13,8 +13,9 @@ import java.util.LinkedList;
 public class Available implements Serializable {
 	public LinkedList<Car> carList = null;
 	public SearchCar info;
-	public Available() {
+	public Available(SearchCar pass) {
 		carList = new LinkedList<Car>();
+		info = pass;
 	}
 
 	private boolean OrderSuccessfully;
