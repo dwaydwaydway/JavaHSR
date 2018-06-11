@@ -74,6 +74,7 @@ public class Server {
 			Database database = new Database();
 			if (msg.getClass() == new SearchCar().getClass()) {
 				return new Available();
+				
 				//return database.selectCar((SearchCar) msg);
 //			} else if (msg.getClass() == new Order().getClass()) {
 //				return database.insertOrder((Order) msg);
@@ -81,7 +82,14 @@ public class Server {
 //				return database.selectOrder((Order) msg);
 //			} else if (msg.getClass() == new Alter().getClass()) {
 //				return database.updateAlter((Alter) msg);
-			} else
+			} 
+			else if (msg.getClass() == new SearchOrder().getClass()) {
+				return new OrderResult(1);
+			}
+			else if (msg.getClass() == new Ticket().getClass()) {
+				return new Ticket(1, 1);
+			}
+			else
 				return null;
 		}
 

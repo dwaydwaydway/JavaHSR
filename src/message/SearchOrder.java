@@ -21,4 +21,12 @@ public class SearchOrder implements Serializable {
 	public String getUserID() {
 		return this.userID;
 	}
+	
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	
+	public String toString() {
+		return "userID is " + userID;
+	}
 }
