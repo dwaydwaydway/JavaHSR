@@ -323,6 +323,54 @@ public class ClientGUI extends JFrame {
 		Booking.add(txtTo);
 		
 		
+		UtilDateModel model = new UtilDateModel();
+		model.setSelected(true);
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		
+		
+	
+		
+		
+		//return option
+
+		UtilDateModel model_return = new UtilDateModel();
+		model_return.setSelected(true);
+		Properties d = new Properties();
+		d.put("text.today", "Today");
+		d.put("text.month", "Month");
+		d.put("text.year", "Year");
+		JDatePanelImpl datePanel_return = new JDatePanelImpl(model_return, d);
+		JDatePickerImpl datePicker_return_trip = new JDatePickerImpl(datePanel_return, new DateLabelFormatter());
+		datePicker_return_trip.setSize(150, 20);
+		datePicker_return_trip.setLocation(220, 95);
+		
+
+		txtInbound = new JTextField();
+		txtInbound.setText("Inbound");
+		txtInbound.setEditable(false);
+		txtInbound.setColumns(10);
+		txtInbound.setBounds(135, 95, 80, 20);
+		
+		
+		JSpinner departHour_re = new JSpinner();
+		departHour_re.setBounds(375, 95, 40, 20);
+		
+		textField_2 = new JTextField();
+		textField_2.setText(":");
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(420, 95, 10, 20);
+
+		
+		JSpinner departMinute_re = new JSpinner();
+		departMinute_re.setBounds(435, 95, 40, 20);
+		
+		
+		
 		
 		JComboBox comarriveStation = new JComboBox();
 		comarriveStation.setModel(new DefaultComboBoxModel(Station.values()));
@@ -471,7 +519,15 @@ public class ClientGUI extends JFrame {
 		studentTicket.setBounds(290, 141, 40, 20);
 		Booking.add(studentTicket);
 		
+		
+		/**
+		 * As we push the button "Booking"
+		 */
+		
+		
 		JButton btnNewButton_3 = new JButton("Search Car");
+		btnNewButton_3.setBounds(360, 260, 117, 25);
+		Booking.add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean vail = true;
@@ -533,7 +589,7 @@ public class ClientGUI extends JFrame {
 						if (msg.getClass() == new Available().getClass()) {
 							System.out.println("success_without return trip");
 							
-							info1.carList = 
+	//						info1.carList = 
 							
 							//switch pane
 							layeredPane.removeAll();
@@ -674,10 +730,7 @@ public class ClientGUI extends JFrame {
 		
 		
 		
-		btnNewButton_3.setBounds(360, 260, 117, 25);
-		Booking.add(btnNewButton_3);
-		JDatePanelImpl datePanel;
-		
+
 		JPanel Search = new JPanel();
 		Search.setBackground(Color.YELLOW);
 		Search.setBounds(0, 0, 824, 314);
@@ -689,14 +742,7 @@ public class ClientGUI extends JFrame {
 		layeredPane.add(SearchResult);
 		
 		
-		UtilDateModel model = new UtilDateModel();
-		model.setSelected(true);
-		Properties p = new Properties();
-		p.put("text.today", "Today");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-		
+
 		
 		JPanel Booking_History = new JPanel();
 		Booking_History.setBackground(Color.ORANGE);
@@ -709,39 +755,7 @@ public class ClientGUI extends JFrame {
 		layeredPane.add(BookingHistoryResult);
 		
 
-		//return option
 
-				UtilDateModel model_return = new UtilDateModel();
-				model_return.setSelected(true);
-				Properties d = new Properties();
-				d.put("text.today", "Today");
-				d.put("text.month", "Month");
-				d.put("text.year", "Year");
-				JDatePanelImpl datePanel_return = new JDatePanelImpl(model_return, d);
-				JDatePickerImpl datePicker_return_trip = new JDatePickerImpl(datePanel_return, new DateLabelFormatter());
-				datePicker_return_trip.setSize(150, 20);
-				datePicker_return_trip.setLocation(220, 95);
-				
-
-				txtInbound = new JTextField();
-				txtInbound.setText("Inbound");
-				txtInbound.setEditable(false);
-				txtInbound.setColumns(10);
-				txtInbound.setBounds(135, 95, 80, 20);
-				
-				
-				JSpinner departHour_re = new JSpinner();
-				departHour_re.setBounds(375, 95, 40, 20);
-				
-				textField_2 = new JTextField();
-				textField_2.setText(":");
-				textField_2.setEditable(false);
-				textField_2.setColumns(10);
-				textField_2.setBounds(420, 95, 10, 20);
-
-				
-				JSpinner departMinute_re = new JSpinner();
-				departMinute_re.setBounds(435, 95, 40, 20);
 				
 				/**
 				 * As we push the button, "Search Car"
