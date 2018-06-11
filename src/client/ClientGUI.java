@@ -228,6 +228,21 @@ public class ClientGUI extends JFrame {
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				Order selected_car = new Order();
+				
+			/*  SearchCarMessage.setDepart(comdepartStation.getSelectedItem().toString());
+				SearchCarMessage.setArrive(comarriveStation.getSelectedItem().toString());
+				SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
+				SearchCarMessage.setCarriage(comCarriage.getSelectedItem().toString());
+				SearchCarMessage.quantity[0] = (int) normalTicket.getValue();
+			    SearchCarMessage.quantity[1] = (int) childTicket.getValue(); 
+				SearchCarMessage.quantity[2] = (int) elderTicket.getValue();
+				SearchCarMessage.quantity[3] = (int) disableTicket.getValue();
+				SearchCarMessage.quantity[4] = (int) studentTicket.getValue();
+				SearchCarMessage.setHour((int)departHour.getValue());
+				SearchCarMessage.setMinute((int)departMinute.getValue());
+				SearchCarMessage.setDepartDay(departDay.getJFormattedTextField().getText().toString());
+*/	
 				
 				
 				
@@ -518,6 +533,8 @@ public class ClientGUI extends JFrame {
 						if (msg.getClass() == new Available().getClass()) {
 							System.out.println("success_without return trip");
 							
+							info1.carList = 
+							
 							//switch pane
 							layeredPane.removeAll();
 	//						layeredPane.repaint();
@@ -527,7 +544,7 @@ public class ClientGUI extends JFrame {
 							layeredPane.repaint();
 							layeredPane.revalidate();
 							
-							}
+						}
 						else
 							System.out.println("can't read result1");
 						os.close();
@@ -545,6 +562,15 @@ public class ClientGUI extends JFrame {
 					}
 					
 				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				// if return trip is ordered
@@ -621,7 +647,7 @@ public class ClientGUI extends JFrame {
 							layeredPane.repaint();
 							layeredPane.revalidate();
 							
-							}
+						}
 						else
 							System.out.println("can't read result1");
 						os.close();
