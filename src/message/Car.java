@@ -17,13 +17,13 @@ public class Car implements Serializable {
 	private String remained_none_standard_seat;
 	private String remained_aisle_standard_seat;
 	private String early_discount;  //65,75...or none
-	
+	private String student_discount;
 	/**
 	 * Constructor of Car
 	 */
 	public Car(String carID, String depart, String arrive, String depart_time, String arrive_time, 
 			String remained_window_business_seat, String remained_aisle_business_seat, String remained_window_standard_seat, 
-			String remained_none_standard_seat, String remained_aisle_standard_seat, String early_discount)
+			String remained_none_standard_seat, String remained_aisle_standard_seat, String early_discount, String student_discount)
 	{
 		this.carID = carID;
 		this.depart = depart;
@@ -36,6 +36,7 @@ public class Car implements Serializable {
 		this.remained_window_business_seat = remained_window_business_seat;
 		this.remained_window_standard_seat = remained_window_standard_seat;
 		this.early_discount = early_discount;
+		this.student_discount = student_discount;
 	}
 	
 	public String getCarID() {
@@ -68,5 +69,7 @@ public class Car implements Serializable {
 	public String getRemained_Window_Standard_Seat() {
 		return this.remained_window_standard_seat;
 	}
-	
+	public String getStudent_discount(){
+		return student_discount;
+	}
 }

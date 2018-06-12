@@ -17,6 +17,8 @@ public class Order implements Serializable {
 	private int sum_elder;
 	private int sum_disable;
 	private int sum_student;
+	private String early_discount;
+	private String student_discount;
 	
 	public Order() {
 		info = new SearchCar();
@@ -30,20 +32,23 @@ public class Order implements Serializable {
 	}
 	
 	
-	public Order(SearchCar i, String carID, String userID, int price1 , int price2 , int price3 , int price4 , int price5)
+	public Order(SearchCar i, String carID, String userID, String early_discount, String student_discount)
 	{
 		this.info = i;
 		this.carID = carID;
 		this.userID = userID;
-		this.sum_normal = price1;
-		this.sum_child = price2;
-		this.sum_elder = price3;
-		this.sum_disable = price4;
-		this.sum_student = price5;
+		this.early_discount = early_discount;
+		this.student_discount = student_discount;
 	}
 	
 	public String getCarID() {
 		return this.carID;
+	}
+	public String getEaryDiscout(){
+		return early_discount;
+	}
+	public String getStudentDiscount() {
+		return student_discount;
 	}
 	public String getUserID() {
 		return this.userID;

@@ -103,9 +103,6 @@ public class SearchCar implements Serializable {
 	public String getDepart() {
 		return depart;
 	}
-	public String getDBDepart() {
-		return depart;
-	}
 
 	public String getArrive() {
 		return arrive;
@@ -136,6 +133,9 @@ public class SearchCar implements Serializable {
 		return minute;
 	}
 	public String seatType() {
+		return seat;
+	}
+	public String getSeatDBType() {
 		switch(seat){
 		case "NONE":
 			if(carriage == "NORMAL")
@@ -146,16 +146,19 @@ public class SearchCar implements Serializable {
 				return "NormalWin";
 		case "AISLE":
 			if(carriage == "NORMAL")
-				return "NormalAle";
+				return "NormalAisle";
 			else
-				return "BusinessAle";
+				return "BusinessAisle";
 		default:
 			return null;
 		}
 		
 	}
-
 	public String getDayofWeek() {
+		return depart_dayofweek;
+	}
+
+	public String getDBDayofWeek() {
 		switch (depart_dayofweek) {
 		case "Mon":
 			return "Monday";

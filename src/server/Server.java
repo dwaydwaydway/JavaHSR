@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -19,6 +20,15 @@ import java.util.Scanner;
  */
 public class Server {
 
+	HashMap codeMap = new HashMap<Integer, String>();
+	HashMap seatMax = new HashMap<String, Integer>();
+	public Server() {
+		seatMax.put("NormalWin", 262);
+		seatMax.put("NormalMid", 137);
+		seatMax.put("NormalAisle", 265);
+		seatMax.put("BusinessWin", 33);
+		seatMax.put("BusinessMid", 33);
+	}
 	/**
 	 * This function keeps listening for socket requests.
 	 */
@@ -74,8 +84,14 @@ public class Server {
 			Database database = new Database();
 			if (msg.getClass() == new SearchCar().getClass()) {
 				return database.selectCar((SearchCar) msg);
-//			} else if (msg.getClass() == new Order().getClass()) {
-//				return database.insertOrder((Order) msg);
+			} else if (msg.getClass() == new Order().getClass()) {
+				int code;
+				do
+					code = (int) Math.random() / 10000000;
+				while(codeMap.get(code) == null);
+				Order od = (Order) msg;
+				return database.insertOrder((Order) msg, code, seatMax.get(od.getInfo().getSeatDBType()));
+			}
 //			} else if (msg.getClass() == new SearchOrder().getClass()) {
 //				return database.selectOrder((Order) msg);
 //			} else if (msg.getClass() == new Alter().getClass()) {
