@@ -1,83 +1,60 @@
 package message;
 import java.io.Serializable;
-import java.util.LinkedList;
 
+import java.util.LinkedList;
 /**
- * After checking the SearchOrder in the database, we should create an object of OrderResult, and
- * returnif to Client.
- * 
+ * Goal: This class is used to return the all tickets that meet the requests of an SearchOrder object.
  * Information:
- * 1.carID;
- * 2.userID;
- * 3.depart station;
- * 4.arrive station;
- * 5.depart_time;
- * 6.arrive_time;
- * 7.passenger_type;
- * 8.carriage;
- * 9.early_discount(65,75...or none)
+ * @SearchCar info: an object of SearchOrder that contains specific requests.
+ * @boolean SearchOrderSuccessfully: If there is any ticket meeting the userID, return true.
+ * @addCar(): this function is to create the Ticket objects meeting those request. 
+ * And those parameters in addTicket() are identical to Ticket object
  *
  */
-public class OrderResult implements Serializable {
-	private String carID;
-	private String userID;
-	private String depart;
-	private String arrive;
-	private String depart_time;
-	private String arrive_time;
-	private String passenger_type;
-	private String carriage;
-	private String early_discount;  //65,75...or none
+public class OrderResult implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	private int total_price;
-	
-	
+	public LinkedList<Ticket> TicketList = null;
+
 	public OrderResult() {
-		carID = userID = depart = arrive = depart_time = arrive_time = passenger_type = carriage = early_discount = "invalid";
+		TicketList = new LinkedList<Ticket>();
+	}
+	
+	
+	//testing constructor
+	public OrderResult(int x) {
+		TicketList = new LinkedList<Ticket>();
+		TicketList.add(new Ticket(0));
+		TicketList.add(new Ticket(1));
+	}
+	
+	//testing constructor2
+	public OrderResult(int x, int y) {
+		TicketList = new LinkedList<Ticket>();
+		TicketList.add(new Ticket(0));
+		//TicketList.add(new Ticket(0, 1));
 	}
 	
 	
 	
-	public OrderResult(String carID, String userID, String depart, String arrive, 
-			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount)
-	{
-		this.carID = carID;
-		this.userID = userID;
-		this.depart = depart;
-		this.arrive = arrive;
-		this.arrive_time = arrive_time;
-		this.depart_time = depart_time;
-		this.passenger_type = passenger_type;
-		this.carriage = carriage;
-		this.early_discount = early_discount;
+	public void addTicket(String carID, String userID, String depart, String arrive, 
+			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount,
+			String compartment, String location, String price) {
+
+		Ticket newTicket = new Ticket(carID, userID, depart, arrive, 
+				depart_time, arrive_time, passenger_type, carriage, early_discount, compartment, location, price);
+		
+		TicketList.add(newTicket);
 	}
 	
-	public String getCarID() {
-		return this.carID;
+	
+	public LinkedList<Ticket> getOrderResult(){
+		return TicketList;
 	}
-	public String getUserID() {
-		return this.userID;
-	}
-	public String getDepart(){
-		return this.depart;
-	}
-	public String getArrive() {
-		return this.arrive;
-	}
-	public String getDepartTime() {
-		return this.depart_time;
-	}
-	public String getArriveTime() {
-		return this.arrive_time;
-	}
-	public String getPassengerType() {
-		return this.passenger_type;
-	}
-	public String getCarriage() {
-		return this.carriage;
-	}
-	public String getEarlyDiscount() {
-		return this.early_discount;
-	}
+
+	
 	
 }

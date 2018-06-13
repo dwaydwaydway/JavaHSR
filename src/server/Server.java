@@ -90,7 +90,7 @@ public class Server {
 					code = (int) Math.random() / 10000000;
 				while(codeMap.get(code) == null);
 				Order od = (Order) msg;
-				return database.insertOrder((Order) msg, code, seatMax.get(od.getInfo().getSeatDBType()));
+				return database.insertOrder((Order) msg, code, seatMax.get(od.getInfo().seatDBType()));
 			}
 //			} else if (msg.getClass() == new SearchOrder().getClass()) {
 //				return database.selectOrder((Order) msg);

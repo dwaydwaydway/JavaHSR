@@ -1,5 +1,6 @@
 package message;
 import java.io.Serializable;
+
 import java.util.LinkedList;
 /**
  * Goal: This class is used to return the all cars that meet the requests of an SearchCar object.
@@ -19,6 +20,7 @@ public class Available implements Serializable {
 	}
 
 	private boolean OrderSuccessfully;
+	
 	public void addCar(String carID, String depart, String arrive, String depart_time, String arrive_time, 
 			String remained_window_business_seat, 
 			String remained_aisle_business_seat, String remained_window_standard_seat, 
@@ -34,6 +36,10 @@ public class Available implements Serializable {
 	
 	public SearchCar getInfo() {
 		return this.info;
+	}
+	
+	public LinkedList<Car> getAvailable(){
+		return carList;
 	}
 }
 
