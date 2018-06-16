@@ -1,15 +1,16 @@
 package message;
 
 public class Price {
-	 int price;
-	
 	public static void main(String args[]) {
 		int a;
 		String i = "NANGANG" ,j = "TAIPEI";
 		Price test = new Price();
 		a = test.getPrice(i, j);
+		
+		int b = test.getPrice("ZUOYING", "NANGANG");
 	
 		System.out.println(a);
+		System.out.println(b);
 	
 	}
 	
@@ -17,6 +18,8 @@ public class Price {
 	
 	
 	public int getPrice(String depart , String arrive) {
+		
+		int price = 0;
 		if(depart.matches("NANGANG")) {
 			if(arrive.matches("TAIPEI")) {
 				price = 40;
@@ -255,6 +258,10 @@ public class Price {
 			if(arrive.matches("ZUOYING")) {
 				price = 140;
 			}		
+		}
+		
+		if(price == 0) {
+			price = getPrice(arrive, depart);
 		}
 		
 		return price;

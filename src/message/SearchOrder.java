@@ -9,11 +9,18 @@ import java.io.Serializable;
 public class SearchOrder implements Serializable {
 	private String userID;
 	
+	
+	/**
+	 * This is the default constructor which set the userID "invalid"
+	 */
 	public SearchOrder() {
 		userID = "invalid";
 	}
 	
-	
+	/**
+	 * This is the constructor which set the userID.
+	 * @param String ID
+	 */
 	public SearchOrder(String ID) {
 		this.userID = ID;
 	}

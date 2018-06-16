@@ -2,9 +2,21 @@ package message;
 
 public class Price_of_Business {
 	
-	int price;
+	public static void main(String args[]) {
+		int a;
+		String i = "NANGANG" ,j = "TAIPEI";
+		Price_of_Business test = new Price_of_Business();
+		a = test.getPrice(i, j);
+		
+		int b = test.getPrice("ZUOYING", "NANGANG");
+	
+		System.out.println(a);
+		System.out.println(b);
+	
+	}
 	
 	public int getPrice(String depart , String arrive) {
+		int price = 0;
 		if(depart.equals("NANGANG")) {
 			if(arrive.equals("TAIPEI")) {
 				price = 230;
@@ -242,6 +254,10 @@ public class Price_of_Business {
 			if(arrive.equals("ZUOYING")) {
 				price = 365;
 			}		
+		}
+		
+		if(price == 0) {
+			price = getPrice(arrive, depart);
 		}
 		
 		return price;

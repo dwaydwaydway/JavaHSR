@@ -42,10 +42,11 @@ public class OrderResult implements Serializable{
 	
 	public void addTicket(String carID, String userID, String depart, String arrive, 
 			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount,
-			String compartment, String location, String price) {
+		    String university_discount, String compartment, String location, String price) {
 
 		Ticket newTicket = new Ticket(carID, userID, depart, arrive, 
-				depart_time, arrive_time, passenger_type, carriage, early_discount, compartment, location, price);
+				depart_time, arrive_time, passenger_type, carriage, early_discount,
+				university_discount, compartment, location, price);
 		
 		TicketList.add(newTicket);
 	}
