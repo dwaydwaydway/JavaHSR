@@ -351,6 +351,53 @@ public class ClientGUI extends JFrame {
 		comCarriage.setBounds(135, 26, 110, 20);
 		Booking.add(comCarriage);
 		
+		
+		//return option
+
+		UtilDateModel model_return = new UtilDateModel();
+		model_return.setSelected(true);
+		Properties d = new Properties();
+		d.put("text.today", "Today");
+		d.put("text.month", "Month");
+		d.put("text.year", "Year");
+		JDatePanelImpl datePanel_return = new JDatePanelImpl(model_return, d);
+		JDatePickerImpl datePicker_return_trip = new JDatePickerImpl(datePanel_return, new DateLabelFormatter());
+		datePicker_return_trip.setSize(150, 20);
+		datePicker_return_trip.setLocation(220, 95);
+		
+
+		txtInbound = new JTextField();
+		txtInbound.setText("Inbound");
+		txtInbound.setEditable(false);
+		txtInbound.setColumns(10);
+		txtInbound.setBounds(135, 95, 80, 20);
+		
+		
+		JSpinner departHour_re = new JSpinner();
+		departHour_re.setBounds(375, 95, 40, 20);
+		
+		textField_2 = new JTextField();
+		textField_2.setText(":");
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(420, 95, 10, 20);
+
+		
+		JSpinner departMinute_re = new JSpinner();
+		departMinute_re.setBounds(435, 95, 40, 20);
+		//return option end
+		
+		
+		UtilDateModel model = new UtilDateModel();
+		model.setSelected(true);
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		
+		
+		
 		JComboBox comSeat = new JComboBox();
 		comSeat.setModel(new DefaultComboBoxModel(Seat.values()));
 		comSeat.setBounds(135, 49, 110, 20);
@@ -395,6 +442,9 @@ public class ClientGUI extends JFrame {
 		textField_1.setBackground(Color.LIGHT_GRAY);
 		textField_1.setBounds(0, 118, 130, 20);
 		Booking.add(textField_1);
+		
+		
+		
 		
 
 		
@@ -1123,51 +1173,14 @@ public class ClientGUI extends JFrame {
 		SearchOrder.add(btnSearchOrder);
 		
 		
-		UtilDateModel model = new UtilDateModel();
-		model.setSelected(true);
-		Properties p = new Properties();
-		p.put("text.today", "Today");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+
 		
 		
 	
 		
 		
-		//return option
-
-		UtilDateModel model_return = new UtilDateModel();
-		model_return.setSelected(true);
-		Properties d = new Properties();
-		d.put("text.today", "Today");
-		d.put("text.month", "Month");
-		d.put("text.year", "Year");
-		JDatePanelImpl datePanel_return = new JDatePanelImpl(model_return, d);
-		JDatePickerImpl datePicker_return_trip = new JDatePickerImpl(datePanel_return, new DateLabelFormatter());
-		datePicker_return_trip.setSize(150, 20);
-		datePicker_return_trip.setLocation(220, 95);
-		
-
-		txtInbound = new JTextField();
-		txtInbound.setText("Inbound");
-		txtInbound.setEditable(false);
-		txtInbound.setColumns(10);
-		txtInbound.setBounds(135, 95, 80, 20);
-		
-		
-		JSpinner departHour_re = new JSpinner();
-		departHour_re.setBounds(375, 95, 40, 20);
-		
-		textField_2 = new JTextField();
-		textField_2.setText(":");
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(420, 95, 10, 20);
 
 		
-		JSpinner departMinute_re = new JSpinner();
-		departMinute_re.setBounds(435, 95, 40, 20);
 		
 		
 		/**

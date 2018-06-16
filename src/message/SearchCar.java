@@ -20,8 +20,10 @@ import java.util.Locale;
  * 5.carriage(STANDARD, BUSINESS)
  * 6.quantity(it means the numbers of different kinds of tickets the user want to buy)
  * 7.total(the total number of the tickets that user wants to buy)
- * 8.depart time
- * 9.direction(it's a int type, 1 means toward north , 0 means toward south)
+ * 8.depart day
+ * 9.depart hour
+ * 10.depart minute
+ * 11.direction(it's a int type, 1 means toward north , 0 means toward south)
  */
 public class SearchCar implements Serializable{
 	

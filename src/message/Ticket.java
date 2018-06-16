@@ -41,12 +41,17 @@ public class Ticket implements Serializable{
  
 		
 		
-		
+		/**
+		 * This is the default constructor which will set each element into "invalid"
+		 * @param nothing
+		 */
 		public Ticket() {
 			carID = userID = depart = arrive = depart_time = arrive_time = passenger_type = 
 					carriage = early_discount = compartment = location = price = "invalid";
 
 		}
+		
+		
 		
 		
 		//for testing
@@ -85,7 +90,12 @@ public class Ticket implements Serializable{
 		
 		
 		
-		
+		/**
+		 *This is the constructor which will set all the elements into right value 
+		 *@param (String carID, String userID, String depart, String arrive, 
+				String depart_time, String arrive_time, String passenger_type, String carriage,
+				String early_discount, String compartment, String location, String price)
+		 */
 		public Ticket(String carID, String userID, String depart, String arrive, 
 				String depart_time, String arrive_time, String passenger_type, String carriage,
 				String early_discount, String compartment, String location, String price)
@@ -104,6 +114,7 @@ public class Ticket implements Serializable{
 			this.price = price;
 		}
 		
+
 		public String getCarID() {
 			return this.carID;
 		}
