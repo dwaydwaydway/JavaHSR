@@ -22,9 +22,10 @@ public class Order implements Serializable {
 
 	//push item
 	public LinkedList<Ticket> TicketList = null;
-	public LinkedList<Ticket> TicketList_re = null;
 	
-	
+	public LinkedList<Ticket> getOrderTicketList(){
+		return TicketList;
+	}
 	
 	
 	public Order() {
