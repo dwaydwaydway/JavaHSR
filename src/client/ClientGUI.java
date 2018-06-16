@@ -91,6 +91,8 @@ public class ClientGUI extends JFrame {
 	
 	private OrderResult order_result;  //for read, which will be clean after readed;
 	private LinkedList<Ticket> cancel_order;  //for canceling the ticket
+	private Available info1;
+	private Available info2;
 	
 	private JTextField txtSeatwindow;
 	private JTextField txtSeataisle;
@@ -250,23 +252,47 @@ public class ClientGUI extends JFrame {
 		btnConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Order selected_car = new Order();
+				if(userID_input.getText().equals("")) {		
+					System.out.println("Please input your userID");
+				}
 				
-			/*  SearchCarMessage.setDepart(comdepartStation.getSelectedItem().toString());
-				SearchCarMessage.setArrive(comarriveStation.getSelectedItem().toString());
-				SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
-				SearchCarMessage.setCarriage(comCarriage.getSelectedItem().toString());
-				SearchCarMessage.quantity[0] = (int) normalTicket.getValue();
-			    SearchCarMessage.quantity[1] = (int) childTicket.getValue(); 
-				SearchCarMessage.quantity[2] = (int) elderTicket.getValue();
-				SearchCarMessage.quantity[3] = (int) disableTicket.getValue();
-				SearchCarMessage.quantity[4] = (int) studentTicket.getValue();
-				SearchCarMessage.setHour((int)departHour.getValue());
-				SearchCarMessage.setMinute((int)departMinute.getValue());
-				SearchCarMessage.setDepartDay(departDay.getJFormattedTextField().getText().toString());
-*/	
+				String selected_carID = textinputCarID.getText();	
+				String user_ID = textinputUserID.getText();
+				Order selected_car = new Order(info1 , selected_carID , user_ID);
 				
+				try {
+					Scanner sc = new Scanner(System.in);
+					Socket cs = new Socket("127.0.0.1", 3588); 
+					ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+					ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+					
+					os.writeObject(selected_car);
+					os.flush();
+					Object msg = (Object) is.readObject();
+					if (msg == null)
+						System.out.println("null");
+					if (msg.getClass() == new Order().getClass()) {
+						System.out.println("Successful Order without return trip");
+						
+					}
+					else
+						System.out.println("can't read result1");
+						
+					os.close();
+					is.close();
+					cs.close();
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+					System.out.println("connection error");
+				} catch (IOException e) {
+					e.printStackTrace();
+					System.out.println("IO error");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					System.out.println("Class Not Found error");
+				}	
 				
+								
 				
 			}
 		});
@@ -661,22 +687,60 @@ public class ClientGUI extends JFrame {
 						if (msg.getClass() == new Available().getClass()) {
 							System.out.println("success_without return trip");
 							
-							Available info1 = (Available) msg;
+							info1 = (Available) msg;
 							int quantity_of_available = info1.carList.size();
 							
 							for(int i=0 ; i<quantity_of_available ; i++)
 							{
-								JTextField temp[] = new JTextField[7];
-								for(int k=0 ; k<7 ; k++)
-								{			
+								JTextField temp[] = new JTextField[11];
+								for(int k=0 ; k<11 ; k++)
+								{	
+									
 									temp[k].setBackground(Color.LIGHT_GRAY);
 									temp[k].setForeground(Color.BLACK);
 									temp[k].setFont(new Font("Arial", Font.PLAIN, 15));
 									temp[k].setEditable(false);
-									temp[k].setText(info1.carList.get(i).getCarID());
+									
+									switch(k) {
+										case 0:
+											temp[k].setText(info1.carList.get(i).getCarID());
+											break;
+										case 1:
+											temp[k].setText(info1.carList.get(i).getDepartTime());
+											break;
+										case 2:
+											temp[k].setText(info1.carList.get(i).getDepart());
+											break;
+										case 3:
+											temp[k].setText(info1.carList.get(i).getArriveTime());
+											break;
+										case 4:	
+											temp[k].setText(info1.carList.get(i).getArrive());
+											break;
+										case 5:
+//											temp[k].setText(info1.carList.get(i).getCarriage());
+											break;
+										case 6:
+											temp[k].setText(info1.carList.get(i).getRemained_Window_Standard_Seat());
+											break;
+										case 7:
+											temp[k].setText(info1.carList.get(i).getRemained_Aisle_Standard_Seat());
+											break;
+										case 8:
+											temp[k].setText(info1.carList.get(i).getRemained_None_Standard_Seat());
+											break;
+										case 9:
+											temp[k].setText(info1.carList.get(i).getEarly_Discount());
+											break;
+										case 10:
+											temp[k].setText(info1.carList.get(i).getUniversity_Discount());
+											break;
+											
+									}
 									temp[k].setBounds(0+100*k, 20+20*i, 100, 20);
 									Available.add(temp[k]);
-									temp[k].setColumns(10);		
+									temp[k].setColumns(10);
+									
 								}
 							}
 															
