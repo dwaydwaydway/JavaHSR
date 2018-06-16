@@ -32,7 +32,7 @@ public class SearchCar implements Serializable{
 	String arrive;
 	String seat;
 	String carriage;
-	private int[] quantity = {0,0,0,0,0};
+	public int[] quantity = {0,0,0,0,0};
 	int total;
 	Date depart_day_temp; // day save in 
 	

@@ -36,8 +36,8 @@ public class Ticket implements Serializable{
 		private String carriage;
 		private String early_discount;  //"65", "8", "9" or "NONE"
 		private String university_discount; //"5", "7", "85" or "NONE"
-		private String compartment;  //sending to server == null
-		private String location;    // sending to sever == seat Type {WINDOW, NONE, AISLE}
+		private String compartment;  //sending to server == null                                sending to client = int
+		private String location;    // sending to sever == seat Type {WINDOW, NONE, AISLE}      sending to client = A2  E19.....
 		private String price;       //sending to sever price will be correct
  
 		
