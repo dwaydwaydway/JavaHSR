@@ -20,7 +20,7 @@ import java.util.Locale;
  * 5.carriage(STANDARD, BUSINESS)
  * 6.quantity(it means the numbers of different kinds of tickets the user want to buy)
  * 7.total(the total number of the tickets that user wants to buy)
- * 8.depart day
+ * 8.depart day  in form of "1995-02-03"
  * 9.depart hour
  * 10.depart minute
  * 11.direction(it's a int type, 1 means toward north , 0 means toward south)
@@ -32,7 +32,7 @@ public class SearchCar implements Serializable{
 	String arrive;
 	String seat;
 	String carriage;
-	public int[] quantity = {0,0,0,0,0};
+	private int[] quantity = {0,0,0,0,0};
 	int total;
 	Date depart_day_temp; // day save in 
 	
@@ -204,6 +204,10 @@ public class SearchCar implements Serializable{
 		return temp;
 	}
 	
+	public int[] getQuantity(){
+		return quantity;
+	}
+	
 	public String toString() {
 		String output = null;
 		output = "Depart from " + this.getDepart() + " at " + this.getDepartDay() + " at " + this.getHour() + " : " + this.getMinute() + "\n";
@@ -250,4 +254,5 @@ public class SearchCar implements Serializable{
 	   }
 	}
 	
+
 	

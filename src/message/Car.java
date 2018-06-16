@@ -9,15 +9,15 @@ public class Car implements Serializable {
 	private String carID;
 	private String depart;
 	private String arrive;
-	private String depart_time;
-	private String arrive_time;
+	private String depart_time;         //in the form of "1995-02-03,18:03"
+	private String arrive_time;         //in the form of "1995-02-03,18:03"
 	private String remained_window_business_seat;
 	private String remained_none_business_seat;
 	private String remained_aisle_business_seat;
 	private String remained_window_standard_seat;
 	private String remained_none_standard_seat;
 	private String remained_aisle_standard_seat;
-	private String early_discount;  //65,75...or none
+	private String early_discount;  //"65", "8", "9" or "NONE"
 	private String university_discount;
 	
 	/**

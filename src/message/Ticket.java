@@ -30,14 +30,15 @@ public class Ticket implements Serializable{
 		private String userID;
 		private String depart;
 		private String arrive;
-		private String depart_time;  //include day and hour, minute
-		private String arrive_time;  //include day and hour, minute
+		private String depart_time;  //include day and hour, minute in the form of "1995-02-03,18:03"
+		private String arrive_time;  //include day and hour, minute in the form of "1995-02-03,18:03"
 		private String passenger_type;
 		private String carriage;
-		private String early_discount;  //65,75...or none
-		private String compartment;
-		private String location;
-		private String price;
+		private String early_discount;  //"65", "8", "9" or "NONE"
+		private String university_discount; //"5", "7", "85" or "NONE"
+		private String compartment;  //sending to server == null
+		private String location;    // sending to sever == seat Type {WINDOW, NONE, AISLE}
+		private String price;       //sending to sever price will be correct
  
 		
 		
@@ -47,7 +48,7 @@ public class Ticket implements Serializable{
 		 */
 		public Ticket() {
 			carID = userID = depart = arrive = depart_time = arrive_time = passenger_type = 
-					carriage = early_discount = compartment = location = price = "invalid";
+					carriage = early_discount = university_discount= compartment = location = price = "invalid";
 
 		}
 		
@@ -64,7 +65,8 @@ public class Ticket implements Serializable{
 			this.depart_time = "1997-10-03,14:15";
 			this.passenger_type = "STUDENT";
 			this.carriage = "STANDER";
-			this.early_discount = "none";
+			this.early_discount = "NONE";
+			this.university_discount = "NONE";
 			this.compartment = "1";
 			this.location = "A1";
 			this.price = "1240";
@@ -81,7 +83,8 @@ public class Ticket implements Serializable{
 			this.depart_time = "1997-04-03,14:15";
 			this.passenger_type = "STUDENT";
 			this.carriage = "STANDER";
-			this.early_discount = "none";
+			this.early_discount = "NONE";
+			this.university_discount = "NONE";
 			this.compartment = "1";
 			this.location = "A1";
 			this.price = "1240";
@@ -94,11 +97,11 @@ public class Ticket implements Serializable{
 		 *This is the constructor which will set all the elements into right value 
 		 *@param (String carID, String userID, String depart, String arrive, 
 				String depart_time, String arrive_time, String passenger_type, String carriage,
-				String early_discount, String compartment, String location, String price)
+				String early_discount,String university_discount, String compartment, String location, String price)
 		 */
 		public Ticket(String carID, String userID, String depart, String arrive, 
 				String depart_time, String arrive_time, String passenger_type, String carriage,
-				String early_discount, String compartment, String location, String price)
+				String early_discount, String university_discount, String compartment, String location, String price)
 		{
 			this.carID = carID;
 			this.userID = userID;
@@ -109,6 +112,7 @@ public class Ticket implements Serializable{
 			this.passenger_type = passenger_type;
 			this.carriage = carriage;
 			this.early_discount = early_discount;
+			this.university_discount = university_discount;
 			this.compartment = compartment;
 			this.location = location;
 			this.price = price;
@@ -142,6 +146,11 @@ public class Ticket implements Serializable{
 		public String getEarlyDiscount() {
 			return this.early_discount;
 		}
+		public String getUniversityDisciont() {
+			return this.university_discount;
+		}
+		
+		
 		public String getCompartment() {
 			return this.compartment;
 		}
@@ -151,6 +160,19 @@ public class Ticket implements Serializable{
 		
 		public String getPrice() {
 			return this.price;
+		}
+		
+		
+		
+		/**
+		 * server will need this
+		 * @param input
+		 */
+		public void setCompartment(String input) {
+			this.compartment = input;
+		}
+		public void setLocation(String input) {
+			this.location = input;
 		}
 		
 	}
