@@ -483,7 +483,7 @@ public class Database {
 					+ "    a.TrainNO = d.TrainNo;");
 			System.out.print(pst.toString());
 			rs = pst.executeQuery();
-			Available result = new Available(msg);
+			Available result = new Available();
 			while (rs.next()) {
 
 				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
