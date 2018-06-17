@@ -12,19 +12,22 @@ public class Car implements Serializable {
 	private String depart_time;         //in the form of "1995-02-03,18:03"
 	private String arrive_time;         //in the form of "1995-02-03,18:03"
 	private String remained_window_business_seat;
+	private String remained_none_business_seat;
 	private String remained_aisle_business_seat;
 	private String remained_window_standard_seat;
 	private String remained_none_standard_seat;
 	private String remained_aisle_standard_seat;
 	private String early_discount;  //"65", "8", "9" or "NONE"
 	private String university_discount;
-	private String student_discount;
+	
 	/**
 	 * Constructor of Car
 	 */
 	public Car(String carID, String depart, String arrive, String depart_time, String arrive_time, 
-			String remained_window_business_seat, String remained_aisle_business_seat, String remained_window_standard_seat, 
-			String remained_none_standard_seat, String remained_aisle_standard_seat, String early_discount, String student_discount)
+			String remained_window_business_seat, String remained_none_business_seat, 
+			String remained_aisle_business_seat, String remained_window_standard_seat, 
+			String remained_none_standard_seat, String remained_aisle_standard_seat, String early_discount
+			, String university_discount)
 	{
 		this.carID = carID;
 		this.depart = depart;
@@ -33,6 +36,7 @@ public class Car implements Serializable {
 		this.depart_time = depart_time;
 		this.remained_aisle_business_seat = remained_aisle_business_seat;
 		this.remained_aisle_standard_seat = remained_aisle_standard_seat;
+		this.remained_none_business_seat = remained_none_business_seat;
 		this.remained_none_standard_seat = remained_none_standard_seat;
 		this.remained_window_business_seat = remained_window_business_seat;
 		this.remained_window_standard_seat = remained_window_standard_seat;
@@ -61,6 +65,9 @@ public class Car implements Serializable {
 	public String getRemained_Aisle_Standard_Seat() {
 		return this.remained_aisle_standard_seat;
 	}
+	public String getRemained_None_Business_Seat() {
+		return this.remained_none_business_seat;
+	}
 	public String getRemained_None_Standard_Seat() {
 		return this.remained_none_standard_seat;
 	}
@@ -77,7 +84,5 @@ public class Car implements Serializable {
 		return this.university_discount;
 	}
 	
-	public String getStudent_discount(){
-		return student_discount;
-	}
+	
 }

@@ -1,5 +1,6 @@
 package message;
 
+
 import java.io.Serializable;
 import java.util.LinkedList;
 /**
@@ -11,18 +12,6 @@ import java.util.LinkedList;
  * 4.LinkedList of Ticket
  */
 public class Order implements Serializable {
-<<<<<<< HEAD
-	private SearchCar info;
-	private String carID;
-	private String userID;
-	private int sum_normal;
-	private int sum_child;
-	private int sum_elder;
-	private int sum_disable;
-	private int sum_student;
-	private String early_discount;
-	private String student_discount;
-=======
 	
 	//pull from
 	private LinkedList<Car> info_carlist = null;
@@ -39,14 +28,12 @@ public class Order implements Serializable {
 		return TicketList;
 	}
 	
->>>>>>> branch 'master' of https://github.com/dwaydwaydway/JavaHSR.git
 	
 	public Order() {
 
 	}
 	
 	
-
 	/**
 	 * if it have been without return trip;
 	 * @param Available input_info_carlist
@@ -54,36 +41,7 @@ public class Order implements Serializable {
 	 * @param String input_userID
 	 */
 	public Order(Available input_info_carlist, String input_carID, String input_userID)
->>>>>>> branch 'master' of https://github.com/dwaydwaydway/JavaHSR.git
 	{
-<<<<<<< HEAD
-		this.info = i;
-		this.carID = carID;
-		this.userID = userID;
-		this.early_discount = early_discount;
-		this.student_discount = student_discount;
-	}
-	
-	public String getCarID() {
-		return this.carID;
-	}
-	public String getEaryDiscout(){
-		return early_discount;
-	}
-	public String getStudentDiscount() {
-		return student_discount;
-	}
-	public String getUserID() {
-		return this.userID;
-	}
-	public SearchCar getInfo() {
-		return this.info;
-	}
-	
-	public int getSum_Normal() {
-		Price price = new Price();
-		int sum1 = this.info.quantity[0] * price.getPrice(this.info.depart, this.info.arrive);
-=======
 		//setting the pulling elements
 		this.info_carlist = input_info_carlist.getAvailable();
 		this.info_ticket = input_info_carlist.getInfo();
@@ -213,7 +171,6 @@ public class Order implements Serializable {
 						
 						TicketList.add(temp_ticket);
 					}
->>>>>>> branch 'master' of https://github.com/dwaydwaydway/JavaHSR.git
 
 				}
 
