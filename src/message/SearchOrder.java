@@ -8,20 +8,22 @@ import java.io.Serializable;
  */
 public class SearchOrder implements Serializable {
 	private String userID;
-	
+	private String transaction_number;
 	
 	/**
 	 * This is the default constructor which set the userID "invalid"
 	 */
 	public SearchOrder() {
-		userID = "invalid";
+		userID = transaction_number = "invalid";
+		
 	}
 	
 	/**
 	 * This is the constructor which set the userID.
 	 * @param String ID
 	 */
-	public SearchOrder(String ID) {
+	public SearchOrder(String transaction_number, String ID) {
+		this.transaction_number = transaction_number;
 		this.userID = ID;
 	}
 	
@@ -29,11 +31,21 @@ public class SearchOrder implements Serializable {
 		return this.userID;
 	}
 	
+	public String getTransactionNumber() {
+		return this.transaction_number;
+	}
+	
+	
+	
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 	
+	public void setTransactionNumber(String input) {
+		this.transaction_number = input;
+	}
+	
 	public String toString() {
-		return "userID is " + userID;
+		return "Transaction Number is " + transaction_number + "\nuserID is " + userID;
 	}
 }
