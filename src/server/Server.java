@@ -86,6 +86,11 @@ public class Server {
 			else if (msg.getClass() == new SearchOrder().getClass()) {
 				return new OrderResult(1);
 			}
+			
+			else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
+				return new OrderResult(1);
+			}
+			
 			else if (msg.getClass() == new Ticket().getClass()) {
 				return new Ticket(1, 1);
 			}
