@@ -956,11 +956,10 @@ public class ClientGUI extends JFrame {
 							
 							System.out.println("Please choose the car you want. ");
 							
-							JButton btnConfirm = new JButton("Confirm");
+							JButton btnConfirm1 = new JButton("Confirm");
+
 							
-							int push_times = 0;
-							
-							btnConfirm.addActionListener(new ActionListener() {
+							btnConfirm1.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									
 									if(userID_input.getText().equals("")) {		
@@ -1003,9 +1002,6 @@ public class ClientGUI extends JFrame {
 										System.out.println("Class Not Found error");
 									}								
 									
-									
-									Available.repaint();
-									Available.revalidate();
 									
 									/**
 									 * This part is return
@@ -1061,17 +1057,72 @@ public class ClientGUI extends JFrame {
 											}
 											temp[k].setBounds(0+100*k, 20+20*i, 100, 20);
 											Available.add(temp[k]);
-											temp[k].setColumns(10);
-											
+											temp[k].setColumns(10);				
 										}
 									}
+									/**
+									 * This button is used to return the car_info of return.
+									 */
+									JButton btnConfirm2 = new JButton("Confirm");
+									btnConfirm2.addActionListener(new ActionListener() {
+										public void actionPerformed(ActionEvent arg0) {
+											
+											if(userID_input.getText().equals("")) {		
+												System.out.println("Please input your userID");
+											}
+											
+											String selected_carID = textinputCarID.getText();	
+											String user_ID = textinputUserID.getText();
+											Order selected_car = new Order(info2 , selected_carID , user_ID);
+											
+											try {
+												Scanner sc = new Scanner(System.in);
+												Socket cs = new Socket("127.0.0.1", 3588); 
+												ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+												ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+												
+												os.writeObject(selected_car);
+												os.flush();
+												Object msg = (Object) is.readObject();
+												if (msg == null)
+													System.out.println("null");
+												if (msg.getClass() == new Order().getClass()) {
+													System.out.println("Successful Order without return trip");
+													
+												}
+												else
+													System.out.println("can't read result1");
+													
+												os.close();
+												is.close();
+												cs.close();
+											} catch (UnknownHostException e) {
+												e.printStackTrace();
+												System.out.println("connection error");
+											} catch (IOException e) {
+												e.printStackTrace();
+												System.out.println("IO error");
+											} catch (ClassNotFoundException e) {
+												e.printStackTrace();
+												System.out.println("Class Not Found error");
+											}	
+																	
+										}
+									});
+									btnConfirm2.setFont(new Font("Arial", Font.PLAIN, 16));
+									btnConfirm2.setBackground(new Color(238, 232, 170));
+									btnConfirm2.setBounds(445, 312, 89, 31);
+									Available.add(btnConfirm2);
+									
+									Available.repaint();
+									Available.revalidate();
 
 								}
 							});
-							btnConfirm.setFont(new Font("Arial", Font.PLAIN, 16));
-							btnConfirm.setBackground(new Color(238, 232, 170));
-							btnConfirm.setBounds(445, 312, 89, 31);
-							Available.add(btnConfirm);
+							btnConfirm1.setFont(new Font("Arial", Font.PLAIN, 16));
+							btnConfirm1.setBackground(new Color(238, 232, 170));
+							btnConfirm1.setBounds(445, 312, 89, 31);
+							Available.add(btnConfirm1);
 							
 							//switch pane
 							layeredPane.removeAll();
