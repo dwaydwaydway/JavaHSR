@@ -8,6 +8,7 @@ import java.io.Serializable;
  * returnif to Client.
  * 
  * Information:
+ * 0.transaction_number
  * 1.carID;
  * 2.userID;
  * 3.depart station;
@@ -26,6 +27,7 @@ public class Ticket implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	    private String transaction_number;     // sending server ==null                        sending to client = valid number.
 		private String carID;
 		private String userID;
 		private String depart;
@@ -34,8 +36,8 @@ public class Ticket implements Serializable{
 		private String arrive_time;  //include day and hour, minute in the form of "1995-02-03,18:03"
 		private String passenger_type;
 		private String carriage;
-		private String early_discount;  //"65", "8", "9" or "NONE"
-		private String university_discount; //"5", "7", "85" or "NONE"
+		private String early_discount;  //"0.65", "0.8", "0.9" or "NONE"
+		private String university_discount; //"0.5", "0.7", "0.85" or "NONE"
 		private String compartment;  //sending to server == null                                sending to client = int
 		private String location;    // sending to sever == seat Type {WINDOW, NONE, AISLE}      sending to client = A2  E19.....
 		private String price;       //sending to sever price will be correct
@@ -47,7 +49,7 @@ public class Ticket implements Serializable{
 		 * @param nothing
 		 */
 		public Ticket() {
-			carID = userID = depart = arrive = depart_time = arrive_time = passenger_type = 
+			transaction_number = carID = userID =  depart = arrive = depart_time = arrive_time = passenger_type = 
 					carriage = early_discount = university_discount= compartment = location = price = "invalid";
 
 		}
@@ -57,6 +59,7 @@ public class Ticket implements Serializable{
 		
 		//for testing
 		public Ticket(int x) {
+			this.transaction_number = "gg";
 			this.carID = "0205";
 			this.userID = "shaopoo";
 			this.depart = "NTU";
@@ -75,6 +78,7 @@ public class Ticket implements Serializable{
 		
 		//for testing2
 		public Ticket(int x, int y) {
+			this.transaction_number = "cc";
 			this.carID = "0305";
 			this.userID = "isaiah";
 			this.depart = "NTU";
@@ -95,14 +99,16 @@ public class Ticket implements Serializable{
 		
 		/**
 		 *This is the constructor which will set all the elements into right value 
-		 *@param (String carID, String userID, String depart, String arrive, 
+		 *@param (String transaction_number, String carID, String userID, String depart, String arrive, 
 				String depart_time, String arrive_time, String passenger_type, String carriage,
 				String early_discount,String university_discount, String compartment, String location, String price)
 		 */
-		public Ticket(String carID, String userID, String depart, String arrive, 
+		public Ticket(String transaction_number, String carID, String userID, String depart, String arrive, 
 				String depart_time, String arrive_time, String passenger_type, String carriage,
 				String early_discount, String university_discount, String compartment, String location, String price)
 		{
+			
+			this.transaction_number = transaction_number;
 			this.carID = carID;
 			this.userID = userID;
 			this.depart = depart;
@@ -162,6 +168,10 @@ public class Ticket implements Serializable{
 			return this.university_discount;
 		}
 		
+		public String getTransactionNumber() {
+			return transaction_number;
+		}
+		
 		
 		public String getCompartment() {
 			return this.compartment;
@@ -185,6 +195,9 @@ public class Ticket implements Serializable{
 		}
 		public void setLocation(String input) {
 			this.location = input;
+		}
+		public void setTransaction_number(String input) {
+			this.transaction_number = input;
 		}
 		
 	}

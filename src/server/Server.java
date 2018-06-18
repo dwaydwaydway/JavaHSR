@@ -22,6 +22,7 @@ public class Server {
 
 	HashMap codeMap = new HashMap<Integer, String>();
 	HashMap seatMax = new HashMap<String, Integer>();
+
 	public Server() {
 		seatMax.put("NormalWin", 262);
 		seatMax.put("NormalMid", 137);
@@ -29,6 +30,7 @@ public class Server {
 		seatMax.put("BusinessWin", 33);
 		seatMax.put("BusinessMid", 33);
 	}
+
 	/**
 	 * This function keeps listening for socket requests.
 	 */
@@ -82,22 +84,30 @@ public class Server {
 		 */
 		private Object messageHandler(Object msg) {
 			Database database = new Database();
-			if (msg.getClass() == new SearchCar().getClass()) {
-				return database.selectCar((SearchCar) msg);
-			} else if (msg.getClass() == new Order().getClass()) {
-				int code;
-				do
-					code = (int) Math.random() / 10000000;
-				while(codeMap.get(code) == null);
-				Order od = (Order) msg;
-				return database.insertOrder((Order) msg, code, seatMax.get(od.getInfo().seatDBType()));
+			try {
+				if (msg.getClass() == new SearchCar().getClass()) {
+					return database.selectCar((SearchCar) msg);
+				} else if (msg.getClass() == new Order().getClass()) {
+					int code;
+					do
+						code = (int) Math.random() % 10000000;
+					while (codeMap.get(code) == null);
+					return database.insertBooking((Order) msg, code);
+				} else if (msg.getClass() == new SearchOrder().getClass()) {
+					return database.searchTicketByUserId((SearchOrder)msg);
+				}
+				else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
+					return database.findTransactionNumber((SearchTransactionNumber) msg);
+				}
+				else if (msg.getClass() == new Ticket().getClass()) {
+					return new Ticket(1, 1);
+				} else
+					return null;
 			}
-//			} else if (msg.getClass() == new SearchOrder().getClass()) {
-//				return database.selectOrder((Order) msg);
-//			} else if (msg.getClass() == new Alter().getClass()) {
-//				return database.updateAlter((Alter) msg);
-			} else
-				return null;
+			catch(Fail_Message e) {
+				return e;
+			}
+			
 		}
 
 		/**

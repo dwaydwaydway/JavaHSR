@@ -452,36 +452,31 @@ public class Database {
 		}
 	}
 
-	public Available selectCar(SearchCar msg) {
+	public Available selectCar(SearchCar msg) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("SELECT\r\n" + "    a.TrainNo,\r\n" + "    a." + msg.getDepart() + ",\r\n"
-					+ "    a." + msg.getArrive() + ",\r\n" + "    IFNULL(b.NormalWin, 262) NormalWin,\r\n"
-					+ "    IFNULL(b.NormalMid, 137) NormalMid,\r\n" + "    IFNULL(b.NormalAisle, 265) NormalAisle,\r\n"
-					+ "    IFNULL(b.BusinessWin, 33) BusinessWin,\r\n"
-					+ "    IFNULL(b.BusinessAisle, 33) BusinessAisle,\r\n" + "    c.early,\r\n" + "    c.tickets,\r\n"
-					+ "    d." + msg.getDBDayofWeek() + " AS college\r\n" + "FROM\r\n" + "    (\r\n" + "    SELECT\r\n"
-					+ "        *\r\n" + "    FROM\r\n" + "        timeTable t\r\n" + "    WHERE\r\n" + "        t."
-					+ msg.getDBDayofWeek() + "  = 1 AND t.Direction = " + msg.getDirection() + " AND t."
-					+ msg.getDepart() + " < '" + msg.getTime() + "' AND t." + msg.getArrive() + " IS NOT NULL\r\n"
-					+ ") a\r\n" + "LEFT JOIN(\r\n" + "    SELECT\r\n" + "        TrainNo,\r\n"
-					+ "        (262 - IFNULL(SUM(NormalWin), 0)) AS NormalWin,\r\n"
-					+ "        (137 - IFNULL(SUM(NormalMid), 0)) AS NormalMid,\r\n"
-					+ "        (265 - IFNULL(SUM(NormalAisle), 0)) AS NormalAisle,\r\n"
-					+ "        (33 - IFNULL(SUM(BusinessWin), 0)) AS BusinessWin,\r\n"
-					+ "        (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle\r\n" + "    FROM\r\n"
-					+ "        booking\r\n" + "    WHERE\r\n" + "        date = '" + msg.getDepartDay() + "'\r\n"
-					+ "    GROUP BY\r\n" + "        TrainNo\r\n" + ") b\r\n" + "ON\r\n"
-					+ "    a.TrainNo = b.TrainNo\r\n" + "LEFT JOIN(\r\n" + "    SELECT\r\n" + "        e1.*,\r\n"
-					+ "        e2.tickets\r\n" + "    FROM\r\n" + "        (\r\n" + "        SELECT\r\n"
-					+ "            TrainNo,\r\n" + "            MIN(discount) AS early\r\n" + "        FROM\r\n"
-					+ "            earlyDiscount\r\n" + "        WHERE\r\n" + "            DAY = '"
-					+ msg.getDBDayofWeek() + "' AND tickets != 0\r\n" + "        GROUP BY\r\n"
-					+ "            TrainNo\r\n" + "    ) e1\r\n" + "LEFT JOIN earlyDiscount e2 ON\r\n"
-					+ "    e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
-					+ "'\r\n" + ") c\r\n" + "ON\r\n" + "    a.TrainNo = c.TrainNo\r\n" + "LEFT JOIN(\r\n"
-					+ "    SELECT\r\n" + "        TrainNo,\r\n" + "        " + msg.getDBDayofWeek() + "\r\n"
-					+ "    FROM\r\n" + "        universityDiscount\r\n" + ") d\r\n" + "ON\r\n"
-					+ "    a.TrainNO = d.TrainNo;");
+			pst = con.prepareStatement("SELECT " + "    a.TrainNo, " + "    a." + msg.getDepart() + ", " + "  a."
+					+ msg.getArrive() + ", " + "    IFNULL(b.NormalWin, 262) NormalWin, "
+					+ "  IFNULL(b.NormalMid, 137) NormalMid, " + "    IFNULL(b.NormalAisle, 265) NormalAisle, "
+					+ "  IFNULL(b.BusinessWin, 33) BusinessWin, " + "  IFNULL(b.BusinessAisle, 33) BusinessAisle, "
+					+ "    c.early, " + "    c.tickets, " + "  d." + msg.getDBDayofWeek() + " AS college " + "FROM "
+					+ "    ( " + "    SELECT " + "   * " + "    FROM\r\n" + "        timeTable t " + "    WHERE "
+					+ "        t." + msg.getDBDayofWeek() + "  = 1 AND t.Direction = " + msg.getDirection() + " AND t."
+					+ msg.getDepart() + " < '" + msg.getTime() + "' AND t." + msg.getArrive() + " IS NOT NULL " + ") a "
+					+ "LEFT JOIN( " + " SELECT " + " TrainNo, " + "  (262 - IFNULL(SUM(NormalWin), 0)) AS NormalWin, "
+					+ "  (137 - IFNULL(SUM(NormalMid), 0)) AS NormalMid, "
+					+ "  (265 - IFNULL(SUM(NormalAisle), 0)) AS NormalAisle, "
+					+ "  (33 - IFNULL(SUM(BusinessWin), 0)) AS BusinessWin, "
+					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + "   FROM\r\n" + "  booking "
+					+ " WHERE " + " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo "
+					+ ") b " + "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, "
+					+ "  e2.tickets " + "   FROM " + "  ( " + "  SELECT " + "  TrainNo, " + "  MIN(discount) AS early "
+					+ " FROM " + "   earlyDiscount " + "  WHERE " + "   DAY = '" + msg.getDBDayofWeek()
+					+ "' AND tickets > 0 " + "    GROUP BY " + "  TrainNo " + "  ) e1 "
+					+ "LEFT JOIN earlyDiscount e2 ON "
+					+ "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
+					+ "' " + ") c " + "ON " + "  a.TrainNo = c.TrainNo " + "LEFT JOIN( " + "   SELECT " + "   TrainNo, "
+					+ " " + msg.getDBDayofWeek() + " " + "   FROM " + "  universityDiscount " + ") d " + "ON "
+					+ "   a.TrainNO = d.TrainNo;");
 			System.out.print(pst.toString());
 			rs = pst.executeQuery();
 			Available result = new Available();
@@ -497,11 +492,13 @@ public class Database {
 		} catch (SQLException e) {
 			System.out.println("select car error");
 			e.printStackTrace();
+			throw new Fail_Message("select car error", pst.toString());
+		} finally {
+			Close();
 		}
-		return null;
 	}
 
-	public Object insertBooking(Order order, int code) {
+	public Object insertBooking(Order order, int code) throws Fail_Message {
 		for (Ticket ticket : order.getOrderTicketList()) {
 			String Class = ticket.getCarriage();
 			String Side = ticket.getLocation();
@@ -533,7 +530,7 @@ public class Database {
 			quantity[index] = 1;
 			try {
 				pst = con.prepareStatement(
-						"INSERT INTO `booking`(`code`, `uid`, `date`, `TrainNo`, `ticketsType`, `start`, `end`, `carriage`, `row`, `side`, `NormalWin`, `NormalMid`, `NormalAisle`, `BusinessWin`, `BusinessAisle`, `payDeadline`, `price`, `depart_time`, `arrive_time`, `early_discount`, `university_discount`) "
+						"INSERT INTO `booking`(`code`, `uid`, `date`, `TrainNo`, `ticketsType`, `start`, `end`, `carriage`, `row`, `side`, `NormalWin`, `NormalMid`, `NormalAisle`, `BusinessWin`, `BusinessAisle`, `payDeadline`, `price`, `depart_time`, `arrive_time`, `early_discount`, `university_discount`, `canceled`) "
 								+ "VALUES (" + code + ", '" + ticket.getUserID() + "','" + ticket.getDBDepartDate()
 								+ "','" + ticket.getCarID() + "', '" + ticket.getPassengerType() + "','"
 								+ ticket.getDepart() + "', '" + ticket.getArrive() + "', " + "(SELECT "
@@ -553,16 +550,16 @@ public class Database {
 								+ ticket.getDBDepartDate() + ") = 0) THEN (" + ticket.getDBDepartDate()
 								+ ") ELSE (DATE_ADD(CURDATE(), 1))," + ticket.getPrice() + ", '"
 								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
-								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + " )");
+								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + ", 0 )");
 				rs = pst.executeQuery();
 
 			} catch (SQLException e) {
 				System.out.println("insert booking error");
 				e.printStackTrace();
-				return new Fail_Message(pst.toString());
+				throw new Fail_Message("insert booking error", pst.toString());
 			}
-
 		}
+
 		try {
 			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + code);
 			rs = pst.executeQuery();
@@ -574,31 +571,105 @@ public class Database {
 					carriage = "BUSINESS";
 				else
 					carriage = "STANDARD";
-				result.addTicket(rs.getString("TrainNo"), rs.getString("uid"), rs.getString("start"),
-						rs.getString("end"), rs.getString("depart_time"), rs.getString("depart_time"),
-						rs.getString("ticketsType"), carriage, rs.getString("early_discount"),
-						rs.getString("university_discount"), rs.getString("carriage"),
+				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
+						rs.getString("start"), rs.getString("end"), rs.getString("depart_time"),
+						rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
 						rs.getString("side") + rs.getString("row"), rs.getString("price"));
 			}
 			return result;
 		} catch (SQLException e) {
-			System.out.println("insert booking error");
+			System.out.println("insert booking 2 error");
 			e.printStackTrace();
-			return new Fail_Message(pst.toString());
+			throw new Fail_Message("insert booking 2 error", pst.toString());
+		} finally {
+			Close();
 		}
 	}
 
-	public void updateSeatIndex(Order order) {
+	public Object findTransactionNumber(SearchTransactionNumber searchTransactionNumber) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("UPDATE seatIndex SET " + order.getInfo().seatType() + " = "
-					+ order.getInfo().seatType() + " - 1 WHERE TrainNo = '" + order.getCarID() + "' AND¡@Day = '"
-					+ order.getInfo().getDBDayofWeek() + "'");
+			pst = con.prepareStatement("SELECT * FROM `booking` WHERE TrainNo = " + searchTransactionNumber.getCarID()
+					+ " AND uid = " + searchTransactionNumber.getUserID() + " AND start = "
+					+ searchTransactionNumber.getDepart() + " AND date = " + searchTransactionNumber.getDepartDay()
+					+ " AND end = " + searchTransactionNumber.getArrive());
 			rs = pst.executeQuery();
+			OrderResult result = new OrderResult();
+			while (rs.next()) {
+				int flag = rs.getInt("BusinessWin") + rs.getInt("BusinessAisle");
+				String carriage;
+				if (flag > 0)
+					carriage = "BUSINESS";
+				else
+					carriage = "STANDARD";
+				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
+						rs.getString("start"), rs.getString("end"), rs.getString("depart_time"),
+						rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
+						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("findTransactionNumber error");
+			e.printStackTrace();
+			throw new Fail_Message("findTransactionNumber error", pst.toString());
+		}
+	}
+
+	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
+		try {
+			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber());
+			rs = pst.executeQuery();
+			OrderResult result = new OrderResult();
+			while (rs.next()) {
+				int flag = rs.getInt("BusinessWin") + rs.getInt("BusinessAisle");
+				String carriage;
+				if (flag > 0)
+					carriage = "BUSINESS";
+				else
+					carriage = "STANDARD";
+				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
+						rs.getString("start"), rs.getString("end"), rs.getString("depart_time"),
+						rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
+						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("searchTicketByUserId error");
+			e.printStackTrace();
+			throw new Fail_Message("searchTicketByUserId error", pst.toString());
+		}
+	}
+
+	public Object cancelTicket(Ticket ticket) throws Fail_Message {
+		try {
+			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = " + ticket.getUserID()
+					+ " AND code = " + ticket.getTransactionNumber() + " AND date = " + ticket.getDBDepartDate()
+					+ " AND start = " + ticket.getDepart() + " AND carriage = " + ticket.getCompartment()
+					+ " AND side = " + ticket.getLocation().charAt(1) + " AND row = " + ticket.getLocation().charAt(0));
+			rs = pst.executeQuery();
+			// return new Success_Message("ticket canceled");
+		} catch (SQLException e) {
+			System.out.println("cancelTicket error");
+			e.printStackTrace();
+			throw new Fail_Message("cancelTicket error", pst.toString());
+		}
+		try {
+			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = " + ticket.getUserID()
+					+ " AND code = " + ticket.getTransactionNumber() + " AND date = " + ticket.getDBDepartDate()
+					+ " AND start = " + ticket.getDepart() + " AND carriage = " + ticket.getCompartment()
+					+ " AND side = " + ticket.getLocation().charAt(1) + " AND row = " + ticket.getLocation().charAt(0));
+			rs = pst.executeQuery();
+			return new Success_Message("ticket canceled");
 		} catch (SQLException e) {
 			System.out.println("SQLException");
 			e.printStackTrace();
+			throw new Fail_Message();
 		}
+
 	}
+
 
 	////////////////////////////////////////////////////////////////////////////////////
 
@@ -623,6 +694,6 @@ public class Database {
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		Database db = new Database();
-		db.selectCar(new SearchCar());
+		//db.selectCar(new SearchCar());
 	}
 }

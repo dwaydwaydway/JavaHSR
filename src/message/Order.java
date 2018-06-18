@@ -106,17 +106,17 @@ public class Order implements Serializable {
 					 */
 					if(i==0) {
 						double early_discount = 1.0;
-						if(temp_early_discount.equals("65")) {
+						if(temp_early_discount.equals("0.65")) {
 							early_discount = 0.65;
 						}
-						else if(temp_early_discount.equals("8")){
+						else if(temp_early_discount.equals("0.8")){
 							early_discount = 0.8;
 						}
-						else if(temp_early_discount.equals("9")) {
+						else if(temp_early_discount.equals("0.9")) {
 							early_discount = 0.9;
 						}
 		
-						Ticket temp_ticket = new Ticket(temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
+						Ticket temp_ticket = new Ticket(null, temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
 								"NORMAL", temp_carriage, temp_early_discount, temp_university_discount, "unknow campartment", temp_seat, ""+ temp_price*early_discount);
 						
 						TicketList.add(temp_ticket);
@@ -125,48 +125,48 @@ public class Order implements Serializable {
 					
 					
 					else if(i==1) {
-						Ticket temp_ticket = new Ticket(temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
+						Ticket temp_ticket = new Ticket(null, temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
 								"CHILD", temp_carriage, temp_early_discount, temp_university_discount, "unknow campartment", temp_seat, ""+ temp_price/2);
 						
 						TicketList.add(temp_ticket);
 				    	}
 					else if(i==2) {
-						Ticket temp_ticket = new Ticket(temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
+						Ticket temp_ticket = new Ticket(null, temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
 								"ELDER", temp_carriage, temp_early_discount, temp_university_discount, "unknow campartment", temp_seat, ""+ temp_price/2);
 						
 						TicketList.add(temp_ticket);
 				    	}
 					else if(i==3) {
-						Ticket temp_ticket = new Ticket(temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
+						Ticket temp_ticket = new Ticket(null, temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
 								"DISABLE", temp_carriage, temp_early_discount, temp_university_discount, "unknow campartment", temp_seat, ""+ temp_price/2);
 						
 						TicketList.add(temp_ticket);
 				    	}
 					else if(i==4) {
 						double early_discount = 1.0;
-						if(temp_early_discount.equals("65")) {
+						if(temp_early_discount.equals("0.65")) {
 							early_discount = 0.65;
 						}
-						else if(temp_early_discount.equals("8")){
+						else if(temp_early_discount.equals("0.8")){
 							early_discount = 0.8;
 						}
-						else if(temp_early_discount.equals("9")) {
+						else if(temp_early_discount.equals("0.9")) {
 							early_discount = 0.9;
 						}
 						double university_discount = 1.0;
-						if(temp_university_discount.equals("5")) {
+						if(temp_university_discount.equals("0.5")) {
 							university_discount = 0.5;
 						}
-						else if(temp_university_discount.equals("7")){
+						else if(temp_university_discount.equals("0.7")){
 							early_discount = 0.7;
 						}
-						else if(temp_university_discount.equals("85")) {
+						else if(temp_university_discount.equals("0.85")) {
 							early_discount = 0.85;
 						}
 						
 						double real_discount = Math.min(early_discount, university_discount);
 						
-						Ticket temp_ticket = new Ticket(temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
+						Ticket temp_ticket = new Ticket(null, temp_carID, temp_userID, temp_depart, temp_arrive, temp_depart_time, temp_arrive_time,
 								"STUDENT", temp_carriage, temp_early_discount, temp_university_discount, "unknow campartment", temp_seat, ""+ temp_price*real_discount);
 						
 						TicketList.add(temp_ticket);

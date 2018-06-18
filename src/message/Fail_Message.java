@@ -7,10 +7,11 @@ import java.io.Serializable;
  * 
  */
 
-public class Fail_Message implements Serializable{
+public class Fail_Message extends Exception implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String statement;
+	private String query;
 	
 	/**
 	 *Constructor Success_Message()
@@ -29,8 +30,9 @@ public class Fail_Message implements Serializable{
 	 * the statement = input_statement
 	 * 	 *@return nothing
 	 */
-	public Fail_Message(String input_statement) {
+	public Fail_Message(String input_statement, String query) {
 		this.statement = input_statement;
+		this.query = query;
 	}
 	
 	/**
