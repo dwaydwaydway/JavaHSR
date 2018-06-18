@@ -501,53 +501,7 @@ public class Database {
 		return null;
 	}
 
-	// public Available selectCar(SearchCar msg) {
-	// try {
-	// pst = con.prepareStatement("SELECT a.TrainNo, a." + msg.getDepart() + ", a."
-	// + msg.getArrive() + ", "
-	// + "b.NormalWin, b.NormalMid, b.NormalAle, b.BusinessWin, b.BusinessAle," +
-	// "c.early, c.tickets, "
-	// + "d." + msg.getDayofWeek() + " AS college " + "FROM " + "(SELECT * FROM
-	// timeTable t WHERE t."
-	// + msg.getDayofWeek() + " = 1 " + " AND t.Direction = " + msg.getDirection() +
-	// " AND t."
-	// + msg.getDepart() + " < '" + msg.getTime() + "' " + " AND t." +
-	// msg.getArrive() + " IS NOT NULL) a "
-	// + "LEFT JOIN " + " (SELECT * FROM seatIndex WHERE Day = '" +
-	// msg.getDayofWeek() + "') b "
-	// + "ON a.TrainNo = b.TrainNo " + "LEFT JOIN "
-	// + " (SELECT e1.*, e2.tickets FROM (SELECT TrainNo, MIN(discount) AS early
-	// FROM earlyDiscount WHERE Day = '"
-	// + msg.getDayofWeek() + "'" + " AND tickets != 0 " + " GROUP BY TrainNo) e1 "
-	// + " LEFT JOIN earlyDiscount e2 ON e1.TrainNo = e2.TrainNo AND e1.early =
-	// e2.discount AND e2.Day = '"
-	// + msg.getDayofWeek() + "') c " + " ON a.TrainNO = c.TrainNo " + "LEFT JOIN "
-	// + " (SELECT TrainNo, "
-	// + msg.getDayofWeek() + " FROM universityDiscount) d " + "ON a.TrainNO =
-	// d.TrainNo; ");
-	// System.out.print(pst.toString());
-	// rs = pst.executeQuery();
-	// Available result = new Available(msg);
-	// while (rs.next()) {
-	//
-	// result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(),
-	// msg.getArrive().toString(),
-	// rs.getString(msg.getDepart().toString()),
-	// rs.getString(msg.getArrive().toString()),
-	// rs.getString("BusinessWin"), rs.getString("BusinessAle"),
-	// rs.getString("NormalWin"),
-	// rs.getString("NormalMid"), rs.getString("NormalAle"), rs.getString("early"),
-	// rs.getString("college"));
-	// }
-	// return result;
-	// } catch (SQLException e) {
-	// System.out.println("SQLException");
-	// e.printStackTrace();
-	// }
-	// return null;
-	// }
-
-	public void insertBooking(Order order, int code) {
+	public Object insertBooking(Order order, int code) {
 		for (Ticket ticket : order.getOrderTicketList()) {
 			String Class = ticket.getCarriage();
 			String Side = ticket.getLocation();
@@ -579,53 +533,60 @@ public class Database {
 			quantity[index] = 1;
 			try {
 				pst = con.prepareStatement(
-						"INSERT INTO `booking`(`code`, `uid`, `date`, `TrainNo`, `ticketsType`, `start`, `end`, `carriage`, `row`, `side`, `NormalWin`, `NormalMid`, `NormalAisle`, `BusinessWin`, `BusinessAisle`, `payDeadline`, `price`) "
-								+ "VALUES (" + code + ", '" + ticket.getUserID() + "','" + ticket.getDBDepartDate() + "','"
-								+ ticket.getCarID() + "', '" + ticket.getPassengerType() + "','" + ticket.getDepart()
-								+ "', '" + ticket.getArrive() + "', " + "(SELECT " + "a.Carriage, FROM " + seatType
-								+ " a WHERE a.Key = FNULL((SELECT (" + seatMax[index] + " - SUM(" + seatType
-								+ ")) FROM booking WHERE DATE = '" + ticket.getDBDepartDate() + "' AND TrainNo = '"
-								+ ticket.getCarID() + "')" + "    , " + seatMax[index] + "))" + " ," + "(SELECT "
-								+ "a.Row, FROM " + seatType + " a WHERE a.Key = FNULL((SELECT (" + seatMax[index]
+						"INSERT INTO `booking`(`code`, `uid`, `date`, `TrainNo`, `ticketsType`, `start`, `end`, `carriage`, `row`, `side`, `NormalWin`, `NormalMid`, `NormalAisle`, `BusinessWin`, `BusinessAisle`, `payDeadline`, `price`, `depart_time`, `arrive_time`, `early_discount`, `university_discount`) "
+								+ "VALUES (" + code + ", '" + ticket.getUserID() + "','" + ticket.getDBDepartDate()
+								+ "','" + ticket.getCarID() + "', '" + ticket.getPassengerType() + "','"
+								+ ticket.getDepart() + "', '" + ticket.getArrive() + "', " + "(SELECT "
+								+ "a.Carriage, FROM " + seatType + " a WHERE a.Key = FNULL((SELECT (" + seatMax[index]
 								+ " - SUM(" + seatType + ")) FROM booking WHERE DATE = '" + ticket.getDBDepartDate()
-								+ "' AND TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))" + ", "
-								+ "(SELECT " + "a.Side, FROM " + seatType + " a WHERE a.Key = FNULL((SELECT ("
+								+ "' AND TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
+								+ " ," + "(SELECT " + "a.Row, FROM " + seatType + " a WHERE a.Key = FNULL((SELECT ("
 								+ seatMax[index] + " - SUM(" + seatType + ")) FROM booking WHERE DATE = '"
 								+ ticket.getDBDepartDate() + "' AND TrainNo = '" + ticket.getCarID() + "')" + "    , "
-								+ seatMax[index] + "))" + "," + quantity[0] + "," + quantity[1] + "," + quantity[2] + ","
-								+ quantity[3] + "," + quantity[4] + ", CASE WHEN(DATEDIFF(" + ticket.getDBDepartDate()
+								+ seatMax[index] + "))" + ", " + "(SELECT " + "a.Side, FROM " + seatType
+								+ " a WHERE a.Key = FNULL((SELECT (" + seatMax[index] + " - SUM(" + seatType
+								+ ")) FROM booking WHERE DATE = '" + ticket.getDBDepartDate() + "' AND TrainNo = '"
+								+ ticket.getCarID() + "')" + "    , " + seatMax[index] + "))" + "," + quantity[0] + ","
+								+ quantity[1] + "," + quantity[2] + "," + quantity[3] + "," + quantity[4]
+								+ ", CASE WHEN(DATEDIFF(" + ticket.getDBDepartDate()
 								+ ", CURDATE()) > 3) THEN (DATE_ADD(CURDATE(), 3)) WHEN (DATEDIFF(CURDATE(), "
 								+ ticket.getDBDepartDate() + ") = 0) THEN (" + ticket.getDBDepartDate()
-								+ ") ELSE (DATE_ADD(CURDATE(), 1))," + ticket.getPrice() + ")");
+								+ ") ELSE (DATE_ADD(CURDATE(), 1))," + ticket.getPrice() + ", '"
+								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
+								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + " )");
 				rs = pst.executeQuery();
-				
+
 			} catch (SQLException e) {
 				System.out.println("insert booking error");
 				e.printStackTrace();
+				return new Fail_Message(pst.toString());
 			}
-			try {
-				pst = con.prepareStatement
-						("SELECT * FROM `booking` WHERE code = " + code);
-				rs = pst.executeQuery();
-				OrderResult
-				while (rs.next()) {
-
-					result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
-							rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
-							rs.getString("BusinessWin"), rs.getString("BusinessAle"), rs.getString("NormalWin"),
-							rs.getString("NormalMid"), rs.getString("NormalAisle"), rs.getString("early"),
-							rs.getString("college"));
-				}
-			} catch (SQLException e) {
-				System.out.println("SQLException");
-				e.printStackTrace();
-			}
-			
 
 		}
+		try {
+			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + code);
+			rs = pst.executeQuery();
+			OrderResult result = new OrderResult();
+			while (rs.next()) {
+				int flag = rs.getInt("BusinessWin") + rs.getInt("BusinessAisle");
+				String carriage;
+				if (flag > 0)
+					carriage = "BUSINESS";
+				else
+					carriage = "STANDARD";
+				result.addTicket(rs.getString("TrainNo"), rs.getString("uid"), rs.getString("start"),
+						rs.getString("end"), rs.getString("depart_time"), rs.getString("depart_time"),
+						rs.getString("ticketsType"), carriage, rs.getString("early_discount"),
+						rs.getString("university_discount"), rs.getString("carriage"),
+						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("insert booking error");
+			e.printStackTrace();
+			return new Fail_Message(pst.toString());
+		}
 	}
-
-
 
 	public void updateSeatIndex(Order order) {
 		try {
@@ -638,7 +599,6 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-
 
 	////////////////////////////////////////////////////////////////////////////////////
 
