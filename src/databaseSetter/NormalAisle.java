@@ -4,7 +4,7 @@ import server.Database;
 
 public class NormalAisle {
 	public static void main(String[] args) {
-		Database database = new Database();
+		DatabaseSetter database = new DatabaseSetter();
 		
 		database.insertNormalAisle("1", "1", "C");
 		for(int i = 2; i < 14; i++) {
