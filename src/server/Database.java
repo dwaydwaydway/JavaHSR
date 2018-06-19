@@ -65,11 +65,11 @@ public class Database {
 					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + " FROM " + "  booking "
 					+ " WHERE " + " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo "
 					+ ") b " + "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, "
-					+ "  e2.tickets " + "   FROM " + "  ( " + "  SELECT " + "  p.TrainNo, "
+					+ "  e2.tickets " + " FROM " + "  ( " + "  SELECT " + "  p.TrainNo, "
 					+ "  MIN(p.discount) AS early " + " FROM (" + "SELECT" + " m.TrainNo, "
-					+ " m.discount - n.count AS discount," + " m.tickets,m" + " m.DAY " + " FROM "
+					+ " m.discount - n.count AS discount," + " m.tickets, " + " m.DAY " + " FROM "
 					+ " earlyDiscount m, " + " ( " + " SELECT " + " COUNT(*) AS COUNT " + " FROM " + "  booking "
-					+ "  WHERE " + " DATE = " + msg.getDepartDay() + " " + ") n " + " ) p" + "   DAY = '"
+					+ "  WHERE " + " DATE = '" + msg.getDepartDay() + "' " + ") n " + " ) p" + " WHERE   p.DAY = '"
 					+ msg.getDBDayofWeek() + "' AND tickets > 0 " + "    GROUP BY " + "  TrainNo " + "  ) e1 "
 					+ "LEFT JOIN earlyDiscount e2 ON " + "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
 					+ "' " + ") c " + "ON " + "  a.TrainNo = c.TrainNo " + "LEFT JOIN( " + "   SELECT " + "   TrainNo, "
@@ -82,7 +82,7 @@ public class Database {
 
 				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
 						rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
-						rs.getString("BusinessWin"), rs.getString("BusinessAle"), rs.getString("NormalWin"),
+						rs.getString("BusinessWin"), rs.getString("BusinessAisle"), rs.getString("NormalWin"),
 						rs.getString("NormalMid"), rs.getString("NormalAisle"), rs.getString("early"),
 						rs.getString("college"));
 			}

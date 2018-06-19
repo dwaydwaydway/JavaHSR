@@ -589,9 +589,9 @@ public class ClientGUI extends JFrame {
 														else if (msg.getClass() == new OrderResult().getClass()) {
 															
 														}
-														else if(msg.getClass() == new Status().getClass()) {
-															
-														}
+//														else if(msg.getClass() == new Status().getClass()) {
+//															
+//														}
 														else if(msg.getClass() == new AlterResult().getClass()) {
 															
 														}
@@ -999,9 +999,9 @@ public class ClientGUI extends JFrame {
 														else if (msg.getClass() == new OrderResult().getClass()) {
 															
 														}
-														else if(msg.getClass() == new Status().getClass()) {
-															
-														}
+//														else if(msg.getClass() == new Status().getClass()) {
+//															
+//														}
 														else if(msg.getClass() == new AlterResult().getClass()) {
 															
 														}

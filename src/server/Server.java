@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -105,6 +106,7 @@ public class Server {
 					return null;
 			}
 			catch(Fail_Message e) {
+				System.out.println("messageHandler error");
 				return e;
 			}
 			
@@ -129,6 +131,12 @@ public class Server {
 			try {
 				if (returnMsg == null)
 					System.out.println("server send null object");
+				//System.out.println("server send " + returnMsg.getClass().toString());
+//				Available temp = (Available) returnMsg;
+//				LinkedList<Car> list = temp.getAvailable();
+//				for(Car car : list) {
+//					System.out.println(car.getCarID());
+//				}
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {

@@ -168,9 +168,9 @@ public class Client {
 			else if (msg.getClass() == new OrderResult().getClass()) {
 				
 			}
-			else if(msg.getClass() == new Status().getClass()) {
-				
-			}
+//			else if(msg.getClass() == new Status().getClass()) {
+//				
+//			}
 			else if(msg.getClass() == new AlterResult().getClass()) {
 				
 			}
