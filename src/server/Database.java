@@ -469,11 +469,13 @@ public class Database {
 					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + "   FROM\r\n" + "  booking "
 					+ " WHERE " + " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo "
 					+ ") b " + "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, "
-					+ "  e2.tickets " + "   FROM " + "  ( " + "  SELECT " + "  TrainNo, " + "  MIN(discount) AS early "
-					+ " FROM " + "   earlyDiscount " + "  WHERE " + "   DAY = '" + msg.getDBDayofWeek()
-					+ "' AND tickets > 0 " + "    GROUP BY " + "  TrainNo " + "  ) e1 "
-					+ "LEFT JOIN earlyDiscount e2 ON "
-					+ "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
+					+ "  e2.tickets " + "   FROM " + "  ( " + "  SELECT " + "  p.TrainNo, "
+					+ "  MIN(p.discount) AS early " + " FROM (" + "SELECT" + " m.TrainNo, "
+					+ " m.discount - n.count AS discount," + " m.tickets,m" + " m.DAY " + " FROM "
+					+ " earlyDiscount m, " + " ( " + " SELECT " + " COUNT(*) AS COUNT " + " FROM " + "  booking "
+					+ "  WHERE " + " DATE = " + msg.getDepartDay() + " " + ") n " + " ) p" + "   DAY = '"
+					+ msg.getDBDayofWeek() + "' AND tickets > 0 " + "    GROUP BY " + "  TrainNo " + "  ) e1 "
+					+ "LEFT JOIN earlyDiscount e2 ON " + "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
 					+ "' " + ") c " + "ON " + "  a.TrainNo = c.TrainNo " + "LEFT JOIN( " + "   SELECT " + "   TrainNo, "
 					+ " " + msg.getDBDayofWeek() + " " + "   FROM " + "  universityDiscount " + ") d " + "ON "
 					+ "   a.TrainNO = d.TrainNo;");
@@ -670,7 +672,6 @@ public class Database {
 
 	}
 
-
 	////////////////////////////////////////////////////////////////////////////////////
 
 	private static void Close() {
@@ -694,6 +695,6 @@ public class Database {
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		Database db = new Database();
-		//db.selectCar(new SearchCar());
+		// db.selectCar(new SearchCar());
 	}
 }
