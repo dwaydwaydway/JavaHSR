@@ -19,6 +19,39 @@ public class Car implements Serializable {
 	private String early_discount;  //"65", "8", "9" or "NONE"
 	private String university_discount;
 	
+	
+	
+	
+	
+	
+	
+	/**
+	 * testing constructor
+	 */
+	public Car(int x) {
+		this.carID = "carID";
+		this.depart = "NTU";
+		this.arrive = "HELL";
+		this.arrive_time = "1984-11-22";
+		this.depart_time = "2011-12-05";
+		this.remained_aisle_business_seat = "1";
+		this.remained_aisle_standard_seat = "2";
+		this.remained_none_standard_seat = "3";
+		this.remained_window_business_seat = "4";
+		this.remained_window_standard_seat = "5";
+		this.early_discount = "0.65";
+		this.university_discount = "0.7";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Constructor of Car
 	 */

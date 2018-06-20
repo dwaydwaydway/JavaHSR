@@ -17,6 +17,16 @@ public class Available implements Serializable {
 	public Available() {
 		carList = new LinkedList<Car>();
 	}
+	
+	/**
+	 * TESTING Constructor
+	 */
+	public Available(int x) {
+		carList = new LinkedList<Car>();
+		carList.add(new Car(1));
+	}
+	
+	
 
 	private boolean OrderSuccessfully;
 	

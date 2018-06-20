@@ -41,7 +41,9 @@ public class Database {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://db4free.net:3306/javahsr?useUnicode=true&useSSL=false",
 					"dwaydwaydway", "dwaydwaydway");
+			System.out.println("Conned to database");
 		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("Conned not to database");
 			e.printStackTrace();
 		}
 	}

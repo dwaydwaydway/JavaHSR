@@ -122,6 +122,7 @@ public class Ticket implements Serializable{
 			this.compartment = compartment;
 			this.location = location;
 			this.price = price;
+			//System.out.println("Constructed Ticket");
 		}
 		
 

@@ -87,6 +87,8 @@ public class Server {
 			Database database = new Database();
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {
+					
+					System.out.println("Server received SearchCar!!");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {
 					int code;

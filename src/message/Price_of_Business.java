@@ -21,7 +21,7 @@ public class Price_of_Business {
 			if(arrive.equals("TAIPEI")) {
 				price = 230;
 			}
-			if(arrive.equals("BANQIAO")) {
+			if(arrive.equals("BANCIAO")) {
 				price = 275;
 			}
 			if(arrive.equals("TAOYUAN")) {
@@ -54,7 +54,7 @@ public class Price_of_Business {
 		}	
 		else if(depart.equals("TAIPEI")) 
 		{
-			if(arrive.equals("BANQIAO")) {
+			if(arrive.equals("BANCIAO")) {
 				price = 230;
 			}
 			if(arrive.equals("TAOYUAN")) {
@@ -85,7 +85,7 @@ public class Price_of_Business {
 				price = 2195;
 			}		
 		}
-		else if(depart.equals("BANQIAO")) 
+		else if(depart.equals("BANCIAO")) 
 		{
 			if(arrive.equals("TAOYUAN")) {
 				price = 360;

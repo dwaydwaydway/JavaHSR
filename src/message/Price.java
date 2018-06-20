@@ -25,7 +25,7 @@ public class Price {
 				price = 40;
 			}
 		
-			if(arrive.matches("BANQIAO")) {
+			if(arrive.matches("BANCIAO")) {
 				price = 70;
 			}
 			if(arrive.matches("TAOYUAN")) {
@@ -58,7 +58,7 @@ public class Price {
 		}	
 		else if(depart.matches("TAIPEI")) 
 		{
-			if(arrive.matches("BANQIAO")) {
+			if(arrive.matches("BANCIAO")) {
 				price = 40;
 			}
 			if(arrive.matches("TAOYUAN")) {
@@ -89,7 +89,7 @@ public class Price {
 				price = 1490;
 			}		
 		}
-		else if(depart.matches("BANQIAO")) 
+		else if(depart.matches("BANCIAO")) 
 		{
 			if(arrive.matches("TAOYUAN")) {
 				price = 130;

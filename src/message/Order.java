@@ -22,7 +22,7 @@ public class Order implements Serializable {
 	
 
 	//push item
-	public LinkedList<Ticket> TicketList = null;
+	public LinkedList<Ticket> TicketList = new LinkedList<Ticket>();
 	
 	public LinkedList<Ticket> getOrderTicketList(){
 		return TicketList;
@@ -39,11 +39,11 @@ public class Order implements Serializable {
 	 * @param String input_carID
 	 * @param String input_userID
 	 */
-	public Order(Available input_info_carlist, String input_carID, String input_userID)
+	public Order(Available input_info_carlist, String input_carID, String input_userID, SearchCar info_ticket)
 	{
 		//setting the pulling elements
 		this.info_carlist = input_info_carlist.getAvailable();
-		this.info_ticket = input_info_carlist.getInfo();
+		this.info_ticket = info_ticket;
 		
 		
 		//Search the right carID from the carlist
