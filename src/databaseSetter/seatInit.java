@@ -37,7 +37,7 @@ public class seatInit {
 			String TrainNo = GeneralTrainInfo.get("TrainNo").toString();
 			
 			JSONObject ServiceDay = (JSONObject)GeneralTimetable.get("ServiceDay");
-			Database database = new Database();
+			DatabaseSetter database = new DatabaseSetter();
 				Monday = ServiceDay.get("Monday").toString();
 				if("1".equals(Monday)) {
 					database.insertSeatIndex(TrainNo, "33", "33", "265", "137", "265", "4", "Monday");

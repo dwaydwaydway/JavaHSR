@@ -6,6 +6,8 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -18,6 +20,17 @@ import java.util.Scanner;
  *
  */
 public class Server {
+
+	HashMap codeMap = new HashMap<Integer, String>();
+	HashMap seatMax = new HashMap<String, Integer>();
+
+	public Server() {
+		seatMax.put("NormalWin", 262);
+		seatMax.put("NormalMid", 137);
+		seatMax.put("NormalAisle", 265);
+		seatMax.put("BusinessWin", 33);
+		seatMax.put("BusinessMid", 33);
+	}
 
 	/**
 	 * This function keeps listening for socket requests.
@@ -72,30 +85,31 @@ public class Server {
 		 */
 		private Object messageHandler(Object msg) {
 			Database database = new Database();
-			if (msg.getClass() == new SearchCar().getClass()) {
-				return new Available();
-				
-				//return database.selectCar((SearchCar) msg);
-//			} else if (msg.getClass() == new Order().getClass()) {
-//				return database.insertOrder((Order) msg);
-//			} else if (msg.getClass() == new SearchOrder().getClass()) {
-//				return database.selectOrder((Order) msg);
-//			} else if (msg.getClass() == new Alter().getClass()) {
-//				return database.updateAlter((Alter) msg);
-			} 
-			else if (msg.getClass() == new SearchOrder().getClass()) {
-				return new OrderResult(1);
+			try {
+				if (msg.getClass() == new SearchCar().getClass()) {
+					return database.selectCar((SearchCar) msg);
+				} else if (msg.getClass() == new Order().getClass()) {
+					int code;
+					do
+						code = (int) Math.random() % 10000000;
+					while (codeMap.get(code) == null);
+					return database.insertBooking((Order) msg, code);
+				} else if (msg.getClass() == new SearchOrder().getClass()) {
+					return database.searchTicketByUserId((SearchOrder)msg);
+				}
+				else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
+					return database.findTransactionNumber((SearchTransactionNumber) msg);
+				}
+				else if (msg.getClass() == new Ticket().getClass()) {
+					return new Ticket(1, 1);
+				} else
+					return null;
+			}
+			catch(Fail_Message e) {
+				System.out.println("messageHandler error");
+				return e;
 			}
 			
-			else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
-				return new OrderResult(1);
-			}
-			
-			else if (msg.getClass() == new Ticket().getClass()) {
-				return new Ticket(1, 1);
-			}
-			else
-				return null;
 		}
 
 		/**
@@ -117,6 +131,12 @@ public class Server {
 			try {
 				if (returnMsg == null)
 					System.out.println("server send null object");
+				//System.out.println("server send " + returnMsg.getClass().toString());
+//				Available temp = (Available) returnMsg;
+//				LinkedList<Car> list = temp.getAvailable();
+//				for(Car car : list) {
+//					System.out.println(car.getCarID());
+//				}
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {

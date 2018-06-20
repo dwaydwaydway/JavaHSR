@@ -4,7 +4,7 @@ import server.Database;
 
 public class NormalWin {
 	public static void main(String[] args) {
-		Database database = new Database();
+		DatabaseSetter database = new DatabaseSetter();
 		
 		database.insertNormalWin("1", "1", "A");
 		for(int i = 2; i < 14; i++) {

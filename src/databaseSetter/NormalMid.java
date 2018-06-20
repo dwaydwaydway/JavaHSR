@@ -4,7 +4,7 @@ import server.Database;
 
 public class NormalMid {
 	public static void main(String[] args) {
-		Database database = new Database();
+		DatabaseSetter database = new DatabaseSetter();
 		
 		
 		database.insertNormalMid("1", "1", "B");

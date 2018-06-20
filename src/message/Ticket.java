@@ -140,8 +140,20 @@ public class Ticket implements Serializable{
 		public String getDepartTime() {
 			return this.depart_time;
 		}
+		public String getDBDepartDate() {
+			String[] cutted = depart_time.split(",");
+			return cutted[0];
+		}
+		public String getDBDepartTime() {
+			String[] cutted = depart_time.split(",");
+			return cutted[1];
+		}
 		public String getArriveTime() {
 			return this.arrive_time;
+		}
+		public String getDBArriveTime() {
+			String[] cutted = depart_time.split(",");
+			return cutted[1];
 		}
 		public String getPassengerType() {
 			return this.passenger_type;

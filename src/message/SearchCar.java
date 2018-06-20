@@ -137,9 +137,32 @@ public class SearchCar implements Serializable{
 		return minute;
 	}
 	
+	public String getTime() {
+		return (hour + " : " + minute);
+	}
 	
 	public String getDayofWeek() {
 		return depart_dayofweek;
+	}
+	
+	public String getDBDayofWeek() {
+		switch(depart_dayofweek) {
+		case "Mon":
+			return "Monday";
+		case "Tue":
+			return "Tuesday";
+		case "Wed":
+			return "Wednesday";
+		case "Thu":
+			return "Thursday";
+		case "Fri":
+			return "Friday";
+		case "Sat":
+			return "Saturday";
+		case "Sun":
+			return "Sunday";
+		}
+		return null;
 	}
 	
 	public int getDirection() {
@@ -189,6 +212,7 @@ public class SearchCar implements Serializable{
 	public void setMinute(int minute) {
 		this.minute = minute;
 	}
+	
 	
 	public void setDirection(int NorthOrSouth) {
 		this.direction = NorthOrSouth;
@@ -252,6 +276,12 @@ public class SearchCar implements Serializable{
 		System.out.println("test1 " + test1.toString());
 		System.out.println("test2 " + test2.toString());
 	   }
+
+
+	
+
+
+	
 	}
 	
 

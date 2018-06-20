@@ -1,4 +1,5 @@
 package databaseSetter;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -19,8 +20,10 @@ public class universityDiscountParser {
 		JSONObject obj = null;
 		JSONArray a = null;
 		try {
-			obj = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream
-					("C:\\\\Users\\\\USER\\\\eclipse-workspace\\\\JavaHSR\\\\data\\\\universityDiscount.json"), "UTF-8")));
+			obj = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(
+					new FileInputStream(
+							"C:\\\\Users\\\\USER\\\\eclipse-workspace\\\\JavaHSR\\\\data\\\\universityDiscount.json"),
+					"UTF-8")));
 			a = (JSONArray) obj.get("DiscountTrains");
 		} catch (IOException | ParseException e) {
 			// TODO Auto-generated catch block
@@ -29,9 +32,10 @@ public class universityDiscountParser {
 
 		for (Object o : a) {
 			JSONObject universityDiscount = (JSONObject) o;
-			//JSONObject DiscountTrains = (JSONObject)universityDiscount.get("DiscountTrains");
+			// JSONObject DiscountTrains =
+			// (JSONObject)universityDiscount.get("DiscountTrains");
 			String TrainNo = universityDiscount.get("TrainNo").toString();
-			JSONObject ServiceDayDiscount = (JSONObject)universityDiscount.get("ServiceDayDiscount");
+			JSONObject ServiceDayDiscount = (JSONObject) universityDiscount.get("ServiceDayDiscount");
 			String Monday = ServiceDayDiscount.get("Monday").toString();
 			String Tuesday = ServiceDayDiscount.get("Tuesday").toString();
 			String Wednesday = ServiceDayDiscount.get("Wednesday").toString();
@@ -39,10 +43,10 @@ public class universityDiscountParser {
 			String Friday = ServiceDayDiscount.get("Friday").toString();
 			String Saturday = ServiceDayDiscount.get("Saturday").toString();
 			String Sunday = ServiceDayDiscount.get("Sunday").toString();
-			
-			Database database = new Database();
+
+			DatabaseSetter database = new DatabaseSetter();
 			database.insertUniversityDiscount(TrainNo, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
-			
+
 		}
 	}
 }

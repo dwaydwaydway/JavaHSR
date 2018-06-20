@@ -1,5 +1,6 @@
 package message;
 
+
 import java.io.Serializable;
 import java.util.LinkedList;
 /**
@@ -29,7 +30,6 @@ public class Order implements Serializable {
 	
 	
 	public Order() {
-
 	}
 	
 	

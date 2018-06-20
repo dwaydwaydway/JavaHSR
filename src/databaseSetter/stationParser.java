@@ -34,7 +34,7 @@ public class stationParser {
 			String En = StationName.get("En").toString();
 			String StationAddress = station.get("StationAddress").toString();
 			
-			Database database = new Database();
+			DatabaseSetter database = new DatabaseSetter();
 			database.insertStation(StationID, Zh_tw, En, StationAddress);
 			
 		}
