@@ -88,24 +88,30 @@ public class Server {
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {
 					
-					System.out.println("Server received SearchCar!!");
+					System.out.println("Server received SearchCar");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {
+					System.out.println("Server received Order");
 					int code;
 					do
 						code = (int) Math.random() % 10000000;
 					while (codeMap.get(code) == null);
 					return database.insertBooking((Order) msg, code);
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
+					System.out.println("Server received SearchOrder");
 					return database.searchTicketByUserId((SearchOrder)msg);
 				}
 				else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
+					System.out.println("Server received SearchTransactionNumber");
 					return database.findTransactionNumber((SearchTransactionNumber) msg);
 				}
 				else if (msg.getClass() == new Ticket().getClass()) {
+					System.out.println("Server received Ticket");
 					return new Ticket(1, 1);
-				} else
+				} else {
+					System.out.println("Server received w");
 					return null;
+				}					
 			}
 			catch(Fail_Message e) {
 				System.out.println("messageHandler error");
