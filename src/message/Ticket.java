@@ -153,7 +153,7 @@ public class Ticket implements Serializable{
 			return this.arrive_time;
 		}
 		public String getDBArriveTime() {
-			String[] cutted = depart_time.split(",");
+			String[] cutted = arrive_time.split(",");
 			return cutted[1];
 		}
 		public String getPassengerType() {
@@ -199,6 +199,35 @@ public class Ticket implements Serializable{
 		}
 		public void setTransaction_number(String input) {
 			this.transaction_number = input;
+		}
+		
+		public String toString() {
+			String output = null;
+			output = "TransactionNO " +  this.getTransactionNumber()+ "\n";
+			output = output + "carID " + this.getCarID()+ "\n";
+			output = output + "userID " + this.getUserID()+ "\n";
+			output = output + "Depart from " + this.getDepart()+ "\n";
+			output = output + "Arrive at " + this.getArrive() + "\n";
+			output = output + "Depart Time " + this.getDBDepartDate() + "," + this.getDBDepartTime() + "\n";
+			output = output + "Arrive Time " + this.getDBDepartDate() + "," + this.getDBArriveTime() + "\n";
+			output = output + "Passenger Type " + this.getPassengerType() + "\n";
+			output = output + "Carriage " + this.getCarriage() + "\n";
+			output = output + "Early Discount " + this.getEarlyDiscount() + "\n";
+			output = output + "University Discount " + this.getUniversityDisciont() + "\n";
+			output = output + "Compartment " + this.getCompartment() + "\n";
+			output = output + "Location " + this.getLocation() + "\n";
+			output = output + "Price " + this.getPrice() + "\n";
+
+			
+			return output;
+
+		}
+		public static void main(String args[]) {
+			Ticket a = new Ticket(1);
+			Ticket b = new Ticket(1,1);
+			
+			System.out.println(a.toString());
+			System.out.println(b.toString());
 		}
 		
 	}

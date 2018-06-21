@@ -91,11 +91,15 @@ public class Server {
 					System.out.println("Server received SearchCar!!");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {
-					int code;
-					do
-						code = (int) Math.random() % 10000000;
-					while (codeMap.get(code) == null);
-					return database.insertBooking((Order) msg, code);
+//					int code;
+//					do
+//						code = (int) Math.random() % 10000000;
+//					while (codeMap.get(code) == null);
+//					return database.insertBooking((Order) msg, code);
+					Order test_order = (Order) msg;
+					System.out.println(test_order.toString());
+					return new OrderResult(1);
+					
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
 					return database.searchTicketByUserId((SearchOrder)msg);
 				}
