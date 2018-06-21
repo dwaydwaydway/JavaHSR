@@ -23,6 +23,9 @@ public class Fail_Message extends Exception implements Serializable {
 		statement = "Status Not Defined";
 	}
 
+	public String getQuery() {
+		return query;
+	}
 	
 	/**
 	 * Constructor Success_Message(input_statement);

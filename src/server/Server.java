@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -21,16 +22,7 @@ import java.util.Scanner;
  */
 public class Server {
 
-	HashMap codeMap = new HashMap<Integer, String>();
-	HashMap seatMax = new HashMap<String, Integer>();
-
-	public Server() {
-		seatMax.put("NormalWin", 262);
-		seatMax.put("NormalMid", 137);
-		seatMax.put("NormalAisle", 265);
-		seatMax.put("BusinessWin", 33);
-		seatMax.put("BusinessMid", 33);
-	}
+	HashMap<Integer, String> codeMap = new HashMap<Integer, String>();
 
 	/**
 	 * This function keeps listening for socket requests.
@@ -93,9 +85,13 @@ public class Server {
 				} else if (msg.getClass() == new Order().getClass()) {
 					System.out.println("Server received Order");
 					int code;
-					do
-						code = (int) Math.random() % 10000000;
-					while (codeMap.get(code) == null);
+					Random ran = new Random();
+					do {
+						code = ran.nextInt(1000000);
+					}
+					while (codeMap.get(code) != null);
+					codeMap.put(code, "taken");
+					System.out.println("Order start processing");
 					return database.insertBooking((Order) msg, code);
 					
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
@@ -116,6 +112,7 @@ public class Server {
 			}
 			catch(Fail_Message e) {
 				System.out.println("messageHandler error");
+				System.out.println(e.getQuery());
 				return e;
 			}
 			
