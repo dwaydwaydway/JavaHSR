@@ -97,6 +97,7 @@ public class Server {
 						code = (int) Math.random() % 10000000;
 					while (codeMap.get(code) == null);
 					return database.insertBooking((Order) msg, code);
+					
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
 					System.out.println("Server received SearchOrder");
 					return database.searchTicketByUserId((SearchOrder)msg);

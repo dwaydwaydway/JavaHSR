@@ -67,8 +67,8 @@ public class Order implements Serializable {
 			//pulling information from selected_car
 			String temp_depart = selected_car.getDepart();
 			String temp_arrive = selected_car.getArrive();
-			String temp_depart_time = selected_car.getDepartTime();
-			String temp_arrive_time = selected_car.getArriveTime();
+			String temp_depart_time = info_ticket.getDepartDay() + "," + selected_car.getDepartTime();
+			String temp_arrive_time = info_ticket.getDepartDay() + "," + selected_car.getArriveTime();
 			String temp_early_discount = selected_car.getEarly_Discount();
 			String temp_university_discount = selected_car.getUniversity_Discount();
 			int temp_price = 0;
@@ -177,7 +177,14 @@ public class Order implements Serializable {
 		}
 
 	}
-	
+	public String toString() {
+		String output = null;
+		for(int i=0; i < TicketList.size(); i++) {
+        output = output + TicketList.get(i).toString(); 		
+        }
+		return output;
+
+	}
 	
 
 }
