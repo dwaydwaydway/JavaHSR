@@ -60,6 +60,7 @@ import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
@@ -176,12 +177,14 @@ public class ClientGUI extends JFrame {
 	 */
 	public ClientGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1650, 1544);
+		setBounds(100, 100, 1750, 1544);
 		this.setTitle("HSR Ticket System");
+		this.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(238, 238, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setVisible(true);
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
@@ -198,7 +201,8 @@ public class ClientGUI extends JFrame {
 						
 				Available_Holder = new JPanel();
 				Available_Holder.setBounds(0, 0, 1624, 1014);
-				//layeredPane.add(Available_Holder);
+				
+				layeredPane.add(Available_Holder);
 				Available_Holder.setLayout(null);
 				
 
@@ -366,7 +370,7 @@ public class ClientGUI extends JFrame {
 
 				JPanel Available = new JPanel();
 				Available.setBackground(Color.LIGHT_GRAY);
-				Available.setBounds(0, 0, 1624, 1014);
+				Available.setBounds(0, 0, 1624, 3014);
 				//layeredPane.add(Available);
 				Available.setLayout(null);
 				
@@ -1081,11 +1085,13 @@ public class ClientGUI extends JFrame {
 				layeredPane.removeAll();
 				layeredPane.repaint();
 				layeredPane.revalidate();
-				
+
+				layeredPane.setVisible(true);
 				//adding panel-SearchOrder_byTN
 				layeredPane.add(SearchOrder_byTN);
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				layeredPane.setVisible(true);
 			}
 		});
 		SearchTransacationNum.setBounds(1010, 10, 200, 20);
@@ -1102,11 +1108,13 @@ public class ClientGUI extends JFrame {
 				layeredPane.removeAll();
 				layeredPane.repaint();
 				layeredPane.revalidate();
+
 				
 				//adding panel-booking
 				layeredPane.add(Booking);
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				layeredPane.setVisible(true);
 			}
 		});
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -1123,11 +1131,13 @@ public class ClientGUI extends JFrame {
 				layeredPane.removeAll();
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				layeredPane.setVisible(true);
 				
 				//adding panel-booking history
 				layeredPane.add(SearchOrder);
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				layeredPane.setVisible(true);
 			}
 		});
 		btnBookingHistory.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -1140,11 +1150,12 @@ public class ClientGUI extends JFrame {
 				layeredPane.removeAll();
 				layeredPane.repaint();
 				layeredPane.revalidate();
-				
+				layeredPane.setVisible(true);				
 				//adding panel-Search
 				layeredPane.add(Search);
 				layeredPane.repaint();
 				layeredPane.revalidate();
+				layeredPane.setVisible(true);
 			}
 		});
 		btnNewButton_2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1153,11 +1164,12 @@ public class ClientGUI extends JFrame {
 				
 
 				
-				JScrollPane visual = new JScrollPane();
-				visual.setViewportView(Available);
+				JScrollPane visual = new JScrollPane(Available,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				//visual.setViewportView(Available);
 				visual.setBounds(0, 72, 1624, 1014);
-				visual.setSize(1624, 600);
-				visual.setVisible(true);
+				visual.setSize(1624, 614);
+//				visual.setVisible(true);
+//				visual.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 				
 				
 
@@ -2064,6 +2076,7 @@ public class ClientGUI extends JFrame {
 								Available.removeAll();
 								Available.repaint();
 								Available.revalidate();
+								Available.setVisible(true);
 								
 								
 							for(int i=0 ; i<quantity_of_available ; i++)
@@ -2162,6 +2175,7 @@ public class ClientGUI extends JFrame {
 											
 											OrderResult temp_result = (OrderResult)msg;
 											temp_memory_transaction_number = temp_result.getOrderResult().get(0).getTransactionNumber();
+											System.out.println(temp_memory_transaction_number);
 											
 											userID_input.setText(temp_memory_userID);
 											TransactionNum_input.setText(temp_memory_transaction_number);
@@ -2195,17 +2209,20 @@ public class ClientGUI extends JFrame {
 							Available_Holder.add(btnConfirm);		
 									
 							//switch pane
-							Available_Holder.add(visual);
+							Available_Holder.add(visual,BorderLayout.CENTER);
+							Available_Holder.setVisible(true);
 							Available_Holder.repaint();
 							Available_Holder.revalidate();
 							
 							layeredPane.removeAll();
 							layeredPane.repaint();
 							layeredPane.revalidate();
+							layeredPane.setVisible(true);
 							
 							layeredPane.add(Available_Holder);
 							layeredPane.repaint();
 							layeredPane.revalidate();
+							layeredPane.setVisible(true);
 						}
 						}
 						else
@@ -2308,6 +2325,7 @@ public class ClientGUI extends JFrame {
 							Available.removeAll();
 							Available.repaint();
 							Available.revalidate();
+							Available.setVisible(true);
 							
 							for(int i=0 ; i<quantity_of_available ; i++)
 							{
@@ -2406,6 +2424,7 @@ public class ClientGUI extends JFrame {
 									Available.removeAll();
 									Available.repaint();
 									Available.revalidate();
+									Available.setVisible(true);
 									//remove button confirm1
 									Available_Holder.remove(btnConfirm1);
 									
@@ -2568,17 +2587,22 @@ public class ClientGUI extends JFrame {
 									Available_Holder.add(btnConfirm2);
 									Available_Holder.repaint();
 									Available_Holder.revalidate();
+									Available_Holder.setVisible(true);
 									
 									Available.repaint();
 									Available.revalidate();
+									Available.setVisible(true);
 
+									
 									layeredPane.removeAll();
 									layeredPane.repaint();
 									layeredPane.revalidate();
+									layeredPane.setVisible(true);
 									
 									layeredPane.add(Available_Holder);
 									layeredPane.repaint();
 									layeredPane.revalidate();
+									layeredPane.setVisible(true);
 								}
 							});
 							btnConfirm1.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -2590,14 +2614,17 @@ public class ClientGUI extends JFrame {
 							Available_Holder.add(visual);
 							Available_Holder.repaint();
 							Available_Holder.revalidate();
+							Available_Holder.setVisible(true);
 							
 							layeredPane.removeAll();
 							layeredPane.repaint();
 							layeredPane.revalidate();
+							layeredPane.setVisible(true);
 							
 							layeredPane.add(Available_Holder);
 							layeredPane.repaint();
 							layeredPane.revalidate();
+							layeredPane.setVisible(true);
 
 							
 						}

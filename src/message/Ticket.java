@@ -59,7 +59,7 @@ public class Ticket implements Serializable{
 		
 		//for testing
 		public Ticket(int x) {
-			this.transaction_number = "gg";
+			this.transaction_number = "gggg";
 			this.carID = "0205";
 			this.userID = "shaopoo";
 			this.depart = "NTU";
