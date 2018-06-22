@@ -105,7 +105,9 @@ public class SearchCar implements Serializable{
 		
 		depart_dayofweek = dayofweek.format(depart_day_temp);
 	}
-	
+	public Date getDepartDate_temp() {
+		return this.depart_day_temp;
+	}
 	
 	public String getDepart() {
 		return depart;

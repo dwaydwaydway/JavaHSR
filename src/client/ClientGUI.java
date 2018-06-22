@@ -2044,6 +2044,13 @@ public class ClientGUI extends JFrame {
 					vail = false;
 				}
 				
+				Date now = new Date();
+				if(SearchCarMessage.getDepartDate_temp().before(now)) {
+					System.out.println("You can't order the ticket in the pass.");
+					vail = false;
+				}
+				
+				
 				//if no return trip order ---> send the SearchCar Message to server
 				if(!rdbtnReturnTrip.isSelected() && vail) {
 					try {
