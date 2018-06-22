@@ -28,6 +28,10 @@ public class Order implements Serializable {
 		return TicketList;
 	}
 	
+	public Car getSelected_car() {
+		return this.selected_car;
+	}
+	
 	
 	public Order() {
 	}
@@ -105,7 +109,10 @@ public class Order implements Serializable {
 					 */
 					if(i==0) {
 						double early_discount = 1.0;
-						if(temp_early_discount.equals("0.65")) {
+						if(temp_early_discount == null) {
+							
+						}
+						else if(temp_early_discount.equals("0.65")) {
 							early_discount = 0.65;
 						}
 						else if(temp_early_discount.equals("0.8")){
@@ -143,7 +150,10 @@ public class Order implements Serializable {
 				    	}
 					else if(i==4) {
 						double early_discount = 1.0;
-						if(temp_early_discount.equals("0.65")) {
+						if(temp_early_discount == null) {
+							
+						}
+						else if(temp_early_discount.equals("0.65")) {
 							early_discount = 0.65;
 						}
 						else if(temp_early_discount.equals("0.8")){
@@ -153,7 +163,10 @@ public class Order implements Serializable {
 							early_discount = 0.9;
 						}
 						double university_discount = 1.0;
-						if(temp_university_discount.equals("0.5")) {
+						if(temp_university_discount == null) {
+							
+						}
+						else if(temp_university_discount.equals("0.5")) {
 							university_discount = 0.5;
 						}
 						else if(temp_university_discount.equals("0.7")){

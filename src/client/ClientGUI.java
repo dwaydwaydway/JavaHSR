@@ -2149,9 +2149,10 @@ public class ClientGUI extends JFrame {
 							btnConfirm.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									
-									if(userID_input.getText().equals("")) {		
+									if(textinputUserID.getText().equals("")) {		
 										System.out.println("Please input your userID");
 									}
+									else {
 									
 									String selected_carID = textinputCarID.getText();	
 									String user_ID = textinputUserID.getText();
@@ -2159,6 +2160,10 @@ public class ClientGUI extends JFrame {
 									
 									Order selected_car = new Order(info1 , selected_carID , user_ID, SearchCarMessage);
 									
+									if(selected_car.getSelected_car() == null) {
+										System.out.println("Please input carID again.");
+									}
+									else {
 									try {
 										Scanner sc = new Scanner(System.in);
 										Socket cs = new Socket("127.0.0.1", 3588); 
@@ -2200,8 +2205,9 @@ public class ClientGUI extends JFrame {
 										e.printStackTrace();
 										System.out.println("Class Not Found error");
 									}	
-															
+								}					
 								}
+							}
 							});
 							btnConfirm.setFont(new Font("Arial", Font.PLAIN, 16));
 							btnConfirm.setBackground(new Color(238, 232, 170));
@@ -2403,6 +2409,7 @@ public class ClientGUI extends JFrame {
 									if(userID_input.getText().equals("")) {		
 										System.out.println("Please input your userID");
 									}
+									else {
 									
 									String selected_carID1 = textinputCarID.getText();	
 									String user_ID1 = textinputUserID.getText();
@@ -2499,7 +2506,7 @@ public class ClientGUI extends JFrame {
 									btnConfirm2.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent arg0) {
 											
-											if(userID_input.getText().equals("")) {		
+											if(textinputUserID.getText().equals("")) {		
 												System.out.println("Please input your userID");
 											}
 											
@@ -2603,6 +2610,7 @@ public class ClientGUI extends JFrame {
 									layeredPane.repaint();
 									layeredPane.revalidate();
 									layeredPane.setVisible(true);
+								}
 								}
 							});
 							btnConfirm1.setFont(new Font("Arial", Font.PLAIN, 16));
