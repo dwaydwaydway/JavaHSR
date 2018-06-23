@@ -202,11 +202,15 @@ public class Database {
 					carriage = "BUSINESS";
 				else
 					carriage = "STANDARD";
+
 				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
-						rs.getString("start"), rs.getString("end"), rs.getString("depart_time"),
-						rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("start"), rs.getString("end"), rs.getString("date") + ", " + rs.getString("depart_time"),
+						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"), carriage,
 						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
 						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+				
+				
+				
 			}
 			return result;
 		} catch (SQLException e) {
@@ -233,7 +237,7 @@ public class Database {
 					carriage = "STANDARD";
 				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
 						rs.getString("start"), rs.getString("end"), rs.getString("date") + ", " + rs.getString("depart_time"),
-						rs.getString("date") + ", " + rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"), carriage,
 						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
 						rs.getString("side") + rs.getString("row"), rs.getString("price"));
 			}
