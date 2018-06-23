@@ -75,7 +75,7 @@ public class Server {
 		 *            The message received by the server.
 		 * @return
 		 */
-		private Object messageHandler(Object msg) {
+		synchronized private Object messageHandler(Object msg) {
 			Database database = new Database();
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {

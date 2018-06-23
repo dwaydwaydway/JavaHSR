@@ -192,7 +192,7 @@ public class Database {
 			pst = con.prepareStatement("SELECT * FROM `booking` WHERE TrainNo = " + searchTransactionNumber.getCarID()
 					+ " AND uid = '" + searchTransactionNumber.getUserID() + "' AND start = '"
 					+ searchTransactionNumber.getDepart() + "' AND date = '" + searchTransactionNumber.getDepartDay()
-					+ "' AND end = '" + searchTransactionNumber.getArrive() + "'");
+					+ "' AND end = '" + searchTransactionNumber.getArrive() + "'"+ " AND canceled = 0");
 			rs = pst.executeQuery();
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
@@ -221,7 +221,7 @@ public class Database {
 
 	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber());
+			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber() + " AND canceled = 0");
 			rs = pst.executeQuery();
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
