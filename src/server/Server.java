@@ -104,7 +104,7 @@ public class Server {
 				}
 				else if (msg.getClass() == new Ticket().getClass()) {
 					System.out.println("Server received Ticket");
-					return new Ticket(1, 1);
+					return database.cancelTicket((Ticket) msg);
 				} else {
 					System.out.println("Server received w");
 					return null;

@@ -232,8 +232,8 @@ public class Database {
 				else
 					carriage = "STANDARD";
 				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
-						rs.getString("start"), rs.getString("end"), rs.getString("depart_time"),
-						rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
+						rs.getString("start"), rs.getString("end"), rs.getString("date") + ", " + rs.getString("depart_time"),
+						rs.getString("date") + ", " + rs.getString("depart_time"), rs.getString("ticketsType"), carriage,
 						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
 						rs.getString("side") + rs.getString("row"), rs.getString("price"));
 			}
@@ -253,25 +253,30 @@ public class Database {
 			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
 					+ "' AND code = " + ticket.getTransactionNumber() + " AND date = '" + ticket.getDBDepartDate()
 					+ "' AND start = '" + ticket.getDepart() + "' AND carriage = " + ticket.getCompartment()
-					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = " + ticket.getLocation().charAt(1));
-			rs = pst.executeQuery();
+					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = " + ticket.getLocation().substring(1));
+			System.out.println(pst.toString());
+			int flag = pst.executeUpdate();
+			if(flag == 0)
+				return new Fail_Message("cancelTicket error", pst.toString());
+			else 
+				return new Success_Message("ticket canceled");
 		} catch (SQLException e) {
 			System.out.println("cancelTicket error");
 			e.printStackTrace();
-			throw new Fail_Message("cancelTicket error", pst.toString());
+			throw new Fail_Message("cancelTicket sql error", pst.toString());
 		}
-		try {
-			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
-					+ "' AND code = " + ticket.getTransactionNumber() + " AND date = '" + ticket.getDBDepartDate()
-					+ "' AND start = '" + ticket.getDepart() + "' AND carriage = " + ticket.getCompartment()
-					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = " + ticket.getLocation().charAt(1));
-			rs = pst.executeQuery();
-			return new Success_Message("ticket canceled");
-		} catch (SQLException e) {
-			System.out.println("SQLException");
-			e.printStackTrace();
-			throw new Fail_Message();
-		}
+//		try {
+//			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
+//					+ "' AND code = " + ticket.getTransactionNumber() + " AND date = '" + ticket.getDBDepartDate()
+//					+ "' AND start = '" + ticket.getDepart() + "' AND carriage = " + ticket.getCompartment()
+//					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = " + ticket.getLocation().charAt(1));
+//			int flag = pst.executeUpdate();
+//			return new Success_Message("ticket canceled");
+//		} catch (SQLException e) {
+//			System.out.println("SQLException");
+//			e.printStackTrace();
+//			throw new Fail_Message();
+//		}
 		finally {
 			Close();
 		}
