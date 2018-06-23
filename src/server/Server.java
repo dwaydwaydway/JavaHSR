@@ -103,7 +103,7 @@ public class Server {
 					return database.findTransactionNumber((SearchTransactionNumber) msg);
 				}
 				else if (msg.getClass() == new Ticket().getClass()) {
-					System.out.println("Server received Ticket");
+					System.out.println("Server received Ticket (for canceling)");
 					return database.cancelTicket((Ticket) msg);
 				} else {
 					System.out.println("Server received w");

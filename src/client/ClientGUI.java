@@ -504,7 +504,7 @@ public class ClientGUI extends JFrame {
 				
 				JPanel SearchOrder_byTN = new JPanel();
 				SearchOrder_byTN.setBackground(Color.GREEN);
-				SearchOrder_byTN.setBounds(0, 0, 1324, 458);
+				SearchOrder_byTN.setBounds(0, 0, 1624, 458);
 				layeredPane.add(SearchOrder_byTN);
 				SearchOrder_byTN.setLayout(null);
 
@@ -647,7 +647,7 @@ public class ClientGUI extends JFrame {
 		
 		JPanel SearchOrder = new JPanel();
 		SearchOrder.setBackground(Color.YELLOW);
-		SearchOrder.setBounds(0, 0, 1324, 458);
+		SearchOrder.setBounds(0, 0, 1624, 458);
 		layeredPane.add(SearchOrder);
 		SearchOrder.setLayout(null);
 		
@@ -656,7 +656,7 @@ public class ClientGUI extends JFrame {
 		
 		printout_SO = new JPanel();
 		printout_SO.setBackground(Color.YELLOW);
-		printout_SO.setBounds(0, 40, 1324, 418);
+		printout_SO.setBounds(0, 40, 1624, 418);
 		SearchOrder.add(printout_SO);
 		printout_SO.setLayout(null);
 		
@@ -784,7 +784,7 @@ public class ClientGUI extends JFrame {
 							txtDepartTime_1.setHorizontalAlignment(SwingConstants.CENTER);
 							txtDepartTime_1.setEditable(false);
 							txtDepartTime_1.setColumns(10);
-							txtDepartTime_1.setBounds(410, 0, 100, 20);
+							txtDepartTime_1.setBounds(410, 0, 150, 20);
 							printout_SO.add(txtDepartTime_1);
 							
 							txtArriveStation = new JTextField();
@@ -792,7 +792,7 @@ public class ClientGUI extends JFrame {
 							txtArriveStation.setHorizontalAlignment(SwingConstants.CENTER);
 							txtArriveStation.setEditable(false);
 							txtArriveStation.setColumns(10);
-							txtArriveStation.setBounds(510, 0, 100, 20);
+							txtArriveStation.setBounds(560, 0, 100, 20);
 							printout_SO.add(txtArriveStation);
 							
 							txtArriveTime_1 = new JTextField();
@@ -800,7 +800,7 @@ public class ClientGUI extends JFrame {
 							txtArriveTime_1.setHorizontalAlignment(SwingConstants.CENTER);
 							txtArriveTime_1.setEditable(false);
 							txtArriveTime_1.setColumns(10);
-							txtArriveTime_1.setBounds(610, 0, 100, 20);
+							txtArriveTime_1.setBounds(660, 0, 150, 20);
 							printout_SO.add(txtArriveTime_1);
 							
 							txtPassenterType = new JTextField();
@@ -808,7 +808,7 @@ public class ClientGUI extends JFrame {
 							txtPassenterType.setHorizontalAlignment(SwingConstants.CENTER);
 							txtPassenterType.setEditable(false);
 							txtPassenterType.setColumns(10);
-							txtPassenterType.setBounds(710, 0, 100, 20);
+							txtPassenterType.setBounds(810, 0, 100, 20);
 							printout_SO.add(txtPassenterType);
 							
 							txtCarriage = new JTextField();
@@ -816,7 +816,7 @@ public class ClientGUI extends JFrame {
 							txtCarriage.setHorizontalAlignment(SwingConstants.CENTER);
 							txtCarriage.setEditable(false);
 							txtCarriage.setColumns(10);
-							txtCarriage.setBounds(810, 0, 100, 20);
+							txtCarriage.setBounds(910, 0, 100, 20);
 							printout_SO.add(txtCarriage);
 							
 							txtEarlyDiscount = new JTextField();
@@ -824,7 +824,7 @@ public class ClientGUI extends JFrame {
 							txtEarlyDiscount.setHorizontalAlignment(SwingConstants.CENTER);
 							txtEarlyDiscount.setEditable(false);
 							txtEarlyDiscount.setColumns(10);
-							txtEarlyDiscount.setBounds(910, 0, 100, 20);
+							txtEarlyDiscount.setBounds(1010, 0, 100, 20);
 							printout_SO.add(txtEarlyDiscount);
 							
 							txtCarnoLocated = new JTextField();
@@ -832,7 +832,7 @@ public class ClientGUI extends JFrame {
 							txtCarnoLocated.setHorizontalAlignment(SwingConstants.CENTER);
 							txtCarnoLocated.setEditable(false);
 							txtCarnoLocated.setColumns(10);
-							txtCarnoLocated.setBounds(1010, 0, 100, 20);
+							txtCarnoLocated.setBounds(1110, 0, 100, 20);
 							printout_SO.add(txtCarnoLocated);
 							
 
@@ -841,7 +841,7 @@ public class ClientGUI extends JFrame {
 							txtPrice.setHorizontalAlignment(SwingConstants.CENTER);
 							txtPrice.setEditable(false);
 							txtPrice.setColumns(10);
-							txtPrice.setBounds(1110, 0, 100, 20);
+							txtPrice.setBounds(1210, 0, 100, 20);
 							printout_SO.add(txtPrice);
 							
 							
@@ -895,7 +895,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(410, 20 + i*20, 100, 20);
+									temp.setBounds(410, 20 + i*20, 150, 20);
 									printout_SO.add(temp);
 									
 									
@@ -904,7 +904,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(510, 20 + i*20, 100, 20);
+									temp.setBounds(560, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -913,7 +913,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(610, 20 + i*20, 100, 20);
+									temp.setBounds(660, 20 + i*20, 150, 20);
 									printout_SO.add(temp);
 									
 									
@@ -922,7 +922,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(710, 20 + i*20, 100, 20);
+									temp.setBounds(810, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -931,7 +931,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(810, 20 + i*20, 100, 20);
+									temp.setBounds(910, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -940,7 +940,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(910, 20 + i*20, 100, 20);
+									temp.setBounds(1010, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -949,7 +949,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(1010, 20 + i*20, 100, 20);
+									temp.setBounds(1110, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -958,7 +958,7 @@ public class ClientGUI extends JFrame {
 									temp.setHorizontalAlignment(SwingConstants.CENTER);
 									temp.setEditable(false);
 									temp.setColumns(10);
-									temp.setBounds(1110, 20 + i*20, 100, 20);
+									temp.setBounds(1210, 20 + i*20, 100, 20);
 									printout_SO.add(temp);
 									
 									
@@ -978,6 +978,7 @@ public class ClientGUI extends JFrame {
 												
 												//target the ticket that will be cancel
 												Ticket cancel_ticketMessage = cancel_order.get(btnCancel.index);
+												System.out.println(cancel_ticketMessage.toString());
 												
 												//send to sever
 												os.writeObject(cancel_ticketMessage);
@@ -990,7 +991,7 @@ public class ClientGUI extends JFrame {
 												
 												//if the server send back a OrderResult for confirm ----> success
 												
-												if (msg.getClass() == new Ticket().getClass()) {
+												if (msg.getClass() == new Success_Message().getClass()) {
 													System.out.println("success return after canceling the ticket");
 													printout_SO.removeAll();
 													btnSearchOrder.doClick();
@@ -1025,7 +1026,7 @@ public class ClientGUI extends JFrame {
 
 										}
 									});
-									btnCancel.jbutton.setBounds(1210, 20 + i*20, 100, 20);
+									btnCancel.jbutton.setBounds(1310, 20 + i*20, 100, 20);
 									btnCancel.jbutton.setHorizontalAlignment(SwingConstants.LEFT);
 									printout_SO.add(btnCancel.jbutton);
 									
@@ -1176,7 +1177,7 @@ public class ClientGUI extends JFrame {
 				
 				printout_SOTN = new JPanel();
 				printout_SOTN.setBackground(Color.GREEN);
-				printout_SOTN.setBounds(0, 60, 1323, 407);
+				printout_SOTN.setBounds(0, 60, 1624, 424);
 				SearchOrder_byTN.add(printout_SOTN);
 				printout_SOTN.setLayout(null);
 				
@@ -1373,7 +1374,7 @@ public class ClientGUI extends JFrame {
 									txtDepartTime_1.setHorizontalAlignment(SwingConstants.CENTER);
 									txtDepartTime_1.setEditable(false);
 									txtDepartTime_1.setColumns(10);
-									txtDepartTime_1.setBounds(410, 0, 100, 20);
+									txtDepartTime_1.setBounds(410, 0, 150, 20);
 									printout_SOTN.add(txtDepartTime_1);
 									
 									txtArriveStation = new JTextField();
@@ -1381,7 +1382,7 @@ public class ClientGUI extends JFrame {
 									txtArriveStation.setHorizontalAlignment(SwingConstants.CENTER);
 									txtArriveStation.setEditable(false);
 									txtArriveStation.setColumns(10);
-									txtArriveStation.setBounds(510, 0, 100, 20);
+									txtArriveStation.setBounds(560, 0, 100, 20);
 									printout_SOTN.add(txtArriveStation);
 									
 									txtArriveTime_1 = new JTextField();
@@ -1389,7 +1390,7 @@ public class ClientGUI extends JFrame {
 									txtArriveTime_1.setHorizontalAlignment(SwingConstants.CENTER);
 									txtArriveTime_1.setEditable(false);
 									txtArriveTime_1.setColumns(10);
-									txtArriveTime_1.setBounds(610, 0, 100, 20);
+									txtArriveTime_1.setBounds(660, 0, 150, 20);
 									printout_SOTN.add(txtArriveTime_1);
 									
 									txtPassenterType = new JTextField();
@@ -1397,7 +1398,7 @@ public class ClientGUI extends JFrame {
 									txtPassenterType.setHorizontalAlignment(SwingConstants.CENTER);
 									txtPassenterType.setEditable(false);
 									txtPassenterType.setColumns(10);
-									txtPassenterType.setBounds(710, 0, 100, 20);
+									txtPassenterType.setBounds(810, 0, 100, 20);
 									printout_SOTN.add(txtPassenterType);
 									
 									txtCarriage = new JTextField();
@@ -1405,7 +1406,7 @@ public class ClientGUI extends JFrame {
 									txtCarriage.setHorizontalAlignment(SwingConstants.CENTER);
 									txtCarriage.setEditable(false);
 									txtCarriage.setColumns(10);
-									txtCarriage.setBounds(810, 0, 100, 20);
+									txtCarriage.setBounds(910, 0, 100, 20);
 									printout_SOTN.add(txtCarriage);
 									
 									txtEarlyDiscount = new JTextField();
@@ -1413,7 +1414,7 @@ public class ClientGUI extends JFrame {
 									txtEarlyDiscount.setHorizontalAlignment(SwingConstants.CENTER);
 									txtEarlyDiscount.setEditable(false);
 									txtEarlyDiscount.setColumns(10);
-									txtEarlyDiscount.setBounds(910, 0, 100, 20);
+									txtEarlyDiscount.setBounds(1010, 0, 100, 20);
 									printout_SOTN.add(txtEarlyDiscount);
 									
 									txtCarnoLocated = new JTextField();
@@ -1421,7 +1422,7 @@ public class ClientGUI extends JFrame {
 									txtCarnoLocated.setHorizontalAlignment(SwingConstants.CENTER);
 									txtCarnoLocated.setEditable(false);
 									txtCarnoLocated.setColumns(10);
-									txtCarnoLocated.setBounds(1010, 0, 100, 20);
+									txtCarnoLocated.setBounds(1110, 0, 100, 20);
 									printout_SOTN.add(txtCarnoLocated);
 									
 
@@ -1430,7 +1431,7 @@ public class ClientGUI extends JFrame {
 									txtPrice.setHorizontalAlignment(SwingConstants.CENTER);
 									txtPrice.setEditable(false);
 									txtPrice.setColumns(10);
-									txtPrice.setBounds(1110, 0, 100, 20);
+									txtPrice.setBounds(1210, 0, 100, 20);
 									printout_SOTN.add(txtPrice);
 									
 									
@@ -1484,7 +1485,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(410, 20 + i*20, 100, 20);
+											temp.setBounds(410, 20 + i*20, 150, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1493,7 +1494,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(510, 20 + i*20, 100, 20);
+											temp.setBounds(560, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1502,7 +1503,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(610, 20 + i*20, 100, 20);
+											temp.setBounds(660, 20 + i*20, 150, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1511,7 +1512,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(710, 20 + i*20, 100, 20);
+											temp.setBounds(810, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1520,7 +1521,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(810, 20 + i*20, 100, 20);
+											temp.setBounds(910, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1529,7 +1530,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(910, 20 + i*20, 100, 20);
+											temp.setBounds(1010, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1538,7 +1539,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(1010, 20 + i*20, 100, 20);
+											temp.setBounds(1110, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1547,7 +1548,7 @@ public class ClientGUI extends JFrame {
 											temp.setHorizontalAlignment(SwingConstants.CENTER);
 											temp.setEditable(false);
 											temp.setColumns(10);
-											temp.setBounds(1110, 20 + i*20, 100, 20);
+											temp.setBounds(1210, 20 + i*20, 100, 20);
 											printout_SOTN.add(temp);
 											
 											
@@ -1568,6 +1569,7 @@ public class ClientGUI extends JFrame {
 														//target the ticket that will be cancel
 														Ticket cancel_ticketMessage = cancel_order.get(btnCancel.index);
 														
+														System.out.println(cancel_ticketMessage.toString());
 														//send to sever
 														os.writeObject(cancel_ticketMessage);
 														os.flush();
@@ -1579,7 +1581,7 @@ public class ClientGUI extends JFrame {
 														
 														//if the server send back a OrderResult for confirm ----> success
 														
-														if (msg.getClass() == new Ticket().getClass()) {
+														if (msg.getClass() == new Success_Message().getClass()) {
 															System.out.println("success return after canceling the ticket ( in bytn mode)");
 															printout_SOTN.removeAll();
 															bytn_btn_Search.doClick();
@@ -1614,7 +1616,7 @@ public class ClientGUI extends JFrame {
 
 												}
 											});
-											btnCancel.jbutton.setBounds(1210, 20 + i*20, 100, 20);
+											btnCancel.jbutton.setBounds(1310, 20 + i*20, 100, 20);
 											btnCancel.jbutton.setHorizontalAlignment(SwingConstants.LEFT);
 											printout_SOTN.add(btnCancel.jbutton);
 											
