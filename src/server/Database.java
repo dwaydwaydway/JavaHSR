@@ -27,9 +27,7 @@ public class Database {
 
 	/////////////////////////////////////////////////////
 
-
 	/////////////////////////////////////////////////////
-
 
 	/**
 	 * This is the constructor of the class, it sets up the connection to the
@@ -63,16 +61,16 @@ public class Database {
 					+ "  (137 - IFNULL(SUM(NormalMid), 0)) AS NormalMid, "
 					+ "  (265 - IFNULL(SUM(NormalAisle), 0)) AS NormalAisle, "
 					+ "  (33 - IFNULL(SUM(BusinessWin), 0)) AS BusinessWin, "
-					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + " FROM " + "  booking "
-					+ " WHERE " + " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo "
-					+ ") b " + "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, "
-					+ "  e2.tickets " + " FROM " + "  ( " + "  SELECT " + "  p.TrainNo, "
-					+ "  MIN(p.discount) AS early " + " FROM (" + "SELECT" + " m.TrainNo, "
-					+ " m.discount AS discount," + " m.tickets - n.count AS tickets, " + " m.DAY " + " FROM "
-					+ " earlyDiscount m, " + " ( " + " SELECT " + " COUNT(*) AS COUNT " + " FROM " + "  booking "
-					+ "  WHERE " + " DATE = '" + msg.getDepartDay() + "' " + ") n " + " ) p" + " WHERE   p.DAY = '"
-					+ msg.getDBDayofWeek() + "' AND p.tickets > 0 " + "    GROUP BY " + "  TrainNo " + "  ) e1 "
-					+ "LEFT JOIN earlyDiscount e2 ON " + "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
+					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + " FROM " + "  booking " + " WHERE "
+					+ " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo " + ") b "
+					+ "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, " + "  e2.tickets "
+					+ " FROM " + "  ( " + "  SELECT " + "  p.TrainNo, " + "  MIN(p.discount) AS early " + " FROM ("
+					+ "SELECT" + " m.TrainNo, " + " m.discount AS discount," + " m.tickets - n.count AS tickets, "
+					+ " m.DAY " + " FROM " + " earlyDiscount m, " + " ( " + " SELECT " + " COUNT(*) AS COUNT "
+					+ " FROM " + "  booking " + "  WHERE " + " DATE = '" + msg.getDepartDay() + "' " + ") n " + " ) p"
+					+ " WHERE   p.DAY = '" + msg.getDBDayofWeek() + "' AND p.tickets > 0 " + "    GROUP BY "
+					+ "  TrainNo " + "  ) e1 " + "LEFT JOIN earlyDiscount e2 ON "
+					+ "   e1.TrainNo = e2.TrainNo AND e1.early = e2.discount AND e2.Day = '" + msg.getDBDayofWeek()
 					+ "' " + ") c " + "ON " + "  a.TrainNo = c.TrainNo " + "LEFT JOIN( " + "   SELECT " + "   TrainNo, "
 					+ " " + msg.getDBDayofWeek() + " " + "   FROM " + "  universityDiscount " + ") d " + "ON "
 					+ "   a.TrainNO = d.TrainNo;");
@@ -81,17 +79,15 @@ public class Database {
 			Available result = new Available();
 			while (rs.next()) {
 				String early;
-				if(msg.getCarriage().equals("STANDARD")) {
+				if (msg.getCarriage().equals("STANDARD")) {
 					early = rs.getString("early");
-				}
-				else {
+				} else {
 					early = "1";
 				}
 				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
 						rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
 						rs.getString("BusinessWin"), rs.getString("BusinessAisle"), rs.getString("NormalWin"),
-						rs.getString("NormalMid"), rs.getString("NormalAisle"), early,
-						rs.getString("college"));
+						rs.getString("NormalMid"), rs.getString("NormalAisle"), early, rs.getString("college"));
 			}
 			return result;
 		} catch (SQLException e) {
@@ -140,17 +136,18 @@ public class Database {
 								+ "','" + ticket.getCarID() + "', '" + ticket.getPassengerType() + "','"
 								+ ticket.getDepart() + "', '" + ticket.getArrive() + "', " + "(SELECT "
 								+ "a.Carriage FROM " + seatType + " a WHERE a.Key = IFNULL((SELECT (" + seatMax[index]
-								+ " - SUM(" + seatType + ")) FROM (SELECT * FROM booking) j WHERE j.DATE = '" + ticket.getDBDepartDate()
-								+ "' AND j.TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
-								+ " ," + "(SELECT " + "a.Row FROM " + seatType + " a WHERE a.Key = IFNULL((SELECT ("
-								+ seatMax[index] + " - SUM(" + seatType + ")) FROM (SELECT * FROM booking) k WHERE k.DATE = '"
-								+ ticket.getDBDepartDate() + "' AND k.TrainNo = '" + ticket.getCarID() + "')" + "    , "
-								+ seatMax[index] + "))" + ", " + "(SELECT " + "a.Side FROM " + seatType
+								+ " - SUM(" + seatType + ")) FROM (SELECT * FROM booking) j WHERE j.DATE = '"
+								+ ticket.getDBDepartDate() + "' AND j.TrainNo = '" + ticket.getCarID() + "')" + "    , "
+								+ seatMax[index] + "))" + " ," + "(SELECT " + "a.Row FROM " + seatType
 								+ " a WHERE a.Key = IFNULL((SELECT (" + seatMax[index] + " - SUM(" + seatType
-								+ ")) FROM (SELECT * FROM booking) l WHERE l.DATE = '" + ticket.getDBDepartDate() + "' AND l.TrainNo = '"
-								+ ticket.getCarID() + "')" + "    , " + seatMax[index] + "))" + "," + quantity[0] + ","
-								+ quantity[1] + "," + quantity[2] + "," + quantity[3] + "," + quantity[4]
-								+ ", CASE WHEN(DATEDIFF('" + ticket.getDBDepartDate()
+								+ ")) FROM (SELECT * FROM booking) k WHERE k.DATE = '" + ticket.getDBDepartDate()
+								+ "' AND k.TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
+								+ ", " + "(SELECT " + "a.Side FROM " + seatType + " a WHERE a.Key = IFNULL((SELECT ("
+								+ seatMax[index] + " - SUM(" + seatType
+								+ ")) FROM (SELECT * FROM booking) l WHERE l.DATE = '" + ticket.getDBDepartDate()
+								+ "' AND l.TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
+								+ "," + quantity[0] + "," + quantity[1] + "," + quantity[2] + "," + quantity[3] + ","
+								+ quantity[4] + ", CASE WHEN(DATEDIFF('" + ticket.getDBDepartDate()
 								+ "', CURDATE()) > 3) THEN (ADDDATE(CURDATE(), 3)) WHEN (DATEDIFF(CURDATE(), '"
 								+ ticket.getDBDepartDate() + "') = 0) THEN ('" + ticket.getDBDepartDate()
 								+ "') ELSE (ADDDATE(CURDATE(), 1)) END, " + ticket.getPrice().toString() + ", '"
@@ -197,7 +194,7 @@ public class Database {
 			pst = con.prepareStatement("SELECT * FROM `booking` WHERE TrainNo = " + searchTransactionNumber.getCarID()
 					+ " AND uid = '" + searchTransactionNumber.getUserID() + "' AND start = '"
 					+ searchTransactionNumber.getDepart() + "' AND date = '" + searchTransactionNumber.getDepartDay()
-					+ "' AND end = '" + searchTransactionNumber.getArrive() + "'"+ " AND canceled = 0");
+					+ "' AND end = '" + searchTransactionNumber.getArrive() + "'" + " AND canceled = 0");
 			rs = pst.executeQuery();
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
@@ -209,25 +206,26 @@ public class Database {
 					carriage = "STANDARD";
 
 				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
-						rs.getString("start"), rs.getString("end"), rs.getString("date") + ", " + rs.getString("depart_time"),
-						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"), carriage,
-						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
-						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+						rs.getString("start"), rs.getString("end"),
+						rs.getString("date") + ", " + rs.getString("depart_time"),
+						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"),
+						carriage, rs.getString("early_discount"), rs.getString("university_discount"),
+						rs.getString("carriage"), rs.getString("side") + rs.getString("row"), rs.getString("price"));
 			}
 			return result;
 		} catch (SQLException e) {
 			System.out.println("findTransactionNumber error");
 			e.printStackTrace();
 			throw new Fail_Message("findTransactionNumber error", pst.toString());
-		}
-		finally {
+		} finally {
 			Close();
 		}
 	}
 
 	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber() + " AND canceled = 0");
+			pst = con.prepareStatement(
+					"SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber() + " AND canceled = 0");
 			rs = pst.executeQuery();
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
@@ -238,18 +236,41 @@ public class Database {
 				else
 					carriage = "STANDARD";
 				result.addTicket(rs.getString("code"), rs.getString("TrainNo"), rs.getString("uid"),
-						rs.getString("start"), rs.getString("end"), rs.getString("date") + ", " + rs.getString("depart_time"),
-						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"), carriage,
-						rs.getString("early_discount"), rs.getString("university_discount"), rs.getString("carriage"),
-						rs.getString("side") + rs.getString("row"), rs.getString("price"));
+						rs.getString("start"), rs.getString("end"),
+						rs.getString("date") + ", " + rs.getString("depart_time"),
+						rs.getString("date") + ", " + rs.getString("arrive_time"), rs.getString("ticketsType"),
+						carriage, rs.getString("early_discount"), rs.getString("university_discount"),
+						rs.getString("carriage"), rs.getString("side") + rs.getString("row"), rs.getString("price"));
 			}
 			return result;
 		} catch (SQLException e) {
 			System.out.println("searchTicketByUserId error");
 			e.printStackTrace();
 			throw new Fail_Message("searchTicketByUserId error", pst.toString());
+		} finally {
+			Close();
 		}
-		finally {
+	}
+
+	public Object searchDaily(SearchDaily msg) throws Fail_Message {
+		try {
+			pst = con.prepareStatement("SELECT * FROM `timeTable` WHERE " + msg.getDepart_dayofweek() + " = 1");
+			rs = pst.executeQuery();
+			DailyResult result = new DailyResult();
+			while (rs.next()) {
+
+				result.add(rs.getString("TrainNo"), msg.getDepartDay(), rs.getString("Nangang"), rs.getString("Taipei"),
+						rs.getString("Banciao"), rs.getString("Taoyuan"), rs.getString("Hsinchu"),
+						rs.getString("Miaoli"), rs.getString("Taichung"), rs.getString("Changhua"),
+						rs.getString("Yunlin"), rs.getString("Chiayi"), rs.getString("Tainan"),
+						rs.getString("Zuoying"));
+			}
+			return result;
+		} catch (SQLException e) {
+			System.out.println("searchTicketByUserId error");
+			e.printStackTrace();
+			throw new Fail_Message("searchTicketByUserId error", pst.toString());
+		} finally {
 			Close();
 		}
 	}
@@ -259,12 +280,13 @@ public class Database {
 			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
 					+ "' AND code = " + ticket.getTransactionNumber() + " AND date = '" + ticket.getDBDepartDate()
 					+ "' AND start = '" + ticket.getDepart() + "' AND carriage = " + ticket.getCompartment()
-					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = " + ticket.getLocation().substring(1));
+					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = "
+					+ ticket.getLocation().substring(1));
 			System.out.println(pst.toString());
 			int flag = pst.executeUpdate();
-			if(flag == 0)
+			if (flag == 0)
 				return new Fail_Message("cancelTicket error", pst.toString());
-			else 
+			else
 				return new Success_Message("ticket canceled");
 		} catch (SQLException e) {
 			System.out.println("cancelTicket error");
@@ -276,8 +298,8 @@ public class Database {
 			Close();
 		}
 	}
-	
-	public void test(){
+
+	public void test() {
 		try {
 			System.out.println("in");
 			pst = con.prepareStatement("SELECT * FROM NormalMid WHERE 'Key' = 138");
@@ -288,16 +310,14 @@ public class Database {
 			while (rs.next()) {
 				System.out.println(rs);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("cancelTicket error");
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			Close();
 		}
 	}
-
 
 	////////////////////////////////////////////////////////////////////////////////////
 
