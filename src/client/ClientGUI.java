@@ -384,12 +384,12 @@ public class ClientGUI extends JFrame {
 								System.out.println("No car was found.");
 							}							
 		
-	/*						
-							Search.removeAll();
+							
+							//Search.removeAll();
 							Search.repaint();
 							Search.revalidate();
 							Search.setVisible(true);
-	*/						
+						
 							for(int i=0 ; i<QuantityOfDailyCar ; i++)
 							{
 								JTextField temp[] = new JTextField[13];
@@ -447,10 +447,10 @@ public class ClientGUI extends JFrame {
 										Search.add(temp1);									
 								}
 													
-								Search.removeAll();
-								Search.repaint();
-								Search.revalidate();
-								Search.setVisible(true);
+//								Search.removeAll();
+//								Search.repaint();
+//								Search.revalidate();
+//								Search.setVisible(true);
 								
 							}
 							
