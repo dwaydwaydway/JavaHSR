@@ -202,7 +202,7 @@ public class ClientGUI extends JFrame {
 
 				JPanel Search = new JPanel();
 				Search.setBackground(Color.GRAY);
-				Search.setBounds(0, 0, 1324, 458);
+				Search.setBounds(0, 0, 1000, 1000);
 				layeredPane.add(Search);
 				Search.setLayout(null);
 				
@@ -385,11 +385,12 @@ public class ClientGUI extends JFrame {
 							}							
 		
 							
+
 							//Search.removeAll();
 							Search.repaint();
 							Search.revalidate();
 							Search.setVisible(true);
-						
+
 							for(int i=0 ; i<QuantityOfDailyCar ; i++)
 							{
 								JTextField temp[] = new JTextField[13];
@@ -447,11 +448,7 @@ public class ClientGUI extends JFrame {
 										Search.add(temp1);									
 								}
 													
-//								Search.removeAll();
-//								Search.repaint();
-//								Search.revalidate();
-//								Search.setVisible(true);
-								
+
 							}
 							
 							os.close();
