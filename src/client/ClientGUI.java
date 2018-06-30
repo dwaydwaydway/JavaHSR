@@ -393,7 +393,7 @@ public class ClientGUI extends JFrame {
 							for(int i=0 ; i<QuantityOfDailyCar ; i++)
 							{
 								JTextField temp[] = new JTextField[13];
-								for(int k=0; k<13 ; i++)
+								for(int k=0; k<13 ; k++)
 								{
 									JTextField temp1 = new JTextField();
 									temp1.setBackground(Color.LIGHT_GRAY);
