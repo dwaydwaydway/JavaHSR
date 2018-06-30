@@ -16,6 +16,10 @@ public class SearchDaily implements Serializable {
 	private String carID;
 	private String depart_day; // in the form of "1995-02-03"
 
+	public SearchDaily() {
+		
+	}
+	
 	public SearchDaily(String carID, String depart_day, String depart_timeOfNANGANG, String depart_timeOfTAIPEI,
 			String depart_timeOfBANCIAO, String depart_timeOfTAOYUAN, String depart_timeOfHSINCHU,
 			String depart_timeOfMIAOLI, String depart_timeOfTAICHUNG, String depart_timeOfCHANGHUA,
