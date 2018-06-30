@@ -30,7 +30,6 @@ public class Database {
 
 	/////////////////////////////////////////////////////
 
-	private String selectSQL = "select * from User ";
 
 	/**
 	 * This is the constructor of the class, it sets up the connection to the
@@ -86,7 +85,7 @@ public class Database {
 					early = rs.getString("early");
 				}
 				else {
-					early = null;
+					early = "1";
 				}
 				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
 						rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
