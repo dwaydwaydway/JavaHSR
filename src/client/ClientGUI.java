@@ -200,6 +200,14 @@ public class ClientGUI extends JFrame {
 		contentPane.add(layeredPane, BorderLayout.CENTER);	
 				
 
+		JScrollPane result = new JScrollPane();
+		result.setBackground(Color.YELLOW);
+		result.setBounds(0, 0, 1000, 1000);
+		layeredPane.add(result);
+		result.setLayout(null);
+		
+		
+		
 				JPanel Search = new JPanel();
 				Search.setBackground(Color.GRAY);
 				Search.setBounds(0, 0, 1000, 1000);
@@ -451,6 +459,9 @@ public class ClientGUI extends JFrame {
 
 							}
 							
+							result.add(Search);
+							result.setVisible(true);
+							
 							os.close();
 							is.close();
 							cs.close();
@@ -482,8 +493,8 @@ public class ClientGUI extends JFrame {
 				txtYyyymmdd.setBounds(200, 60, 150, 30);
 				Search.add(txtYyyymmdd);
 				txtYyyymmdd.setColumns(10);
-		
 				
+			
 						
 				Available_Holder = new JPanel();
 				Available_Holder.setBounds(0, 0, 1624, 1014);
