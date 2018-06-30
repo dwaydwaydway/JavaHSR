@@ -105,6 +105,10 @@ public class Server {
 				else if (msg.getClass() == new Ticket().getClass()) {
 					System.out.println("Server received Ticket (for canceling)");
 					return database.cancelTicket((Ticket) msg);
+				} 
+				else if (msg.getClass() == new SearchDaily().getClass()) {
+					System.out.println("Server received SearchDaily");
+					return database.searchDaily((SearchDaily) msg);
 				} else {
 					System.out.println("Server received w");
 					return null;

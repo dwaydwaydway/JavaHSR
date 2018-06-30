@@ -252,7 +252,7 @@ public class Database {
 		}
 	}
 
-	public Object searchDaily(SearchDaily msg) throws Fail_Message {
+	public DailyResult searchDaily(SearchDaily msg) throws Fail_Message {
 		try {
 			pst = con.prepareStatement("SELECT * FROM `timeTable` WHERE " + msg.getDepart_dayofweek() + " = 1");
 			rs = pst.executeQuery();
