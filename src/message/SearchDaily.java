@@ -55,7 +55,23 @@ public class SearchDaily implements Serializable {
 	private String depart_timeOfZUOYING;
 
 	public String getDepart_dayofweek() {
-		return depart_dayofweek;
+		switch(depart_dayofweek) {
+		case "Mon":
+			return "Monday";
+		case "Tue":
+			return "Tuesday";
+		case "Wed":
+			return "Wednesday";
+		case "Thu":
+			return "Thursday";
+		case "Fri":
+			return "Friday";
+		case "Sat":
+			return "Saturday";
+		case "Sun":
+			return "Sunday";
+		}
+		return null;
 	}
 
 	public String getDepart_timeOfNANGANG() {
