@@ -384,12 +384,12 @@ public class ClientGUI extends JFrame {
 								System.out.println("No car was found.");
 							}							
 		
-							
+	/*						
 							Search.removeAll();
 							Search.repaint();
 							Search.revalidate();
 							Search.setVisible(true);
-							
+	*/						
 							for(int i=0 ; i<QuantityOfDailyCar ; i++)
 							{
 								JTextField temp[] = new JTextField[13];
@@ -442,11 +442,21 @@ public class ClientGUI extends JFrame {
 											temp1.setText(info_SearchDaily.TicketList.get(i).getDepart_timeOfZUOYING());
 											break;
 									}	
-										temp1.setBounds(0+70*k, 30+20*i, 70, 30);
+										temp1.setBounds(0+70*k, 60+20*i, 70, 30);
 										temp1.setColumns(10);
 										Search.add(temp1);									
 								}
+													
+								Search.removeAll();
+								Search.repaint();
+								Search.revalidate();
+								Search.setVisible(true);
+								
 							}
+							
+							os.close();
+							is.close();
+							cs.close();
 						}catch (UnknownHostException e1) {
 							e1.printStackTrace();
 							System.out.println("connection error");
