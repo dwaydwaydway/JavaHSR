@@ -454,13 +454,10 @@ public class ClientGUI extends JFrame {
 										temp1.setBounds(0+70*k, 60+20*i, 70, 30);
 										temp1.setColumns(10);
 										Search.add(temp1);									
+
 								}
-													
 
 							}
-							
-							result.add(Search);
-							result.setVisible(true);
 							
 							os.close();
 							is.close();
