@@ -85,7 +85,7 @@ public class Order implements Serializable {
 				Price toGetPrice = new Price();
 				temp_price = toGetPrice.getPrice(temp_depart, temp_arrive);
 			}
-			else if(temp_carriage.equals("STANDARD")) {
+			else if(temp_carriage.equals("BUSINESS")) {
 				Price_of_Business toGetPrice = new Price_of_Business();
 				temp_price = toGetPrice.getPrice(temp_depart, temp_arrive);
 			}
