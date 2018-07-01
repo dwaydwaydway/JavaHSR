@@ -15,7 +15,7 @@ import java.util.Scanner;
  * This is the server if the booking system, it takes commands from users and
  * pass the messages to client through socket.
  * 
- * @author Lu
+ * @author Lu (B05602022)
  * @version 1.0
  * @since 2018-06-07
  *
@@ -141,12 +141,6 @@ public class Server {
 			try {
 				if (returnMsg == null)
 					System.out.println("server send null object");
-				//System.out.println("server send " + returnMsg.getClass().toString());
-//				Available temp = (Available) returnMsg;
-//				LinkedList<Car> list = temp.getAvailable();
-//				for(Car car : list) {
-//					System.out.println(car.getCarID());
-//				}
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {

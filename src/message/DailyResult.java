@@ -2,7 +2,10 @@ package message;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-
+/**
+ * This class is used to inform client the result of the daily train search
+ *
+ */
 public class DailyResult implements Serializable {
 	public LinkedList<SearchDaily> TicketList = new LinkedList<SearchDaily>();
 	

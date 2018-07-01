@@ -119,6 +119,7 @@ public class SearchCar implements Serializable{
 	}
 	
 
+	
 	public String getSeat() {
 		return seat;
 	}
@@ -180,6 +181,31 @@ public class SearchCar implements Serializable{
 		this.arrive = arrive;
 	}
 	
+	public String getSeatType() {
+		String a = null;
+		String b = null;
+		switch(seat) {
+		case "NONE":
+			a = "Mid";
+			break;
+		case "WINDOW":
+			a = "Win";
+			break;
+		case "AISLE":
+			a = "Aisle";
+			break;
+		}	
+		switch(carriage) {
+		case "STANDARD":
+			b = "Normal";
+			break;
+		case "BUSINESS":
+			b = "Business";
+			break;
+		}
+		b += a;
+		return b;
+	}
 
 
 	public void setSeat(String seat) {

@@ -1,7 +1,6 @@
 package server;
 
 import message.*;
-import java.util.Random;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +12,7 @@ import java.sql.Statement;
 /**
  * This class helps the server to access and alter the database
  * 
- * @author Lu
+ * @author Lu (B05602022)
  * @version 1.0
  * @since 2018-06-07
  *
@@ -47,24 +46,34 @@ public class Database {
 
 	/////////////////////////////////////////////////////
 
+	/**
+	 * This function selects a list of train based on the conditions provided by a
+	 * SearchCar object, than return a Available object which contains a list of
+	 * train that meets the requirement.
+	 * 
+	 * @param msg
+	 *            This is the SearchCar object which provides the conditions.
+	 * @return Available A list of train available
+	 * @throws Fail_Message
+	 */
 	public Available selectCar(SearchCar msg) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("SELECT " + "    a.TrainNo, " + "    a." + msg.getDepart() + ", " + "  a."
-					+ msg.getArrive() + ", " + "    IFNULL(b.NormalWin, 262) NormalWin, "
-					+ "  IFNULL(b.NormalMid, 137) NormalMid, " + "    IFNULL(b.NormalAisle, 265) NormalAisle, "
-					+ "  IFNULL(b.BusinessWin, 33) BusinessWin, " + "  IFNULL(b.BusinessAisle, 33) BusinessAisle, "
-					+ "    c.early, " + "    c.tickets, " + "  d." + msg.getDBDayofWeek() + " AS college " + "FROM "
-					+ "    ( " + "    SELECT " + "   * " + "    FROM\r\n" + "        timeTable t " + "    WHERE "
-					+ "        t." + msg.getDBDayofWeek() + "  = 1 AND t.Direction = " + msg.getDirection() + " AND t."
+			pst = con.prepareStatement("SELECT " + " a.TrainNo, " + "    a." + msg.getDepart() + ", " + "  a."
+					+ msg.getArrive() + ", " + " IFNULL(b.NormalWin, 262) NormalWin, "
+					+ " IFNULL(b.NormalMid, 137) NormalMid, " + " IFNULL(b.NormalAisle, 265) NormalAisle, "
+					+ " IFNULL(b.BusinessWin, 33) BusinessWin, " + " IFNULL(b.BusinessAisle, 33) BusinessAisle, "
+					+ " c.early, " + " c.tickets, " + "  d." + msg.getDBDayofWeek() + " AS college " + "FROM " + " ( "
+					+ "  SELECT " + " * " + " FROM " + "  timeTable t " + "    WHERE " + " t." + msg.getDBDayofWeek()
+					+ "  = 1 AND TIMEDIFF(t." + msg.getArrive() + ", t." + msg.getDepart() + ") > 0 AND t."
 					+ msg.getDepart() + " < '" + msg.getTime() + "' AND t." + msg.getArrive() + " IS NOT NULL " + ") a "
 					+ "LEFT JOIN( " + " SELECT " + " TrainNo, " + "  (262 - IFNULL(SUM(NormalWin), 0)) AS NormalWin, "
-					+ "  (137 - IFNULL(SUM(NormalMid), 0)) AS NormalMid, "
-					+ "  (265 - IFNULL(SUM(NormalAisle), 0)) AS NormalAisle, "
-					+ "  (33 - IFNULL(SUM(BusinessWin), 0)) AS BusinessWin, "
-					+ "  (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + " FROM " + "  booking " + " WHERE "
+					+ " (137 - IFNULL(SUM(NormalMid), 0)) AS NormalMid, "
+					+ " (265 - IFNULL(SUM(NormalAisle), 0)) AS NormalAisle, "
+					+ " (33 - IFNULL(SUM(BusinessWin), 0)) AS BusinessWin, "
+					+ " (33 - IFNULL(SUM(BusinessAisle), 0)) AS BusinessAisle " + " FROM " + "  booking " + " WHERE "
 					+ " date = '" + msg.getDepartDay() + "' " + "  AND canceled = 0 GROUP BY " + " TrainNo " + ") b "
 					+ "ON " + "  a.TrainNo = b.TrainNo " + "LEFT JOIN( " + "  SELECT " + "   e1.*, " + "  e2.tickets "
-					+ " FROM " + "  ( " + "  SELECT " + "  p.TrainNo, " + "  MIN(p.discount) AS early " + " FROM ("
+					+ " FROM " + "  ( " + "  SELECT " + " p.TrainNo, " + "  MIN(p.discount) AS early " + " FROM ("
 					+ "SELECT" + " m.TrainNo, " + " m.discount AS discount," + " m.tickets - n.count AS tickets, "
 					+ " m.DAY " + " FROM " + " earlyDiscount m, " + " ( " + " SELECT " + " COUNT(*) AS COUNT "
 					+ " FROM " + "  booking " + "  WHERE " + " DATE = '" + msg.getDepartDay() + "' " + ") n " + " ) p"
@@ -84,10 +93,12 @@ public class Database {
 				} else {
 					early = "1";
 				}
-				result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
-						rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
-						rs.getString("BusinessWin"), rs.getString("BusinessAisle"), rs.getString("NormalWin"),
-						rs.getString("NormalMid"), rs.getString("NormalAisle"), early, rs.getString("college"));
+				if (rs.getInt(msg.getSeatType().toString()) - msg.getTotal() > 0) {
+					result.addCar(rs.getString("TrainNo"), msg.getDepart().toString(), msg.getArrive().toString(),
+							rs.getString(msg.getDepart().toString()), rs.getString(msg.getArrive().toString()),
+							rs.getString("BusinessWin"), rs.getString("BusinessAisle"), rs.getString("NormalWin"),
+							rs.getString("NormalMid"), rs.getString("NormalAisle"), early, rs.getString("college"));
+				}
 			}
 			return result;
 		} catch (SQLException e) {
@@ -99,7 +110,20 @@ public class Database {
 		}
 	}
 
-	public Object insertBooking(Order order, int code) throws Fail_Message {
+	/**
+	 * THis function helps insert a list of tickets to the database, than return the
+	 * tickets that has been booked successfully.
+	 * 
+	 * @param order
+	 *            This is the list of tickets that is ready to be update to
+	 *            database.
+	 * @param code
+	 *            This is the order number.
+	 * @return OrderResult This contains a list of tickets that has been booked
+	 *         successfully
+	 * @throws Fail_Message
+	 */
+	public OrderResult insertBooking(Order order, int code) throws Fail_Message {
 		for (Ticket ticket : order.getOrderTicketList()) {
 			String Class = ticket.getCarriage();
 			String Side = ticket.getLocation();
@@ -135,30 +159,39 @@ public class Database {
 								+ "VALUES (" + code + ", '" + ticket.getUserID() + "','" + ticket.getDBDepartDate()
 								+ "','" + ticket.getCarID() + "', '" + ticket.getPassengerType() + "','"
 								+ ticket.getDepart() + "', '" + ticket.getArrive() + "', " + "(SELECT "
-								+ "a.Carriage FROM " + seatType + " a WHERE a.Key = IFNULL((SELECT (" + seatMax[index]
-								+ " - SUM(" + seatType + ")) FROM (SELECT * FROM booking) j WHERE j.DATE = '"
-								+ ticket.getDBDepartDate() + "' AND j.TrainNo = '" + ticket.getCarID() + "')" + "    , "
-								+ seatMax[index] + "))" + " ," + "(SELECT " + "a.Row FROM " + seatType
-								+ " a WHERE a.Key = IFNULL((SELECT (" + seatMax[index] + " - SUM(" + seatType
+								+ "a.Carriage FROM " + seatType + " a WHERE a.Key = (SELECT (" + seatMax[index]
+								+ " - IFNULL(SUM(" + seatType + "), " + (seatMax[index] - 1)
+								+ " )) FROM (SELECT * FROM booking) j WHERE j.DATE = '" + ticket.getDBDepartDate()
+								+ "' AND j.TrainNo = '" + ticket.getCarID() + "')" + ")" + " ," + "(SELECT "
+								+ "a.Row FROM " + seatType + " a WHERE a.Key = (SELECT (" + seatMax[index]
+								+ " - IFNULL(SUM(" + seatType + "),  " + (seatMax[index] - 1)
 								+ ")) FROM (SELECT * FROM booking) k WHERE k.DATE = '" + ticket.getDBDepartDate()
-								+ "' AND k.TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
-								+ ", " + "(SELECT " + "a.Side FROM " + seatType + " a WHERE a.Key = IFNULL((SELECT ("
-								+ seatMax[index] + " - SUM(" + seatType
+								+ "' AND k.TrainNo = '" + ticket.getCarID() + "')" + ")" + ", " + "(SELECT "
+								+ "a.Side FROM " + seatType + " a WHERE a.Key = (SELECT (" + seatMax[index]
+								+ " - IFNULL(SUM(" + seatType + ")," + (seatMax[index] - 1)
 								+ ")) FROM (SELECT * FROM booking) l WHERE l.DATE = '" + ticket.getDBDepartDate()
-								+ "' AND l.TrainNo = '" + ticket.getCarID() + "')" + "    , " + seatMax[index] + "))"
-								+ "," + quantity[0] + "," + quantity[1] + "," + quantity[2] + "," + quantity[3] + ","
-								+ quantity[4] + ", CASE WHEN(DATEDIFF('" + ticket.getDBDepartDate()
+								+ "' AND l.TrainNo = '" + ticket.getCarID() + "')" + ")" + "," + quantity[0] + ","
+								+ quantity[1] + "," + quantity[2] + "," + quantity[3] + "," + quantity[4]
+								+ ", CASE WHEN(DATEDIFF('" + ticket.getDBDepartDate()
 								+ "', CURDATE()) > 3) THEN (ADDDATE(CURDATE(), 3)) WHEN (DATEDIFF(CURDATE(), '"
 								+ ticket.getDBDepartDate() + "') = 0) THEN ('" + ticket.getDBDepartDate()
 								+ "') ELSE (ADDDATE(CURDATE(), 1)) END, " + ticket.getPrice().toString() + ", '"
 								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
 								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + ", 0 )");
 				int flag = pst.executeUpdate();
-
+				// System.out.print(pst.toString());
+				if (flag == 0) {
+					System.out.println("one ticket fail");
+				}
 			} catch (SQLException e) {
-				System.out.println("insert booking error");
-				e.printStackTrace();
-				throw new Fail_Message("insert booking error", pst.toString());
+				if (e.getClass().equals(new SQLIntegrityConstraintViolationException().getClass())) {
+					System.out.println("one ticket fail");
+				} else {
+					System.out.println("insert booking error");
+					e.printStackTrace();
+					throw new Fail_Message("insert booking error", pst.toString());
+				}
+
 			}
 		}
 
@@ -189,6 +222,14 @@ public class Database {
 		}
 	}
 
+	/**
+	 * This function finds the TransactionNumber based on some given conditions.
+	 * 
+	 * @param searchTransactionNumber
+	 *            This contains some condition.
+	 * @return OrderResult This contains a list of tickets.
+	 * @throws Fail_Message
+	 */
 	public Object findTransactionNumber(SearchTransactionNumber searchTransactionNumber) throws Fail_Message {
 		try {
 			pst = con.prepareStatement("SELECT * FROM `booking` WHERE TrainNo = " + searchTransactionNumber.getCarID()
@@ -222,6 +263,15 @@ public class Database {
 		}
 	}
 
+	/**
+	 * This function helps finding the detail of an order based on a given
+	 * transactionNumber.
+	 * 
+	 * @param searchOrder
+	 *            This provides the transactionNumber.
+	 * @return OrderResult
+	 * @throws Fail_Message
+	 */
 	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
 		try {
 			pst = con.prepareStatement(
@@ -252,6 +302,14 @@ public class Database {
 		}
 	}
 
+	/**
+	 * This function helps find a list of train in a specified day.
+	 * 
+	 * @param msg
+	 *            This contains some needed information.
+	 * @return DailyResult This contains a list of train.
+	 * @throws Fail_Message
+	 */
 	public DailyResult searchDaily(SearchDaily msg) throws Fail_Message {
 		try {
 			pst = con.prepareStatement("SELECT * FROM `timeTable` WHERE " + msg.getDepart_dayofweek() + " = 1");
@@ -275,6 +333,14 @@ public class Database {
 		}
 	}
 
+	/**
+	 * This function helps cancel a ticket.
+	 * 
+	 * @param ticket
+	 *            This is the ticket that is yet to be canceled
+	 * @return A Success_Message
+	 * @throws Fail_Message
+	 */
 	public Object cancelTicket(Ticket ticket) throws Fail_Message {
 		try {
 			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
@@ -299,28 +365,11 @@ public class Database {
 		}
 	}
 
-	public void test() {
-		try {
-			System.out.println("in");
-			pst = con.prepareStatement("SELECT * FROM NormalMid WHERE 'Key' = 138");
-			System.out.println("start");
-			rs = pst.executeQuery();
-			System.out.println("end");
-			System.out.println(rs);
-			while (rs.next()) {
-				System.out.println(rs);
-			}
-
-		} catch (SQLException e) {
-			System.out.println("cancelTicket error");
-			e.printStackTrace();
-		} finally {
-			Close();
-		}
-	}
-
 	////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * This functions close the connection to the database
+	 */
 	private static void Close() {
 		try {
 			if (rs != null) {
@@ -341,12 +390,6 @@ public class Database {
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
-		Database db = new Database();
-		try {
-			Object temp = db.insertBooking(new Order(), 132456);
-		} catch (Fail_Message e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 }

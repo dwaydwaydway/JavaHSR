@@ -5,12 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
+/**
+ * This class is used to search the TransactionNumber.
+ *
+ */
 public class SearchTransactionNumber implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Date depart_day_temp; // day save in 
 	String depart_dayofweek;

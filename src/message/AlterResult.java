@@ -1,7 +1,10 @@
 package message;
 
 import java.io.Serializable;
-
+/**
+ * This class is used to inform the client the result of the alternation.
+ *
+ */
 public class AlterResult implements Serializable{
 	public enum station {
 		Nangang, Taipei, Banqiao, Taoyuan, Hsinchu, Miaoli, 

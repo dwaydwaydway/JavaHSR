@@ -1,5 +1,9 @@
 package message;
-
+/**
+ * 
+ * This class helps to calculate the price of a business seat.
+ *
+ */
 public class Price_of_Business {
 	
 	public static void main(String args[]) {

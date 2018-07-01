@@ -1,5 +1,8 @@
 package message;
-
+/**
+ * This class helps to calculate the price.
+ *
+ */
 public class Price {
 	public static void main(String args[]) {
 		int a;
