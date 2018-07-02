@@ -356,7 +356,10 @@ public class ClientGUI extends JFrame {
 				textField_5.setBounds(200, 31, 150, 30);
 				Search.add(textField_5);
 				textField_5.setColumns(10);
-				
+/**
+ * The following is the action event of button "Confirm". As we push it, it will 
+ * send a message of SearchDaily to Server, and then print out the information.				
+ */
 				btnNewButton_4 = new JButton("Confirm");
 				btnNewButton_4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -398,12 +401,18 @@ public class ClientGUI extends JFrame {
 							Search.repaint();
 							Search.revalidate();
 							Search.setVisible(true);
-
+/**
+ * We use a loop to generate the info of all the car in one particular day.
+ * Use index i and k to make the TextField.
+ */
 							for(int i=0 ; i<QuantityOfDailyCar ; i++)
 							{
 								JTextField temp[] = new JTextField[13];
 								for(int k=0; k<13 ; k++)
 								{
+									/**
+									 * Create the TextField
+									 */
 									JTextField temp1 = new JTextField();
 									temp1.setBackground(Color.LIGHT_GRAY);
 									temp1.setForeground(Color.BLACK);
@@ -701,7 +710,9 @@ public class ClientGUI extends JFrame {
 		layeredPane.add(Booking);
 		Booking.setLayout(null);
 		
-		
+/**
+ * The following is the action of the button "Search"		
+ */
 		JButton btnSearchOrder = new JButton("Search");
 		btnSearchOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1110,7 +1121,9 @@ public class ClientGUI extends JFrame {
 		SearchOrder.add(SearchTransacationNum);
 		
 		
-		
+	/**
+	 * As we push "Booking", it will change to the booking pane	
+	 */
 		
 		JButton btnNewButton = new JButton("Booking");
 		btnNewButton.setForeground(new Color(51, 51, 51));
@@ -1134,7 +1147,9 @@ public class ClientGUI extends JFrame {
 		
 		
 		
-		
+		/**
+		 *  As we push "Booking History", it will change to the SearchOrder pane	
+		 */
 				
 		JButton btnBookingHistory= new JButton("Booking History");
 		btnBookingHistory.addActionListener(new ActionListener() {
@@ -1154,7 +1169,9 @@ public class ClientGUI extends JFrame {
 		});
 		btnBookingHistory.setFont(new Font("Dialog", Font.BOLD, 12));
 		panel.add(btnBookingHistory);
-		
+		/**
+		 *  As we push "Search", it will change to the Search pane	
+		 */
 		JButton btnNewButton_2 = new JButton("Search");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1581,7 +1598,7 @@ public class ClientGUI extends JFrame {
 														Ticket cancel_ticketMessage = cancel_order.get(btnCancel.index);
 														
 														System.out.println(cancel_ticketMessage.toString());
-														//send to sever
+														//send to server
 														os.writeObject(cancel_ticketMessage);
 														os.flush();
 														
@@ -1680,68 +1697,7 @@ public class ClientGUI extends JFrame {
 		
 		/**
 		 * setting over
-		 */
-		
-
-/*		
-		
-		JButton btnConfirm = new JButton("Confirm");
-		btnConfirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if(userID_input.getText().equals("")) {		
-					System.out.println("Please input your userID");
-				}
-				
-				String selected_carID = textinputCarID.getText();	
-				String user_ID = textinputUserID.getText();
-				Order selected_car = new Order(info1 , selected_carID , user_ID);
-				
-				try {
-					Scanner sc = new Scanner(System.in);
-					Socket cs = new Socket("127.0.0.1", 3588); 
-					ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
-					ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-					
-					os.writeObject(selected_car);
-					os.flush();
-					Object msg = (Object) is.readObject();
-					if (msg == null)
-						System.out.println("null");
-					if (msg.getClass() == new Order().getClass()) {
-						System.out.println("Successful Order without return trip");
-						
-					}
-					else
-						System.out.println("can't read result1");
-						
-					os.close();
-					is.close();
-					cs.close();
-				} catch (UnknownHostException e) {
-					e.printStackTrace();
-					System.out.println("connection error");
-				} catch (IOException e) {
-					e.printStackTrace();
-					System.out.println("IO error");
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-					System.out.println("Class Not Found error");
-				}	
-				
-								
-				
-			}
-		});
-		btnConfirm.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnConfirm.setBackground(new Color(238, 232, 170));
-		btnConfirm.setBounds(445, 312, 89, 31);
-		Available.add(btnConfirm);
-*/		
-		
-		
-		
-		
+		 */		
 		
 		
 		txtItinerary = new JTextField();
@@ -2004,7 +1960,9 @@ public class ClientGUI extends JFrame {
 		Booking.add(studentTicket);
 		
 		
-		
+/**
+ * As we push the button "Search Car"		
+ */
 		
 		JButton btnNewButton_3 = new JButton("Search Car");
 		btnNewButton_3.setBounds(360, 260, 117, 25);
@@ -2014,7 +1972,9 @@ public class ClientGUI extends JFrame {
 				boolean vail = true;
 
 				SearchCar SearchCarMessage = new SearchCar();
-				
+				/**
+				 * Set the information of the conditions that user wants
+				 */
 				SearchCarMessage.setDepart(comdepartStation1.getSelectedItem().toString());
 				SearchCarMessage.setArrive(comarriveStation1.getSelectedItem().toString());
 				SearchCarMessage.setSeat(comSeat.getSelectedItem().toString());
@@ -2164,7 +2124,9 @@ public class ClientGUI extends JFrame {
 									
 								}
 							}
-															
+		/*
+		 * As we push the button "Confirm"											
+		 */
 							JButton btnConfirm = new JButton("Confirm");
 							btnConfirm.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
@@ -2189,7 +2151,9 @@ public class ClientGUI extends JFrame {
 										Socket cs = new Socket("127.0.0.1", 3588); 
 										ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 										ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-										
+										/*
+										 * send to the server
+										 */
 										os.writeObject(selected_car);
 										os.flush();
 										Object msg = (Object) is.readObject();
@@ -2296,7 +2260,7 @@ public class ClientGUI extends JFrame {
 
 							
 							
-							//change some parameter of searchcarmessage
+							//change some parameter of SearchCarMessage
 							SearchCarMessage.setArrive(comdepartStation1.getSelectedItem().toString());
 							SearchCarMessage.setDepart(comarriveStation1.getSelectedItem().toString());
 							SearchCarMessage.setHour((int)departHour_re.getValue());

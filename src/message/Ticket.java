@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * After checking the SearchOrder in the database, we should create an object of OrderResult, and
- * returnif to Client.
+ * return it to Client.
  * 
  * Information:
  * 0.transaction_number
