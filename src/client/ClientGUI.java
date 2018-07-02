@@ -1010,7 +1010,7 @@ public class ClientGUI extends JFrame {
 		SearchOrder.add(btnSearchOrder);
 
 		txtTransactionNumber = new JTextField();
-		txtTransactionNumber.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 12));
+		txtTransactionNumber.setFont(new Font("繚L糧n瞼聶繞��", Font.PLAIN, 12));
 		txtTransactionNumber.setText("Transaction NO.");
 		txtTransactionNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTransactionNumber.setEditable(false);
@@ -2224,7 +2224,7 @@ public class ClientGUI extends JFrame {
 							btnConfirm1.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 
-									if (userID_input.getText().equals("")) {
+									if (textinputUserID.getText().equals("")) {
 										System.out.println("Please input your userID");
 									} else {
 
