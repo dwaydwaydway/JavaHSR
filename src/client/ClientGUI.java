@@ -2456,7 +2456,7 @@ public class ClientGUI extends JFrame {
 									Available_Holder.remove(btnConfirm1);
 									
 									
-									for(int i=0 ; i<quantity_of_available ; i++)
+									for(int i=0 ; i < quantity_of_available ; i++)
 									{
 										for(int k=0 ; k<11 ; k++)
 										{	

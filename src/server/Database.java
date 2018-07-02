@@ -125,6 +125,7 @@ public class Database {
 	 */
 	public OrderResult insertBooking(Order order, int code) throws Fail_Message {
 		for (Ticket ticket : order.getOrderTicketList()) {
+			System.out.print("a ticket start");
 			String Class = ticket.getCarriage();
 			String Side = ticket.getLocation();
 			int[] quantity = { 0, 0, 0, 0, 0 };
@@ -179,9 +180,9 @@ public class Database {
 								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
 								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + ", 0 )");
 				int flag = pst.executeUpdate();
-				// System.out.print(pst.toString());
+				
 				if (flag == 0) {
-					System.out.println("one ticket fail");
+					System.out.print("a ticket finish");
 				}
 			} catch (SQLException e) {
 				if (e.getClass().equals(new SQLIntegrityConstraintViolationException().getClass())) {

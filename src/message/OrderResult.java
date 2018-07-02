@@ -1,61 +1,76 @@
 package message;
+
 import java.io.Serializable;
 
 import java.util.LinkedList;
+
 /**
- * Goal: This class is used to return the all tickets that meet the requests of an SearchOrder object.
- * Information:
+ * Goal: This class is used to return the all tickets that meet the requests of
+ * an SearchOrder object. Information:
+ * 
  * @SearchCar info: an object of SearchOrder that contains specific requests.
- * @boolean SearchOrderSuccessfully: If there is any ticket meeting the userID, return true.
- * @addCar(): this function is to create the Ticket objects meeting those request. 
- * And those parameters in addTicket() are identical to Ticket object
+ * @boolean SearchOrderSuccessfully: If there is any ticket meeting the userID,
+ *          return true. @addCar(): this function is to create the Ticket
+ *          objects meeting those request. And those parameters in addTicket()
+ *          are identical to Ticket object
  *
  */
-public class OrderResult implements Serializable{
+public class OrderResult implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public LinkedList<Ticket> TicketList = null;
 
 	public OrderResult() {
 		TicketList = new LinkedList<Ticket>();
 	}
-	
-	
-	//testing constructor
+
+	// testing constructor
 	public OrderResult(int x) {
 		TicketList = new LinkedList<Ticket>();
 		TicketList.add(new Ticket(0));
 		TicketList.add(new Ticket(1));
 	}
-	
-	//testing constructor2
+
+	// testing constructor2
 	public OrderResult(int x, int y) {
 		TicketList = new LinkedList<Ticket>();
 		TicketList.add(new Ticket(0));
-		//TicketList.add(new Ticket(0, 1));
+		// TicketList.add(new Ticket(0, 1));
 	}
-	
-	
-	
-	public void addTicket(String transaction_number, String carID, String userID, String depart, String arrive, 
-			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount,
-		    String university_discount, String compartment, String location, String price) {
 
-		Ticket newTicket = new Ticket(transaction_number, carID, userID, depart, arrive, 
-				depart_time, arrive_time, passenger_type, carriage, early_discount,
-				university_discount, compartment, location, price);
-		
+	/**
+	 * This function add a ticket to the ticket list
+	 * 
+	 * @param transaction_number
+	 * @param carID
+	 * @param userID
+	 * @param depart
+	 * @param arrive
+	 * @param depart_time
+	 * @param arrive_time
+	 * @param passenger_type
+	 * @param carriage
+	 * @param early_discount
+	 * @param university_discount
+	 * @param compartment
+	 * @param location
+	 * @param price
+	 */
+	public void addTicket(String transaction_number, String carID, String userID, String depart, String arrive,
+			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount,
+			String university_discount, String compartment, String location, String price) {
+
+		Ticket newTicket = new Ticket(transaction_number, carID, userID, depart, arrive, depart_time, arrive_time,
+				passenger_type, carriage, early_discount, university_discount, compartment, location, price);
+
 		TicketList.add(newTicket);
 	}
-	
-	
-	public LinkedList<Ticket> getOrderResult(){
+
+	public LinkedList<Ticket> getOrderResult() {
 		return TicketList;
 	}
 
-	
-	
 }
