@@ -79,6 +79,9 @@ public class Server {
 			Database database = new Database();
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {
+					SearchCar temp = (SearchCar) msg;
+					if(temp.getTotal() > 5)
+						return new Fail_Message("cannot order more than 5 tickets");
 					System.out.println("Server received SearchCar");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {

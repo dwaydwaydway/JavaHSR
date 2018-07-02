@@ -39,6 +39,10 @@ public class Fail_Message extends Exception implements Serializable {
 		this.statement = input_statement;
 		this.query = query;
 	}
+	
+	public Fail_Message(String input_statement) {
+		this.statement = input_statement;
+	}
 
 	/**
 	 * Function setStatement(input_statement);
