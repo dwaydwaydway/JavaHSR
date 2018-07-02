@@ -2087,7 +2087,8 @@ public class ClientGUI extends JFrame {
 
 				}
 
-				// if return trip is ordered
+				// If return trip is ordered
+				
 				else if (rdbtnReturnTrip.isSelected() && vail) {
 
 					try {
@@ -2263,7 +2264,7 @@ public class ClientGUI extends JFrame {
 										Available.revalidate();
 										Available.setVisible(true);
 										// remove button confirm1
-										Available_Holder.remove(btnConfirm1);
+		//								Available_Holder.remove(btnConfirm1);
 
 										for (int i = 0; i < quantity_of_available; i++) {
 											for (int k = 0; k < 11; k++) {
