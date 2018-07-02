@@ -83,12 +83,19 @@ public class Server {
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {
 					SearchCar temp = (SearchCar) msg;
-					if(temp.getTotal() > 5)
+					if(temp.getTotal() > 5) {
+						System.out.println("cannot order more than 5 tickets");
 						return new Fail_Message("cannot order more than 5 tickets");
-					if(!dateValid(temp.getDepartDay()))	
+					}
+						
+					else if(!dateValid(temp.getDepartDay())) {
+						System.out.println("cannot order tickets of this date");
 						return new Fail_Message("cannot order tickets of this date");
-					System.out.println("Server received SearchCar");
-					return database.selectCar((SearchCar) msg);
+					}	
+					else {
+						System.out.println("Server received SearchCar");
+						return database.selectCar((SearchCar) msg);
+					}					
 				} else if (msg.getClass() == new Order().getClass()) {
 					System.out.println("Server received Order");
 					int code;

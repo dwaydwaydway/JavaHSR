@@ -366,9 +366,12 @@ public class ClientGUI extends JFrame {
 					os.flush();
 					Object msg = (Object) is.readObject();
 					if (msg == null)
-						System.out.println("null");
+						System.out.println("null 1");
 					if (msg.getClass() == new Available().getClass()) {
 						System.out.println("success");
+					}else if(msg.getClass() == new Fail_Message().getClass()) {
+						Fail_Message temp = (Fail_Message) msg;
+						System.out.println(temp.getMessage());
 					}
 
 					info_SearchDaily = (DailyResult) msg;
@@ -697,7 +700,7 @@ public class ClientGUI extends JFrame {
 						Object msg = (Object) is.readObject();
 
 						if (msg == null)
-							System.out.println("null");
+							System.out.println("null 2");
 
 						if (msg.getClass() == new OrderResult().getClass()) {
 							System.out.println("successfully get the OrderResult");
@@ -939,7 +942,7 @@ public class ClientGUI extends JFrame {
 
 												Object msg = (Object) is.readObject();
 												if (msg == null)
-													System.out.println("null");
+													System.out.println("null 3");
 
 												// if the server send back a OrderResult for confirm ----> success
 
@@ -986,6 +989,9 @@ public class ClientGUI extends JFrame {
 							printout_SO.repaint();
 							printout_SO.revalidate();
 
+						}else if(msg.getClass() == new Fail_Message().getClass()) {
+							Fail_Message temp = (Fail_Message) msg;
+							System.out.println(temp.getMessage());
 						} else
 							System.out.println("can't read result1");
 						os.close();
@@ -1246,7 +1252,7 @@ public class ClientGUI extends JFrame {
 						Object msg = (Object) is.readObject();
 
 						if (msg == null)
-							System.out.println("null");
+							System.out.println("null 4");
 
 						if (msg.getClass() == new OrderResult().getClass()) {
 							System.out.println("successfully get the OrderResult_by transaction number");
@@ -1488,7 +1494,7 @@ public class ClientGUI extends JFrame {
 
 												Object msg = (Object) is.readObject();
 												if (msg == null)
-													System.out.println("null");
+													System.out.println("null 5");
 
 												// if the server send back a OrderResult for confirm ----> success
 
@@ -1536,7 +1542,10 @@ public class ClientGUI extends JFrame {
 							printout_SOTN.repaint();
 							printout_SOTN.revalidate();
 
-						} else
+						} else if(msg.getClass() == new Fail_Message().getClass()) {
+							Fail_Message temp = (Fail_Message) msg;
+							System.out.println(temp.getMessage());
+						}else
 							System.out.println("can't read result1");
 						os.close();
 						is.close();
@@ -1886,7 +1895,7 @@ public class ClientGUI extends JFrame {
 						os.flush();
 						Object msg = (Object) is.readObject();
 						if (msg == null)
-							System.out.println("null");
+							System.out.println("null 6");
 						if (msg.getClass() == new Available().getClass()) {
 							System.out.println("success_without return trip");
 
@@ -2002,7 +2011,7 @@ public class ClientGUI extends JFrame {
 													os.flush();
 													Object msg = (Object) is.readObject();
 													if (msg == null)
-														System.out.println("null");
+														System.out.println("null 7");
 													if (msg.getClass() == new OrderResult().getClass()) {
 														System.out.println("Successful Order without return trip");
 
@@ -2057,6 +2066,9 @@ public class ClientGUI extends JFrame {
 								layeredPane.revalidate();
 								layeredPane.setVisible(true);
 							}
+						}else if(msg.getClass() == new Fail_Message().getClass()) {
+							Fail_Message temp = (Fail_Message) msg;
+							System.out.println(temp.getMessage());
 						} else
 							System.out.println("can't read result1");
 						os.close();
@@ -2088,7 +2100,7 @@ public class ClientGUI extends JFrame {
 						os.flush();
 						Object msg = (Object) is.readObject();
 						if (msg == null)
-							System.out.println("null");
+							System.out.println("null 8");
 
 						// After getting the info of departure
 						if (msg.getClass() == new Available().getClass()) {
@@ -2119,12 +2131,15 @@ public class ClientGUI extends JFrame {
 								msg = (Object) is.readObject();
 
 								if (msg == null)
-									System.out.println("null");
+									System.out.println("null 9");
 
 								// if the first arraylist is back, send another searchcar
 								if (msg.getClass() == new Available().getClass()) {
 									System.out.println("success2, got the return trip_available");
-								} else
+								} else if(msg.getClass() == new Fail_Message().getClass()) {
+									Fail_Message temp = (Fail_Message) msg;
+									System.out.println(temp.getMessage());
+								}else
 									System.out.println("can't read result after searchcar");
 								os.close();
 								is.close();
@@ -2344,12 +2359,15 @@ public class ClientGUI extends JFrame {
 													os.flush();
 													Object msg = (Object) is.readObject();
 													if (msg == null)
-														System.out.println("null");
+														System.out.println("null 10");
 													if (msg.getClass() == new OrderResult().getClass()) {
 														System.out.println(
 																"Successful Order the depart one with return trip");
 
-													} else
+													} else if(msg.getClass() == new Fail_Message().getClass()) {
+														Fail_Message temp = (Fail_Message) msg;
+														System.out.println(temp.getMessage());
+													}else
 														System.out.println("can't read result1");
 
 													os.close();
@@ -2378,7 +2396,7 @@ public class ClientGUI extends JFrame {
 													os.flush();
 													Object msg = (Object) is.readObject();
 													if (msg == null)
-														System.out.println("null");
+														System.out.println("null 11");
 													if (msg.getClass() == new OrderResult().getClass()) {
 														System.out.println("Successful Order the return trip");
 
@@ -2389,7 +2407,10 @@ public class ClientGUI extends JFrame {
 														TransactionNum_input.setText(temp_memory_transaction_number);
 														btnBookingHistory.doClick();
 														btnSearchOrder.doClick();
-													} else
+													} else if(msg.getClass() == new Fail_Message().getClass()) {
+														Fail_Message temp = (Fail_Message) msg;
+														System.out.println(temp.getMessage());
+													}else
 														System.out.println("can't read result1");
 
 													os.close();
@@ -2455,7 +2476,10 @@ public class ClientGUI extends JFrame {
 
 						}
 
-						else
+						else if(msg.getClass() == new Fail_Message().getClass()) {
+							Fail_Message temp = (Fail_Message) msg;
+							System.out.println(temp.getMessage());
+						}else
 							System.out.println("can't read result1");
 						os.close();
 						is.close();
