@@ -276,7 +276,7 @@ public class Database {
 	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
 		try {
 			pst = con.prepareStatement(
-					"SELECT * FROM `booking` WHERE code = " + searchOrder.getTransactionNumber() + " AND canceled = 0");
+					"SELECT * FROM `booking` WHERE code = '" + searchOrder.getTransactionNumber() + "' AND canceled = 0");
 			rs = pst.executeQuery();
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
