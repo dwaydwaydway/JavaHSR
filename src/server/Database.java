@@ -344,15 +344,15 @@ public class Database {
 	 */
 	public Object cancelTicket(Ticket ticket) throws Fail_Message {
 		try {
-			pst = con.prepareStatement("UPDATE booking SET canceled = 1 WHERE uid = '" + ticket.getUserID()
-					+ "' AND code = " + ticket.getTransactionNumber() + " AND date = '" + ticket.getDBDepartDate()
-					+ "' AND start = '" + ticket.getDepart() + "' AND carriage = " + ticket.getCompartment()
-					+ " AND side = '" + ticket.getLocation().charAt(0) + "' AND `row` = "
+			pst = con.prepareStatement("UPDATE booking b SET canceled = 1 WHERE b.uid = '" + ticket.getUserID()
+					+ "' AND b.code = " + ticket.getTransactionNumber() + " AND DATEDIFF(CURDATE(), b.payDeadline) < 0 AND b.date = '" + ticket.getDBDepartDate()
+					+ "' AND b.start = '" + ticket.getDepart() + "' AND b.carriage = " + ticket.getCompartment()
+					+ " AND b.side = '" + ticket.getLocation().charAt(0) + "' AND b.row = "
 					+ ticket.getLocation().substring(1));
 			System.out.println(pst.toString());
 			int flag = pst.executeUpdate();
 			if (flag == 0)
-				return new Fail_Message("cancelTicket error", pst.toString());
+				return new Fail_Message("too late", pst.toString());
 			else
 				return new Success_Message("ticket canceled");
 		} catch (SQLException e) {
