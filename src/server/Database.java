@@ -273,7 +273,7 @@ public class Database {
 	 * @return OrderResult
 	 * @throws Fail_Message
 	 */
-	public Object searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
+	public OrderResult searchTicketByUserId(SearchOrder searchOrder) throws Fail_Message {
 		try {
 			pst = con.prepareStatement(
 					"SELECT * FROM `booking` WHERE code = '" + searchOrder.getTransactionNumber() + "' AND canceled = 0");

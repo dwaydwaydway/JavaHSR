@@ -369,7 +369,7 @@ public class ClientGUI extends JFrame {
 						System.out.println("null 1");
 					if (msg.getClass() == new Available().getClass()) {
 						System.out.println("success");
-					}else if(msg.getClass() == new Fail_Message().getClass()) {
+					} else if (msg.getClass() == new Fail_Message().getClass()) {
 						Fail_Message temp = (Fail_Message) msg;
 						System.out.println(temp.getMessage());
 					}
@@ -709,7 +709,7 @@ public class ClientGUI extends JFrame {
 							order_result = (OrderResult) msg;
 
 							if (order_result.getOrderResult().isEmpty()) {
-								System.out.println("Result 404 not find");
+								System.out.println("No such oder exist");
 							}
 
 							else {
@@ -958,10 +958,10 @@ public class ClientGUI extends JFrame {
 												// }
 												else if (msg.getClass() == new AlterResult().getClass()) {
 
-												} else if(msg.getClass() == new Fail_Message().getClass()) {
+												} else if (msg.getClass() == new Fail_Message().getClass()) {
 													Fail_Message temp = (Fail_Message) msg;
 													System.out.println(temp.getMessage());
-												}else
+												} else
 													System.out.println("can't read result from canceling the ticket");
 												os.close();
 												is.close();
@@ -992,7 +992,7 @@ public class ClientGUI extends JFrame {
 							printout_SO.repaint();
 							printout_SO.revalidate();
 
-						}else if(msg.getClass() == new Fail_Message().getClass()) {
+						} else if (msg.getClass() == new Fail_Message().getClass()) {
 							Fail_Message temp = (Fail_Message) msg;
 							System.out.println(temp.getMessage());
 						} else
@@ -1514,7 +1514,7 @@ public class ClientGUI extends JFrame {
 												// }
 												else if (msg.getClass() == new AlterResult().getClass()) {
 
-												}else if(msg.getClass() == new Fail_Message().getClass()) {
+												} else if (msg.getClass() == new Fail_Message().getClass()) {
 													Fail_Message temp = (Fail_Message) msg;
 													System.out.println(temp.getMessage());
 												} else
@@ -1548,10 +1548,10 @@ public class ClientGUI extends JFrame {
 							printout_SOTN.repaint();
 							printout_SOTN.revalidate();
 
-						} else if(msg.getClass() == new Fail_Message().getClass()) {
+						} else if (msg.getClass() == new Fail_Message().getClass()) {
 							Fail_Message temp = (Fail_Message) msg;
 							System.out.println(temp.getMessage());
-						}else
+						} else
 							System.out.println("can't read result1");
 						os.close();
 						is.close();
@@ -2072,7 +2072,7 @@ public class ClientGUI extends JFrame {
 								layeredPane.revalidate();
 								layeredPane.setVisible(true);
 							}
-						}else if(msg.getClass() == new Fail_Message().getClass()) {
+						} else if (msg.getClass() == new Fail_Message().getClass()) {
 							Fail_Message temp = (Fail_Message) msg;
 							System.out.println(temp.getMessage());
 						} else
@@ -2094,7 +2094,7 @@ public class ClientGUI extends JFrame {
 				}
 
 				// If return trip is ordered
-				
+
 				else if (rdbtnReturnTrip.isSelected() && vail) {
 
 					try {
@@ -2143,10 +2143,10 @@ public class ClientGUI extends JFrame {
 								// if the first arraylist is back, send another searchcar
 								if (msg.getClass() == new Available().getClass()) {
 									System.out.println("success2, got the return trip_available");
-								} else if(msg.getClass() == new Fail_Message().getClass()) {
+								} else if (msg.getClass() == new Fail_Message().getClass()) {
 									Fail_Message temp = (Fail_Message) msg;
 									System.out.println(temp.getMessage());
-								}else
+								} else
 									System.out.println("can't read result after searchcar");
 								os.close();
 								is.close();
@@ -2270,7 +2270,7 @@ public class ClientGUI extends JFrame {
 										Available.revalidate();
 										Available.setVisible(true);
 										// remove button confirm1
-		//								Available_Holder.remove(btnConfirm1);
+										// Available_Holder.remove(btnConfirm1);
 
 										for (int i = 0; i < quantity_of_available; i++) {
 											for (int k = 0; k < 11; k++) {
@@ -2371,10 +2371,10 @@ public class ClientGUI extends JFrame {
 														System.out.println(
 																"Successful Order the depart one with return trip");
 
-													} else if(msg.getClass() == new Fail_Message().getClass()) {
+													} else if (msg.getClass() == new Fail_Message().getClass()) {
 														Fail_Message temp = (Fail_Message) msg;
 														System.out.println(temp.getMessage());
-													}else
+													} else
 														System.out.println("can't read result1");
 
 													os.close();
@@ -2414,10 +2414,10 @@ public class ClientGUI extends JFrame {
 														TransactionNum_input.setText(temp_memory_transaction_number);
 														btnBookingHistory.doClick();
 														btnSearchOrder.doClick();
-													} else if(msg.getClass() == new Fail_Message().getClass()) {
+													} else if (msg.getClass() == new Fail_Message().getClass()) {
 														Fail_Message temp = (Fail_Message) msg;
 														System.out.println(temp.getMessage());
-													}else
+													} else
 														System.out.println("can't read result1");
 
 													os.close();
@@ -2483,10 +2483,10 @@ public class ClientGUI extends JFrame {
 
 						}
 
-						else if(msg.getClass() == new Fail_Message().getClass()) {
+						else if (msg.getClass() == new Fail_Message().getClass()) {
 							Fail_Message temp = (Fail_Message) msg;
 							System.out.println(temp.getMessage());
-						}else
+						} else
 							System.out.println("can't read result1");
 						os.close();
 						is.close();
