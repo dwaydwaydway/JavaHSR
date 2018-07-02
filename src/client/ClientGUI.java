@@ -198,157 +198,150 @@ public class ClientGUI extends JFrame {
 		
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);	
-		
-			
 				
-		Available_Holder = new JPanel();
-		Available_Holder.setBounds(0, 0, 1624, 1014);
-		
-		layeredPane.add(Available_Holder);
-		Available_Holder.setLayout(null);
-		
+					
 						
-						
-						
-						
-						
-						
-						
-						txtCarid = new JTextField();
-						txtCarid.setBackground(Color.PINK);
-						txtCarid.setForeground(Color.BLACK);
-						txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtCarid.setEditable(false);
-						txtCarid.setText("CarID");
-						txtCarid.setBounds(0, 60, 150, 20);
-						Available_Holder.add(txtCarid);
-						txtCarid.setColumns(10);
-						
-						txtDepartTime = new JTextField();
-						txtDepartTime.setBackground(Color.PINK);
-						txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtDepartTime.setText("Depart Time");
-						txtDepartTime.setEditable(false);
-						txtDepartTime.setColumns(10);
-						txtDepartTime.setBounds(150, 60, 150, 20);
-						Available_Holder.add(txtDepartTime);
-						
-						txtArriveTime = new JTextField();
-						txtArriveTime.setBackground(Color.PINK);
-						txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtArriveTime.setEditable(false);
-						txtArriveTime.setText("Arrive Time");
-						txtArriveTime.setBounds(450, 60, 150, 20);
-						Available_Holder.add(txtArriveTime);
-						txtArriveTime.setColumns(10);
-						
-						txtSeatwindow = new JTextField();
-						txtSeatwindow.setEditable(false);
-						txtSeatwindow.setBackground(Color.PINK);
-						txtSeatwindow.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtSeatwindow.setText("Seat_Window");
-						txtSeatwindow.setBounds(900, 60, 150, 20);
-						Available_Holder.add(txtSeatwindow);
-						txtSeatwindow.setColumns(10);
-						
-						txtSeataisle = new JTextField();
-						txtSeataisle.setEditable(false);
-						txtSeataisle.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtSeataisle.setBackground(Color.PINK);
-						txtSeataisle.setText("Seat_Aisle");
-						txtSeataisle.setBounds(1050, 60, 150, 20);
-						Available_Holder.add(txtSeataisle);
-						txtSeataisle.setColumns(10);
-						
-						txtSeatnone = new JTextField();
-						txtSeatnone.setEditable(false);
-						txtSeatnone.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtSeatnone.setBackground(Color.PINK);
-						txtSeatnone.setText("Seat_None");
-						txtSeatnone.setBounds(1200, 60, 150, 20);
-						Available_Holder.add(txtSeatnone);
-						txtSeatnone.setColumns(10);
-						
-						txtEarlybird = new JTextField();
-						txtEarlybird.setEditable(false);
-						txtEarlybird.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtEarlybird.setBackground(Color.PINK);
-						txtEarlybird.setText("EarlyBird");
-						txtEarlybird.setBounds(1350, 60, 150, 20);
-						Available_Holder.add(txtEarlybird);
-						txtEarlybird.setColumns(10);
-						
-						txtDepartStation_1 = new JTextField();
-						txtDepartStation_1.setText("Depart Station");
-						txtDepartStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtDepartStation_1.setEditable(false);
-						txtDepartStation_1.setColumns(10);
-						txtDepartStation_1.setBackground(Color.PINK);
-						txtDepartStation_1.setBounds(300, 60, 150, 20);
-						Available_Holder.add(txtDepartStation_1);
-						
-						txtArriveStation_1 = new JTextField();
-						txtArriveStation_1.setText("Arrive Station");
-						txtArriveStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtArriveStation_1.setEditable(false);
-						txtArriveStation_1.setColumns(10);
-						txtArriveStation_1.setBackground(Color.PINK);
-						txtArriveStation_1.setBounds(600, 60, 150, 20);
-						Available_Holder.add(txtArriveStation_1);
-						
-						txtCarriage_1 = new JTextField();
-						txtCarriage_1.setText("Carriage");
-						txtCarriage_1.setFont(new Font("Arial", Font.PLAIN, 15));
-						txtCarriage_1.setEditable(false);
-						txtCarriage_1.setColumns(10);
-						txtCarriage_1.setBackground(Color.PINK);
-						txtCarriage_1.setBounds(750, 60, 150, 20);
-						Available_Holder.add(txtCarriage_1);
-						
-						txtUniversityDiscount = new JTextField();
-						txtUniversityDiscount.setText("University Discount");
-						txtUniversityDiscount.setFont(new Font("Arial", Font.PLAIN, 11));
-						txtUniversityDiscount.setEditable(false);
-						txtUniversityDiscount.setColumns(10);
-						txtUniversityDiscount.setBackground(Color.PINK);
-						txtUniversityDiscount.setBounds(1500, 60, 150, 20);
-						Available_Holder.add(txtUniversityDiscount);
-						
-						
-						txtPleaseInputThe = new JTextField();
-						txtPleaseInputThe.setEditable(false);
-						txtPleaseInputThe.setFont(new Font("Arial", Font.PLAIN, 16));
-						txtPleaseInputThe.setBackground(new Color(221, 160, 221));
-						txtPleaseInputThe.setText("Please input the CarID you want :  ");
-						txtPleaseInputThe.setBounds(10, 3, 255, 20);
-						Available_Holder.add(txtPleaseInputThe);
-						txtPleaseInputThe.setColumns(10);
-						
-						textinputCarID = new JTextField();
-						textinputCarID.setBounds(275, 3, 96, 20);
-						Available_Holder.add(textinputCarID);
-						textinputCarID.setColumns(10);
-						
-						txtPleaseInputThe_1 = new JTextField();
-						txtPleaseInputThe_1.setText("Please input the UserID of yours :");
-						txtPleaseInputThe_1.setFont(new Font("Arial", Font.PLAIN, 16));
-						txtPleaseInputThe_1.setEditable(false);
-						txtPleaseInputThe_1.setColumns(10);
-						txtPleaseInputThe_1.setBackground(new Color(221, 160, 221));
-						txtPleaseInputThe_1.setBounds(10, 30, 255, 20);
-						Available_Holder.add(txtPleaseInputThe_1);
-						
-						textinputUserID = new JTextField();
-						textinputUserID.setColumns(10);
-						textinputUserID.setBounds(275, 30, 96, 20);
-						Available_Holder.add(textinputUserID);
+				Available_Holder = new JPanel();
+				Available_Holder.setBounds(0, 0, 1624, 1014);
 				
-
-		JScrollPane result = new JScrollPane();
-		result.setBackground(Color.YELLOW);
-		result.setBounds(0, 0, 1000, 1000);
-		layeredPane.add(result);
-		result.setLayout(null);
+				layeredPane.add(Available_Holder);
+				Available_Holder.setLayout(null);
+				
+								
+								
+								
+								
+								
+								
+								
+								txtCarid = new JTextField();
+								txtCarid.setBackground(Color.PINK);
+								txtCarid.setForeground(Color.BLACK);
+								txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtCarid.setEditable(false);
+								txtCarid.setText("CarID");
+								txtCarid.setBounds(0, 60, 150, 20);
+								Available_Holder.add(txtCarid);
+								txtCarid.setColumns(10);
+								
+								txtDepartTime = new JTextField();
+								txtDepartTime.setBackground(Color.PINK);
+								txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtDepartTime.setText("Depart Time");
+								txtDepartTime.setEditable(false);
+								txtDepartTime.setColumns(10);
+								txtDepartTime.setBounds(150, 60, 150, 20);
+								Available_Holder.add(txtDepartTime);
+								
+								txtArriveTime = new JTextField();
+								txtArriveTime.setBackground(Color.PINK);
+								txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtArriveTime.setEditable(false);
+								txtArriveTime.setText("Arrive Time");
+								txtArriveTime.setBounds(450, 60, 150, 20);
+								Available_Holder.add(txtArriveTime);
+								txtArriveTime.setColumns(10);
+								
+								txtSeatwindow = new JTextField();
+								txtSeatwindow.setEditable(false);
+								txtSeatwindow.setBackground(Color.PINK);
+								txtSeatwindow.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtSeatwindow.setText("Seat_Window");
+								txtSeatwindow.setBounds(900, 60, 150, 20);
+								Available_Holder.add(txtSeatwindow);
+								txtSeatwindow.setColumns(10);
+								
+								txtSeataisle = new JTextField();
+								txtSeataisle.setEditable(false);
+								txtSeataisle.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtSeataisle.setBackground(Color.PINK);
+								txtSeataisle.setText("Seat_Aisle");
+								txtSeataisle.setBounds(1050, 60, 150, 20);
+								Available_Holder.add(txtSeataisle);
+								txtSeataisle.setColumns(10);
+								
+								txtSeatnone = new JTextField();
+								txtSeatnone.setEditable(false);
+								txtSeatnone.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtSeatnone.setBackground(Color.PINK);
+								txtSeatnone.setText("Seat_None");
+								txtSeatnone.setBounds(1200, 60, 150, 20);
+								Available_Holder.add(txtSeatnone);
+								txtSeatnone.setColumns(10);
+								
+								txtEarlybird = new JTextField();
+								txtEarlybird.setEditable(false);
+								txtEarlybird.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtEarlybird.setBackground(Color.PINK);
+								txtEarlybird.setText("EarlyBird");
+								txtEarlybird.setBounds(1350, 60, 150, 20);
+								Available_Holder.add(txtEarlybird);
+								txtEarlybird.setColumns(10);
+								
+								txtDepartStation_1 = new JTextField();
+								txtDepartStation_1.setText("Depart Station");
+								txtDepartStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtDepartStation_1.setEditable(false);
+								txtDepartStation_1.setColumns(10);
+								txtDepartStation_1.setBackground(Color.PINK);
+								txtDepartStation_1.setBounds(300, 60, 150, 20);
+								Available_Holder.add(txtDepartStation_1);
+								
+								txtArriveStation_1 = new JTextField();
+								txtArriveStation_1.setText("Arrive Station");
+								txtArriveStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtArriveStation_1.setEditable(false);
+								txtArriveStation_1.setColumns(10);
+								txtArriveStation_1.setBackground(Color.PINK);
+								txtArriveStation_1.setBounds(600, 60, 150, 20);
+								Available_Holder.add(txtArriveStation_1);
+								
+								txtCarriage_1 = new JTextField();
+								txtCarriage_1.setText("Carriage");
+								txtCarriage_1.setFont(new Font("Arial", Font.PLAIN, 15));
+								txtCarriage_1.setEditable(false);
+								txtCarriage_1.setColumns(10);
+								txtCarriage_1.setBackground(Color.PINK);
+								txtCarriage_1.setBounds(750, 60, 150, 20);
+								Available_Holder.add(txtCarriage_1);
+								
+								txtUniversityDiscount = new JTextField();
+								txtUniversityDiscount.setText("University Discount");
+								txtUniversityDiscount.setFont(new Font("Arial", Font.PLAIN, 11));
+								txtUniversityDiscount.setEditable(false);
+								txtUniversityDiscount.setColumns(10);
+								txtUniversityDiscount.setBackground(Color.PINK);
+								txtUniversityDiscount.setBounds(1500, 60, 150, 20);
+								Available_Holder.add(txtUniversityDiscount);
+								
+								
+								txtPleaseInputThe = new JTextField();
+								txtPleaseInputThe.setEditable(false);
+								txtPleaseInputThe.setFont(new Font("Arial", Font.PLAIN, 16));
+								txtPleaseInputThe.setBackground(new Color(221, 160, 221));
+								txtPleaseInputThe.setText("Please input the CarID you want :  ");
+								txtPleaseInputThe.setBounds(10, 3, 255, 20);
+								Available_Holder.add(txtPleaseInputThe);
+								txtPleaseInputThe.setColumns(10);
+								
+								textinputCarID = new JTextField();
+								textinputCarID.setBounds(275, 3, 96, 20);
+								Available_Holder.add(textinputCarID);
+								textinputCarID.setColumns(10);
+								
+								txtPleaseInputThe_1 = new JTextField();
+								txtPleaseInputThe_1.setText("Please input the UserID of yours :");
+								txtPleaseInputThe_1.setFont(new Font("Arial", Font.PLAIN, 16));
+								txtPleaseInputThe_1.setEditable(false);
+								txtPleaseInputThe_1.setColumns(10);
+								txtPleaseInputThe_1.setBackground(new Color(221, 160, 221));
+								txtPleaseInputThe_1.setBounds(10, 30, 255, 20);
+								Available_Holder.add(txtPleaseInputThe_1);
+								
+								textinputUserID = new JTextField();
+								textinputUserID.setColumns(10);
+								textinputUserID.setBounds(275, 30, 96, 20);
+								Available_Holder.add(textinputUserID);
 		
 		
 		
@@ -500,10 +493,6 @@ public class ClientGUI extends JFrame {
 				textField_5.setBounds(200, 31, 150, 30);
 				Search.add(textField_5);
 				textField_5.setColumns(10);
-/**
- * The following is the action event of button "Confirm". As we push it, it will 
- * send a message of SearchDaily to Server, and then print out the information.				
- */
 				btnNewButton_4 = new JButton("Confirm");
 				btnNewButton_4.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -511,7 +500,7 @@ public class ClientGUI extends JFrame {
 						
 						searchDailyMessage.setDepartDay(textField_5.getText());
 						
-						if(userID_input.getText().equals("")) {
+						if(textField_5.getText().equals("")) {
 							//do nothing at following function
 							System.out.println("Please input the date.");
 						}
@@ -643,6 +632,17 @@ public class ClientGUI extends JFrame {
 				txtYyyymmdd.setBounds(200, 60, 150, 30);
 				Search.add(txtYyyymmdd);
 				txtYyyymmdd.setColumns(10);
+				
+
+		JScrollPane result = new JScrollPane();
+		result.setBackground(Color.YELLOW);
+		result.setBounds(0, 0, 1000, 1000);
+		layeredPane.add(result);
+		result.setLayout(null);
+/**
+ * The following is the action event of button "Confirm". As we push it, it will 
+ * send a message of SearchDaily to Server, and then print out the information.				
+ */
 				
 			
 				
@@ -2390,11 +2390,11 @@ public class ClientGUI extends JFrame {
 							btnConfirm1.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									
-			/*						if(userID_input.getText().equals("")) {		
+									if(textinputUserID.getText().equals("")) {		
 										System.out.println("Please input your userID");
 									}
-			*/						
-			//						else {
+									
+									else {
 									
 									String selected_carID1 = textinputCarID.getText();	
 									String user_ID1 = textinputUserID.getText();
@@ -2417,9 +2417,9 @@ public class ClientGUI extends JFrame {
 									Available.repaint();
 									Available.revalidate();
 									Available.setVisible(true);
+									
 									//remove button confirm1
 									Available_Holder.remove(btnConfirm1);
-									
 									
 									for(int i=0 ; i < quantity_of_available ; i++)
 									{
@@ -2595,7 +2595,7 @@ public class ClientGUI extends JFrame {
 									layeredPane.repaint();
 									layeredPane.revalidate();
 									layeredPane.setVisible(true);
-			//					}
+								}
 								}
 							});
 							btnConfirm1.setFont(new Font("Arial", Font.PLAIN, 16));
