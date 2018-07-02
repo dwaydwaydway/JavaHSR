@@ -1,8 +1,9 @@
 package message;
 
 import java.io.Serializable;
+
 /**
- * This class is used to alter an order. 
+ * This class is used to alter an order.
  * 
  * @author Lu (B05602022)
  * @version 1.0

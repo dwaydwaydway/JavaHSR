@@ -78,7 +78,7 @@ public class Server {
 		synchronized private Object messageHandler(Object msg) {
 			Database database = new Database();
 			try {
-				if (msg.getClass() == new SearchCar().getClass()) {					
+				if (msg.getClass() == new SearchCar().getClass()) {
 					System.out.println("Server received SearchCar");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {
@@ -87,38 +87,33 @@ public class Server {
 					Random ran = new Random();
 					do {
 						code = ran.nextInt(1000000);
-					}
-					while (codeMap.get(code) != null);
+					} while (codeMap.get(code) != null);
 					codeMap.put(code, "taken");
 					System.out.println("Order start processing");
 					return database.insertBooking((Order) msg, code);
-					
+
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
 					System.out.println("Server received SearchOrder");
-					return database.searchTicketByUserId((SearchOrder)msg);
-				}
-				else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
+					return database.searchTicketByUserId((SearchOrder) msg);
+				} else if (msg.getClass() == new SearchTransactionNumber().getClass()) {
 					System.out.println("Server received SearchTransactionNumber");
 					return database.findTransactionNumber((SearchTransactionNumber) msg);
-				}
-				else if (msg.getClass() == new Ticket().getClass()) {
+				} else if (msg.getClass() == new Ticket().getClass()) {
 					System.out.println("Server received Ticket (for canceling)");
 					return database.cancelTicket((Ticket) msg);
-				} 
-				else if (msg.getClass() == new SearchDaily().getClass()) {
+				} else if (msg.getClass() == new SearchDaily().getClass()) {
 					System.out.println("Server received SearchDaily");
 					return database.searchDaily((SearchDaily) msg);
 				} else {
 					System.out.println("Server received w");
 					return null;
-				}					
-			}
-			catch(Fail_Message e) {
+				}
+			} catch (Fail_Message e) {
 				System.out.println("messageHandler error");
 				System.out.println(e.getQuery());
 				return e;
 			}
-			
+
 		}
 
 		/**
