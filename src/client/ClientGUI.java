@@ -186,6 +186,140 @@ public class ClientGUI extends JFrame {
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 
+		Available_Holder = new JPanel();
+		Available_Holder.setBounds(0, 0, 1624, 1014);
+
+		layeredPane.add(Available_Holder);
+		Available_Holder.setLayout(null);
+
+		txtCarid = new JTextField();
+		txtCarid.setBackground(Color.PINK);
+		txtCarid.setForeground(Color.BLACK);
+		txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtCarid.setEditable(false);
+		txtCarid.setText("CarID");
+		txtCarid.setBounds(0, 60, 150, 20);
+		Available_Holder.add(txtCarid);
+		txtCarid.setColumns(10);
+
+		txtDepartTime = new JTextField();
+		txtDepartTime.setBackground(Color.PINK);
+		txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDepartTime.setText("Depart Time");
+		txtDepartTime.setEditable(false);
+		txtDepartTime.setColumns(10);
+		txtDepartTime.setBounds(150, 60, 150, 20);
+		Available_Holder.add(txtDepartTime);
+
+		txtArriveTime = new JTextField();
+		txtArriveTime.setBackground(Color.PINK);
+		txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtArriveTime.setEditable(false);
+		txtArriveTime.setText("Arrive Time");
+		txtArriveTime.setBounds(450, 60, 150, 20);
+		Available_Holder.add(txtArriveTime);
+		txtArriveTime.setColumns(10);
+
+		txtSeatwindow = new JTextField();
+		txtSeatwindow.setEditable(false);
+		txtSeatwindow.setBackground(Color.PINK);
+		txtSeatwindow.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeatwindow.setText("Seat_Window");
+		txtSeatwindow.setBounds(900, 60, 150, 20);
+		Available_Holder.add(txtSeatwindow);
+		txtSeatwindow.setColumns(10);
+
+		txtSeataisle = new JTextField();
+		txtSeataisle.setEditable(false);
+		txtSeataisle.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeataisle.setBackground(Color.PINK);
+		txtSeataisle.setText("Seat_Aisle");
+		txtSeataisle.setBounds(1050, 60, 150, 20);
+		Available_Holder.add(txtSeataisle);
+		txtSeataisle.setColumns(10);
+
+		txtSeatnone = new JTextField();
+		txtSeatnone.setEditable(false);
+		txtSeatnone.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtSeatnone.setBackground(Color.PINK);
+		txtSeatnone.setText("Seat_None");
+		txtSeatnone.setBounds(1200, 60, 150, 20);
+		Available_Holder.add(txtSeatnone);
+		txtSeatnone.setColumns(10);
+
+		txtEarlybird = new JTextField();
+		txtEarlybird.setEditable(false);
+		txtEarlybird.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtEarlybird.setBackground(Color.PINK);
+		txtEarlybird.setText("EarlyBird");
+		txtEarlybird.setBounds(1350, 60, 150, 20);
+		Available_Holder.add(txtEarlybird);
+		txtEarlybird.setColumns(10);
+
+		txtDepartStation_1 = new JTextField();
+		txtDepartStation_1.setText("Depart Station");
+		txtDepartStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtDepartStation_1.setEditable(false);
+		txtDepartStation_1.setColumns(10);
+		txtDepartStation_1.setBackground(Color.PINK);
+		txtDepartStation_1.setBounds(300, 60, 150, 20);
+		Available_Holder.add(txtDepartStation_1);
+
+		txtArriveStation_1 = new JTextField();
+		txtArriveStation_1.setText("Arrive Station");
+		txtArriveStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtArriveStation_1.setEditable(false);
+		txtArriveStation_1.setColumns(10);
+		txtArriveStation_1.setBackground(Color.PINK);
+		txtArriveStation_1.setBounds(600, 60, 150, 20);
+		Available_Holder.add(txtArriveStation_1);
+
+		txtCarriage_1 = new JTextField();
+		txtCarriage_1.setText("Carriage");
+		txtCarriage_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtCarriage_1.setEditable(false);
+		txtCarriage_1.setColumns(10);
+		txtCarriage_1.setBackground(Color.PINK);
+		txtCarriage_1.setBounds(750, 60, 150, 20);
+		Available_Holder.add(txtCarriage_1);
+
+		txtUniversityDiscount = new JTextField();
+		txtUniversityDiscount.setText("University Discount");
+		txtUniversityDiscount.setFont(new Font("Arial", Font.PLAIN, 11));
+		txtUniversityDiscount.setEditable(false);
+		txtUniversityDiscount.setColumns(10);
+		txtUniversityDiscount.setBackground(Color.PINK);
+		txtUniversityDiscount.setBounds(1500, 60, 150, 20);
+		Available_Holder.add(txtUniversityDiscount);
+
+		txtPleaseInputThe = new JTextField();
+		txtPleaseInputThe.setEditable(false);
+		txtPleaseInputThe.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtPleaseInputThe.setBackground(new Color(221, 160, 221));
+		txtPleaseInputThe.setText("Please input the CarID you want :  ");
+		txtPleaseInputThe.setBounds(10, 3, 255, 20);
+		Available_Holder.add(txtPleaseInputThe);
+		txtPleaseInputThe.setColumns(10);
+
+		textinputCarID = new JTextField();
+		textinputCarID.setBounds(275, 3, 96, 20);
+		Available_Holder.add(textinputCarID);
+		textinputCarID.setColumns(10);
+
+		txtPleaseInputThe_1 = new JTextField();
+		txtPleaseInputThe_1.setText("Please input the UserID of yours :");
+		txtPleaseInputThe_1.setFont(new Font("Arial", Font.PLAIN, 16));
+		txtPleaseInputThe_1.setEditable(false);
+		txtPleaseInputThe_1.setColumns(10);
+		txtPleaseInputThe_1.setBackground(new Color(221, 160, 221));
+		txtPleaseInputThe_1.setBounds(10, 30, 255, 20);
+		Available_Holder.add(txtPleaseInputThe_1);
+
+		textinputUserID = new JTextField();
+		textinputUserID.setColumns(10);
+		textinputUserID.setBounds(275, 30, 96, 20);
+		Available_Holder.add(textinputUserID);
+
 		JScrollPane result = new JScrollPane();
 		result.setBackground(Color.YELLOW);
 		result.setBounds(0, 0, 1000, 1000);
@@ -480,12 +614,6 @@ public class ClientGUI extends JFrame {
 		Search.add(txtYyyymmdd);
 		txtYyyymmdd.setColumns(10);
 
-		Available_Holder = new JPanel();
-		Available_Holder.setBounds(0, 0, 1624, 1014);
-
-		layeredPane.add(Available_Holder);
-		Available_Holder.setLayout(null);
-
 		JPanel Available = new JPanel();
 		Available.setBackground(Color.LIGHT_GRAY);
 		Available.setBounds(0, 0, 1624, 3014);
@@ -497,134 +625,6 @@ public class ClientGUI extends JFrame {
 		SearchOrder_byTN.setBounds(0, 0, 1624, 458);
 		layeredPane.add(SearchOrder_byTN);
 		SearchOrder_byTN.setLayout(null);
-
-		txtCarid = new JTextField();
-		txtCarid.setBackground(Color.PINK);
-		txtCarid.setForeground(Color.BLACK);
-		txtCarid.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtCarid.setEditable(false);
-		txtCarid.setText("CarID");
-		txtCarid.setBounds(0, 60, 150, 20);
-		Available_Holder.add(txtCarid);
-		txtCarid.setColumns(10);
-
-		txtDepartTime = new JTextField();
-		txtDepartTime.setBackground(Color.PINK);
-		txtDepartTime.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtDepartTime.setText("Depart Time");
-		txtDepartTime.setEditable(false);
-		txtDepartTime.setColumns(10);
-		txtDepartTime.setBounds(150, 60, 150, 20);
-		Available_Holder.add(txtDepartTime);
-
-		txtArriveTime = new JTextField();
-		txtArriveTime.setBackground(Color.PINK);
-		txtArriveTime.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtArriveTime.setEditable(false);
-		txtArriveTime.setText("Arrive Time");
-		txtArriveTime.setBounds(450, 60, 150, 20);
-		Available_Holder.add(txtArriveTime);
-		txtArriveTime.setColumns(10);
-
-		txtSeatwindow = new JTextField();
-		txtSeatwindow.setEditable(false);
-		txtSeatwindow.setBackground(Color.PINK);
-		txtSeatwindow.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtSeatwindow.setText("Seat_Window");
-		txtSeatwindow.setBounds(900, 60, 150, 20);
-		Available_Holder.add(txtSeatwindow);
-		txtSeatwindow.setColumns(10);
-
-		txtSeataisle = new JTextField();
-		txtSeataisle.setEditable(false);
-		txtSeataisle.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtSeataisle.setBackground(Color.PINK);
-		txtSeataisle.setText("Seat_Aisle");
-		txtSeataisle.setBounds(1050, 60, 150, 20);
-		Available_Holder.add(txtSeataisle);
-		txtSeataisle.setColumns(10);
-
-		txtSeatnone = new JTextField();
-		txtSeatnone.setEditable(false);
-		txtSeatnone.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtSeatnone.setBackground(Color.PINK);
-		txtSeatnone.setText("Seat_None");
-		txtSeatnone.setBounds(1200, 60, 150, 20);
-		Available_Holder.add(txtSeatnone);
-		txtSeatnone.setColumns(10);
-
-		txtEarlybird = new JTextField();
-		txtEarlybird.setEditable(false);
-		txtEarlybird.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtEarlybird.setBackground(Color.PINK);
-		txtEarlybird.setText("EarlyBird");
-		txtEarlybird.setBounds(1350, 60, 150, 20);
-		Available_Holder.add(txtEarlybird);
-		txtEarlybird.setColumns(10);
-
-		txtDepartStation_1 = new JTextField();
-		txtDepartStation_1.setText("Depart Station");
-		txtDepartStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtDepartStation_1.setEditable(false);
-		txtDepartStation_1.setColumns(10);
-		txtDepartStation_1.setBackground(Color.PINK);
-		txtDepartStation_1.setBounds(300, 60, 150, 20);
-		Available_Holder.add(txtDepartStation_1);
-
-		txtArriveStation_1 = new JTextField();
-		txtArriveStation_1.setText("Arrive Station");
-		txtArriveStation_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtArriveStation_1.setEditable(false);
-		txtArriveStation_1.setColumns(10);
-		txtArriveStation_1.setBackground(Color.PINK);
-		txtArriveStation_1.setBounds(600, 60, 150, 20);
-		Available_Holder.add(txtArriveStation_1);
-
-		txtCarriage_1 = new JTextField();
-		txtCarriage_1.setText("Carriage");
-		txtCarriage_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		txtCarriage_1.setEditable(false);
-		txtCarriage_1.setColumns(10);
-		txtCarriage_1.setBackground(Color.PINK);
-		txtCarriage_1.setBounds(750, 60, 150, 20);
-		Available_Holder.add(txtCarriage_1);
-
-		txtUniversityDiscount = new JTextField();
-		txtUniversityDiscount.setText("University Discount");
-		txtUniversityDiscount.setFont(new Font("Arial", Font.PLAIN, 11));
-		txtUniversityDiscount.setEditable(false);
-		txtUniversityDiscount.setColumns(10);
-		txtUniversityDiscount.setBackground(Color.PINK);
-		txtUniversityDiscount.setBounds(1500, 60, 150, 20);
-		Available_Holder.add(txtUniversityDiscount);
-
-		txtPleaseInputThe = new JTextField();
-		txtPleaseInputThe.setEditable(false);
-		txtPleaseInputThe.setFont(new Font("Arial", Font.PLAIN, 16));
-		txtPleaseInputThe.setBackground(new Color(221, 160, 221));
-		txtPleaseInputThe.setText("Please input the CarID you want :  ");
-		txtPleaseInputThe.setBounds(10, 3, 255, 20);
-		Available_Holder.add(txtPleaseInputThe);
-		txtPleaseInputThe.setColumns(10);
-
-		textinputCarID = new JTextField();
-		textinputCarID.setBounds(275, 3, 96, 20);
-		Available_Holder.add(textinputCarID);
-		textinputCarID.setColumns(10);
-
-		txtPleaseInputThe_1 = new JTextField();
-		txtPleaseInputThe_1.setText("Please input the UserID of yours :");
-		txtPleaseInputThe_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		txtPleaseInputThe_1.setEditable(false);
-		txtPleaseInputThe_1.setColumns(10);
-		txtPleaseInputThe_1.setBackground(new Color(221, 160, 221));
-		txtPleaseInputThe_1.setBounds(10, 30, 255, 20);
-		Available_Holder.add(txtPleaseInputThe_1);
-
-		textinputUserID = new JTextField();
-		textinputUserID.setColumns(10);
-		textinputUserID.setBounds(275, 30, 96, 20);
-		Available_Holder.add(textinputUserID);
 
 		JPanel SearchOrder = new JPanel();
 		SearchOrder.setBackground(Color.YELLOW);
@@ -2224,212 +2224,210 @@ public class ClientGUI extends JFrame {
 							btnConfirm1.addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 
-									if (userID_input.getText().equals("")) {
-										System.out.println("Please input your userID");
-									} else {
+									/*
+									 * if(userID_input.getText().equals("")) {
+									 * System.out.println("Please input your userID"); }
+									 */
+									// else {
 
-										String selected_carID1 = textinputCarID.getText();
-										String user_ID1 = textinputUserID.getText();
-										Order selected_car1 = new Order(info1, selected_carID1, user_ID1,
-												SearchCarMessage);
+									String selected_carID1 = textinputCarID.getText();
+									String user_ID1 = textinputUserID.getText();
+									Order selected_car1 = new Order(info1, selected_carID1, user_ID1, SearchCarMessage);
 
-										/**
-										 * change from here
-										 */
+									/**
+									 * change from here
+									 */
 
-										/**
-										 * This part is return
-										 */
-										int quantity_of_available = info2.carList.size();
+									/**
+									 * This part is return
+									 */
+									int quantity_of_available = info2.carList.size();
 
-										// clean the pane
-										Available.removeAll();
-										Available.repaint();
-										Available.revalidate();
-										Available.setVisible(true);
-										// remove button confirm1
-										Available_Holder.remove(btnConfirm1);
+									// clean the pane
+									Available.removeAll();
+									Available.repaint();
+									Available.revalidate();
+									Available.setVisible(true);
+									// remove button confirm1
+									Available_Holder.remove(btnConfirm1);
 
-										for (int i = 0; i < quantity_of_available; i++) {
-											for (int k = 0; k < 11; k++) {
-												JTextField temp = new JTextField();
-												temp.setBackground(Color.LIGHT_GRAY);
-												temp.setForeground(Color.BLACK);
-												temp.setFont(new Font("Arial", Font.PLAIN, 15));
-												temp.setEditable(false);
+									for (int i = 0; i < quantity_of_available; i++) {
+										for (int k = 0; k < 11; k++) {
+											JTextField temp = new JTextField();
+											temp.setBackground(Color.LIGHT_GRAY);
+											temp.setForeground(Color.BLACK);
+											temp.setFont(new Font("Arial", Font.PLAIN, 15));
+											temp.setEditable(false);
 
-												switch (k) {
-												case 0:
-													temp.setText(info2.carList.get(i).getCarID());
-													break;
-												case 1:
-													temp.setText(SearchCarMessage.getDepartDay() + ","
-															+ info2.carList.get(i).getDepartTime());
-													break;
-												case 2:
-													temp.setText(info2.carList.get(i).getDepart());
-													break;
-												case 3:
-													temp.setText(SearchCarMessage.getDepartDay() + ","
-															+ info2.carList.get(i).getArriveTime());
-													break;
-												case 4:
-													temp.setText(info2.carList.get(i).getArrive());
-													break;
-												case 5:
-													temp.setText(SearchCarMessage.getCarriage());
-													break;
-												case 6:
-													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
-														temp.setText(info1.carList.get(i)
-																.getRemained_Window_Standard_Seat());
-													} else {
-														temp.setText(info1.carList.get(i)
-																.getRemained_Window_Business_Seat());
-													}
-													break;
-												case 7:
-													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
-														temp.setText(
-																info1.carList.get(i).getRemained_Aisle_Standard_Seat());
-													} else {
-														temp.setText(
-																info1.carList.get(i).getRemained_Aisle_Business_Seat());
-													}
-													break;
-												case 8:
-													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
-														temp.setText(
-																info1.carList.get(i).getRemained_None_Standard_Seat());
-													}
-													break;
-												case 9:
-													temp.setText(info2.carList.get(i).getEarly_Discount());
-													break;
-												case 10:
-													temp.setText(info2.carList.get(i).getUniversity_Discount());
-													break;
-
+											switch (k) {
+											case 0:
+												temp.setText(info2.carList.get(i).getCarID());
+												break;
+											case 1:
+												temp.setText(SearchCarMessage.getDepartDay() + ","
+														+ info2.carList.get(i).getDepartTime());
+												break;
+											case 2:
+												temp.setText(info2.carList.get(i).getDepart());
+												break;
+											case 3:
+												temp.setText(SearchCarMessage.getDepartDay() + ","
+														+ info2.carList.get(i).getArriveTime());
+												break;
+											case 4:
+												temp.setText(info2.carList.get(i).getArrive());
+												break;
+											case 5:
+												temp.setText(SearchCarMessage.getCarriage());
+												break;
+											case 6:
+												if (SearchCarMessage.getCarriage().equals("STANDARD")) {
+													temp.setText(
+															info1.carList.get(i).getRemained_Window_Standard_Seat());
+												} else {
+													temp.setText(
+															info1.carList.get(i).getRemained_Window_Business_Seat());
 												}
-												temp.setBounds(0 + 150 * k, 20 + 20 * i, 100, 20);
-												Available.add(temp);
-												temp.setColumns(10);
+												break;
+											case 7:
+												if (SearchCarMessage.getCarriage().equals("STANDARD")) {
+													temp.setText(
+															info1.carList.get(i).getRemained_Aisle_Standard_Seat());
+												} else {
+													temp.setText(
+															info1.carList.get(i).getRemained_Aisle_Business_Seat());
+												}
+												break;
+											case 8:
+												if (SearchCarMessage.getCarriage().equals("STANDARD")) {
+													temp.setText(info1.carList.get(i).getRemained_None_Standard_Seat());
+												}
+												break;
+											case 9:
+												temp.setText(info2.carList.get(i).getEarly_Discount());
+												break;
+											case 10:
+												temp.setText(info2.carList.get(i).getUniversity_Discount());
+												break;
+
 											}
+											temp.setBounds(0 + 150 * k, 20 + 20 * i, 100, 20);
+											Available.add(temp);
+											temp.setColumns(10);
 										}
-										/**
-										 * This button is used to return the car_info of return.
-										 */
-										JButton btnConfirm2 = new JButton("Confirm");
-										btnConfirm2.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-
-												if (textinputUserID.getText().equals("")) {
-													System.out.println("Please input your userID");
-												}
-
-												String selected_carID = textinputCarID.getText();
-												String user_ID = textinputUserID.getText();
-												Order selected_car_return = new Order(info2, selected_carID, user_ID,
-														SearchCarMessage);
-
-												// sending order1 -->depart
-												try {
-													Scanner sc = new Scanner(System.in);
-													Socket cs = new Socket("127.0.0.1", 3588);
-													ObjectOutputStream os = new ObjectOutputStream(
-															cs.getOutputStream());
-													ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
-													os.writeObject(selected_car1);
-													os.flush();
-													Object msg = (Object) is.readObject();
-													if (msg == null)
-														System.out.println("null");
-													if (msg.getClass() == new OrderResult().getClass()) {
-														System.out.println(
-																"Successful Order the depart one with return trip");
-
-													} else
-														System.out.println("can't read result1");
-
-													os.close();
-													is.close();
-													cs.close();
-												} catch (UnknownHostException e) {
-													e.printStackTrace();
-													System.out.println("connection error");
-												} catch (IOException e) {
-													e.printStackTrace();
-													System.out.println("IO error");
-												} catch (ClassNotFoundException e) {
-													e.printStackTrace();
-													System.out.println("Class Not Found error");
-												}
-
-												// sending order2 -->return
-												try {
-													Scanner sc = new Scanner(System.in);
-													Socket cs = new Socket("127.0.0.1", 3588);
-													ObjectOutputStream os = new ObjectOutputStream(
-															cs.getOutputStream());
-													ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
-													os.writeObject(selected_car_return);
-													os.flush();
-													Object msg = (Object) is.readObject();
-													if (msg == null)
-														System.out.println("null");
-													if (msg.getClass() == new OrderResult().getClass()) {
-														System.out.println("Successful Order the return trip");
-
-														OrderResult temp_result = (OrderResult) msg;
-														temp_memory_transaction_number = temp_result.getOrderResult()
-																.get(0).getTransactionNumber();
-														userID_input.setText(temp_memory_userID);
-														TransactionNum_input.setText(temp_memory_transaction_number);
-														btnBookingHistory.doClick();
-														btnSearchOrder.doClick();
-													} else
-														System.out.println("can't read result1");
-
-													os.close();
-													is.close();
-													cs.close();
-												} catch (UnknownHostException e) {
-													e.printStackTrace();
-													System.out.println("connection error");
-												} catch (IOException e) {
-													e.printStackTrace();
-													System.out.println("IO error");
-												} catch (ClassNotFoundException e) {
-													e.printStackTrace();
-													System.out.println("Class Not Found error");
-												}
-
-											}
-										});
-										btnConfirm2.setFont(new Font("Arial", Font.PLAIN, 16));
-										btnConfirm2.setBackground(new Color(238, 232, 170));
-										btnConfirm2.setBounds(445, 20, 89, 31);
-										Available_Holder.add(btnConfirm2);
-										Available_Holder.repaint();
-										Available_Holder.revalidate();
-										Available_Holder.setVisible(true);
-
-										Available.repaint();
-										Available.revalidate();
-										Available.setVisible(true);
-
-										layeredPane.removeAll();
-										layeredPane.repaint();
-										layeredPane.revalidate();
-										layeredPane.setVisible(true);
-
-										layeredPane.add(Available_Holder);
-										layeredPane.repaint();
-										layeredPane.revalidate();
-										layeredPane.setVisible(true);
 									}
+									/**
+									 * This button is used to return the car_info of return.
+									 */
+									JButton btnConfirm2 = new JButton("Confirm");
+									btnConfirm2.addActionListener(new ActionListener() {
+										public void actionPerformed(ActionEvent arg0) {
+
+											if (textinputUserID.getText().equals("")) {
+												System.out.println("Please input your userID");
+											}
+
+											String selected_carID = textinputCarID.getText();
+											String user_ID = textinputUserID.getText();
+											Order selected_car_return = new Order(info2, selected_carID, user_ID,
+													SearchCarMessage);
+
+											// sending order1 -->depart
+											try {
+												Scanner sc = new Scanner(System.in);
+												Socket cs = new Socket("127.0.0.1", 3588);
+												ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+												ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+
+												os.writeObject(selected_car1);
+												os.flush();
+												Object msg = (Object) is.readObject();
+												if (msg == null)
+													System.out.println("null");
+												if (msg.getClass() == new OrderResult().getClass()) {
+													System.out.println(
+															"Successful Order the depart one with return trip");
+
+												} else
+													System.out.println("can't read result1");
+
+												os.close();
+												is.close();
+												cs.close();
+											} catch (UnknownHostException e) {
+												e.printStackTrace();
+												System.out.println("connection error");
+											} catch (IOException e) {
+												e.printStackTrace();
+												System.out.println("IO error");
+											} catch (ClassNotFoundException e) {
+												e.printStackTrace();
+												System.out.println("Class Not Found error");
+											}
+
+											// sending order2 -->return
+											try {
+												Scanner sc = new Scanner(System.in);
+												Socket cs = new Socket("127.0.0.1", 3588);
+												ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
+												ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+
+												os.writeObject(selected_car_return);
+												os.flush();
+												Object msg = (Object) is.readObject();
+												if (msg == null)
+													System.out.println("null");
+												if (msg.getClass() == new OrderResult().getClass()) {
+													System.out.println("Successful Order the return trip");
+
+													OrderResult temp_result = (OrderResult) msg;
+													temp_memory_transaction_number = temp_result.getOrderResult().get(0)
+															.getTransactionNumber();
+													userID_input.setText(temp_memory_userID);
+													TransactionNum_input.setText(temp_memory_transaction_number);
+													btnBookingHistory.doClick();
+													btnSearchOrder.doClick();
+												} else
+													System.out.println("can't read result1");
+
+												os.close();
+												is.close();
+												cs.close();
+											} catch (UnknownHostException e) {
+												e.printStackTrace();
+												System.out.println("connection error");
+											} catch (IOException e) {
+												e.printStackTrace();
+												System.out.println("IO error");
+											} catch (ClassNotFoundException e) {
+												e.printStackTrace();
+												System.out.println("Class Not Found error");
+											}
+
+										}
+									});
+									btnConfirm2.setFont(new Font("Arial", Font.PLAIN, 16));
+									btnConfirm2.setBackground(new Color(238, 232, 170));
+									btnConfirm2.setBounds(445, 20, 89, 31);
+									Available_Holder.add(btnConfirm2);
+									Available_Holder.repaint();
+									Available_Holder.revalidate();
+									Available_Holder.setVisible(true);
+
+									Available.repaint();
+									Available.revalidate();
+									Available.setVisible(true);
+
+									layeredPane.removeAll();
+									layeredPane.repaint();
+									layeredPane.revalidate();
+									layeredPane.setVisible(true);
+
+									layeredPane.add(Available_Holder);
+									layeredPane.repaint();
+									layeredPane.revalidate();
+									layeredPane.setVisible(true);
+									// }
 								}
 							});
 							btnConfirm1.setFont(new Font("Arial", Font.PLAIN, 16));
