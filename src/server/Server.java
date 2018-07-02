@@ -176,6 +176,8 @@ public class Server {
 			try {
 				if (returnMsg == null)
 					System.out.println("server send null object");
+				else 
+					System.out.println("server send" + returnMsg.getClass().toString());
 				os.writeObject(returnMsg);
 				os.flush();
 			} catch (IOException e) {

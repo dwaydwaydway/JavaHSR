@@ -958,7 +958,10 @@ public class ClientGUI extends JFrame {
 												// }
 												else if (msg.getClass() == new AlterResult().getClass()) {
 
-												} else
+												} else if(msg.getClass() == new Fail_Message().getClass()) {
+													Fail_Message temp = (Fail_Message) msg;
+													System.out.println(temp.getMessage());
+												}else
 													System.out.println("can't read result from canceling the ticket");
 												os.close();
 												is.close();
@@ -1511,6 +1514,9 @@ public class ClientGUI extends JFrame {
 												// }
 												else if (msg.getClass() == new AlterResult().getClass()) {
 
+												}else if(msg.getClass() == new Fail_Message().getClass()) {
+													Fail_Message temp = (Fail_Message) msg;
+													System.out.println(temp.getMessage());
 												} else
 													System.out.println("can't read result from canceling the ticket");
 												os.close();
