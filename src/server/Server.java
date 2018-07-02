@@ -6,6 +6,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Random;
@@ -82,6 +85,8 @@ public class Server {
 					SearchCar temp = (SearchCar) msg;
 					if(temp.getTotal() > 5)
 						return new Fail_Message("cannot order more than 5 tickets");
+					if(!dateValid(temp.getDepartDay()))	
+						return new Fail_Message("cannot order tickets of this date");
 					System.out.println("Server received SearchCar");
 					return database.selectCar((SearchCar) msg);
 				} else if (msg.getClass() == new Order().getClass()) {
@@ -118,6 +123,32 @@ public class Server {
 			}
 
 		}
+		/**
+		 * This  function helps determine if the date is valid
+		 * @param date
+		 * @return
+		 */
+		private boolean dateValid(String date) {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.now();
+			String current = dtf.format(localDate); 
+			String[] ccutted = current.split("-");
+			int currentY = Integer.parseInt(ccutted[0]);
+			int currentM = Integer.parseInt(ccutted[1]);
+			int currentd = Integer.parseInt(ccutted[2]);
+			String[] dcutted = date.split("-");
+			int dateY = Integer.parseInt(dcutted[0]);
+			int dateM = Integer.parseInt(dcutted[1]);
+			int dated = Integer.parseInt(dcutted[2]);
+			int flag = 0;
+			if(dateY != currentY) 
+				return false;
+			else if(dateM > currentM)
+				return false;
+			else
+				return true;
+			
+		} 
 
 		/**
 		 * This is the running function of the thread, it reads the object in the socket
