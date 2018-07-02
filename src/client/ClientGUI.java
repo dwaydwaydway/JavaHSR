@@ -1915,10 +1915,10 @@ public class ClientGUI extends JFrame {
 								System.out.println("No car was found.");
 							} else {
 
-								Available_Holder.removeAll();
-								Available_Holder.repaint();
-								Available_Holder.revalidate();
-								Available_Holder.setVisible(true);
+								Available.removeAll();
+								Available.repaint();
+								Available.revalidate();
+								Available.setVisible(true);
 
 								for (int i = 0; i < quantity_of_available; i++) {
 									// JTextField temp[] = new JTextField[11];
@@ -1979,7 +1979,7 @@ public class ClientGUI extends JFrame {
 										}
 										temp.setBounds(0 + 150 * k, 20 + 20 * i, 150, 20);
 										temp.setColumns(10);
-										Available_Holder.add(temp);
+										Available.add(temp);
 
 									}
 								}
@@ -2170,10 +2170,10 @@ public class ClientGUI extends JFrame {
 							int quantity_of_available = info1.carList.size();
 
 							// clean the pane
-							Available_Holder.removeAll();
-							Available_Holder.repaint();
-							Available_Holder.revalidate();
-							Available_Holder.setVisible(true);
+							Available.removeAll();
+							Available.repaint();
+							Available.revalidate();
+							Available.setVisible(true);
 
 							for (int i = 0; i < quantity_of_available; i++) {
 								// JTextField temp[] = new JTextField[11];
@@ -2234,7 +2234,7 @@ public class ClientGUI extends JFrame {
 
 									}
 									temp.setBounds(0 + 150 * k, 20 + 20 * i, 100, 20);
-									Available_Holder.add(temp);
+									Available.add(temp);
 									temp.setColumns(10);
 
 								}
@@ -2265,10 +2265,10 @@ public class ClientGUI extends JFrame {
 										int quantity_of_available = info2.carList.size();
 
 										// clean the pane
-										Available_Holder.removeAll();
-										Available_Holder.repaint();
-										Available_Holder.revalidate();
-										Available_Holder.setVisible(true);
+										Available.removeAll();
+										Available.repaint();
+										Available.revalidate();
+										Available.setVisible(true);
 										// remove button confirm1
 										
 										Available_Holder.remove(btnConfirm1);
@@ -2335,7 +2335,7 @@ public class ClientGUI extends JFrame {
 
 												}
 												temp.setBounds(0 + 150 * k, 20 + 20 * i, 100, 20);
-												Available_Holder.add(temp);
+												Available.add(temp);
 												temp.setColumns(10);
 											}
 										}
@@ -2445,9 +2445,9 @@ public class ClientGUI extends JFrame {
 										Available_Holder.revalidate();
 										Available_Holder.setVisible(true);
 
-										Available_Holder.repaint();
-										Available_Holder.revalidate();
-										Available_Holder.setVisible(true);
+										Available.repaint();
+										Available.revalidate();
+										Available.setVisible(true);
 
 										layeredPane.removeAll();
 										layeredPane.repaint();
