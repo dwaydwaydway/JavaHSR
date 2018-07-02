@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 /**
  * This class is used to search the train of a day.
  *
@@ -20,28 +21,28 @@ public class SearchDaily implements Serializable {
 	private String depart_day; // in the form of "1995-02-03"
 
 	public SearchDaily() {
-		
+
 	}
-	
+
 	public SearchDaily(String carID, String depart_day, String depart_timeOfNANGANG, String depart_timeOfTAIPEI,
 			String depart_timeOfBANCIAO, String depart_timeOfTAOYUAN, String depart_timeOfHSINCHU,
 			String depart_timeOfMIAOLI, String depart_timeOfTAICHUNG, String depart_timeOfCHANGHUA,
 			String depart_timeOfYUNLIN, String depart_timeOfCHIAYI, String depart_timeOfTAINAN,
 			String depart_timeOfZUOYING) {
-			this.carID = carID;
-			this.depart_day = depart_day;
-			this.depart_timeOfNANGANG = depart_timeOfNANGANG;
-			this.depart_timeOfTAIPEI = depart_timeOfTAIPEI;
-			this.depart_timeOfBANCIAO = depart_timeOfBANCIAO;
-			this.depart_timeOfTAOYUAN = depart_timeOfTAOYUAN;
-			this.depart_timeOfHSINCHU = depart_timeOfHSINCHU;
-			this.depart_timeOfMIAOLI = depart_timeOfMIAOLI;
-			this.depart_timeOfTAICHUNG = depart_timeOfTAICHUNG;
-			this.depart_timeOfCHANGHUA = depart_timeOfCHANGHUA;
-			this.depart_timeOfYUNLIN = depart_timeOfYUNLIN;
-			this.depart_timeOfCHIAYI = depart_timeOfCHIAYI;
-			this.depart_timeOfTAINAN = depart_timeOfTAINAN;
-			this.depart_timeOfZUOYING = depart_timeOfZUOYING;
+		this.carID = carID;
+		this.depart_day = depart_day;
+		this.depart_timeOfNANGANG = depart_timeOfNANGANG;
+		this.depart_timeOfTAIPEI = depart_timeOfTAIPEI;
+		this.depart_timeOfBANCIAO = depart_timeOfBANCIAO;
+		this.depart_timeOfTAOYUAN = depart_timeOfTAOYUAN;
+		this.depart_timeOfHSINCHU = depart_timeOfHSINCHU;
+		this.depart_timeOfMIAOLI = depart_timeOfMIAOLI;
+		this.depart_timeOfTAICHUNG = depart_timeOfTAICHUNG;
+		this.depart_timeOfCHANGHUA = depart_timeOfCHANGHUA;
+		this.depart_timeOfYUNLIN = depart_timeOfYUNLIN;
+		this.depart_timeOfCHIAYI = depart_timeOfCHIAYI;
+		this.depart_timeOfTAINAN = depart_timeOfTAINAN;
+		this.depart_timeOfZUOYING = depart_timeOfZUOYING;
 	}
 
 	private String depart_timeOfNANGANG;
@@ -59,10 +60,11 @@ public class SearchDaily implements Serializable {
 
 	/**
 	 * THe getter of informations.
+	 * 
 	 * @return String
 	 */
 	public String getDepart_dayofweek() {
-		switch(depart_dayofweek) {
+		switch (depart_dayofweek) {
 		case "Mon":
 			return "Monday";
 		case "Tue":

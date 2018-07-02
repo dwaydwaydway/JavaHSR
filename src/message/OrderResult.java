@@ -44,20 +44,34 @@ public class OrderResult implements Serializable {
 	/**
 	 * This function add a ticket to the ticket list
 	 * 
-	 * @param transaction_number
-	 * @param carID
-	 * @param userID
-	 * @param depart
-	 * @param arrive
-	 * @param depart_time
-	 * @param arrive_time
-	 * @param passenger_type
-	 * @param carriage
-	 * @param early_discount
-	 * @param university_discount
-	 * @param compartment
-	 * @param location
-	 * @param price
+	 * @param String
+	 *            transaction_number
+	 * @param String
+	 *            carID
+	 * @param String
+	 *            userID
+	 * @param String
+	 *            depart
+	 * @param String
+	 *            arrive
+	 * @param String
+	 *            depart_time
+	 * @param String
+	 *            arrive_time
+	 * @param String
+	 *            passenger_type
+	 * @param String
+	 *            carriage
+	 * @param String
+	 *            early_discount
+	 * @param String
+	 *            university_discount
+	 * @param String
+	 *            compartment
+	 * @param String
+	 *            location
+	 * @param String
+	 *            price
 	 */
 	public void addTicket(String transaction_number, String carID, String userID, String depart, String arrive,
 			String depart_time, String arrive_time, String passenger_type, String carriage, String early_discount,

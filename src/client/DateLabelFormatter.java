@@ -10,7 +10,7 @@ public class DateLabelFormatter extends AbstractFormatter {
 
 	private String datePattern = "yyyy-MM-dd";
 	private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-	
+
 	@Override
 	public Object stringToValue(String text) throws ParseException {
 		return dateFormatter.parseObject(text);
@@ -22,7 +22,7 @@ public class DateLabelFormatter extends AbstractFormatter {
 			Calendar cal = (Calendar) value;
 			return dateFormatter.format(cal.getTime());
 		}
-		
+
 		return "";
 	}
 

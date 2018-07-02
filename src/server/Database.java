@@ -180,7 +180,7 @@ public class Database {
 								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
 								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + ", 0 )");
 				int flag = pst.executeUpdate();
-				
+
 				if (flag == 0) {
 					System.out.print("a ticket finish");
 				}
