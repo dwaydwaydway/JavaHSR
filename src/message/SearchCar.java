@@ -30,13 +30,17 @@ public class SearchCar implements Serializable {
 	public int[] quantity = { 0, 0, 0, 0, 0 };
 	int total;
 	Date depart_day_temp; // day save in
+	Date depart_day_compare;
 
 	String depart_day;
 	String depart_dayofweek;
+	
 	SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd");
-
+	SimpleDateFormat ft3 = new SimpleDateFormat("yyyy-MM-dd,HH:mm");
+	
 	SimpleDateFormat dayofweek = new SimpleDateFormat("E", Locale.ENGLISH);
 
+	
 	int hour;
 	int minute;
 
@@ -89,6 +93,10 @@ public class SearchCar implements Serializable {
 		depart_day = ft2.format(depart_day_temp);
 
 		depart_dayofweek = dayofweek.format(depart_day_temp);
+	}
+	
+	public Date getDepartDate_Compare() {
+		return this.depart_day_compare;
 	}
 
 	public Date getDepartDate_temp() {
@@ -207,6 +215,16 @@ public class SearchCar implements Serializable {
 			System.out.println("Unparseable using " + ft2);
 		}
 
+		
+		String hour_temp = String.format("%02d", hour);
+		String minute_temp = String.format("%02d", minute);
+		
+		
+		try {
+			depart_day_compare = ft3.parse(inputDate + "," + hour_temp + ":" + minute_temp);
+		} catch (ParseException e) {
+			System.out.println("Unparseable using " + ft3);
+		}
 		// use depart_day_temp(date) to print out depart_day(String) and
 		// depart_dayofweek
 
@@ -282,6 +300,9 @@ public class SearchCar implements Serializable {
 		SearchCar test2 = new SearchCar(1);
 		System.out.println("test1 " + test1.toString());
 		System.out.println("test2 " + test2.toString());
+		System.out.println(String.format("%02d", 1));
+		test1.setDepartDay("1998-06-23");
+		System.out.println(test1.getDepartDate_Compare());
 	}
 
 }
