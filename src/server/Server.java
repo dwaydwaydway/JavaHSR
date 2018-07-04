@@ -82,6 +82,7 @@ public class Server {
 			Database database = new Database();
 			try {
 				if (msg.getClass() == new SearchCar().getClass()) {
+					System.out.println("Server received SearchCar");
 					SearchCar temp = (SearchCar) msg;
 					if(temp.getTotal() > 5) {
 						System.out.println("cannot order more than 5 tickets");
@@ -93,7 +94,6 @@ public class Server {
 						return new Fail_Message("cannot order tickets of this date");
 					}	
 					else {
-						System.out.println("Server received SearchCar");
 						return database.selectCar((SearchCar) msg);
 					}					
 				} else if (msg.getClass() == new Order().getClass()) {
@@ -106,7 +106,6 @@ public class Server {
 					codeMap.put(code, "taken");
 					System.out.println("Order start processing");
 					return database.insertBooking((Order) msg, code);
-
 				} else if (msg.getClass() == new SearchOrder().getClass()) {
 					System.out.println("Server received SearchOrder");
 					return database.searchTicketByUserId((SearchOrder) msg);

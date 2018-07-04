@@ -362,7 +362,7 @@ public class ClientGUI extends JFrame {
 					Socket cs = new Socket("127.0.0.1", 3588);
 					ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 					ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+					System.out.println("client send searchDailyMessage");
 					os.writeObject(searchDailyMessage);
 					os.flush();
 					Object msg = (Object) is.readObject();
@@ -695,7 +695,7 @@ public class ClientGUI extends JFrame {
 						Socket cs = new Socket("127.0.0.1", 3588);
 						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+						System.out.println("client send SearchOrderMessage");
 						os.writeObject(SearchOrderMessage);
 						os.flush();
 						Object msg = (Object) is.readObject();
@@ -936,7 +936,7 @@ public class ClientGUI extends JFrame {
 												// target the ticket that will be cancel
 												Ticket cancel_ticketMessage = cancel_order.get(btnCancel.index);
 												System.out.println(cancel_ticketMessage.toString());
-
+												System.out.println("client send cancel_ticketMessage");
 												// send to sever
 												os.writeObject(cancel_ticketMessage);
 												os.flush();
@@ -1250,7 +1250,7 @@ public class ClientGUI extends JFrame {
 						Socket cs = new Socket("127.0.0.1", 3588);
 						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+						System.out.println("client send SearchOrderMessage_bytn");
 						os.writeObject(SearchOrderMessage_bytn);
 						os.flush();
 						Object msg = (Object) is.readObject();
@@ -1493,6 +1493,7 @@ public class ClientGUI extends JFrame {
 
 												System.out.println(cancel_ticketMessage.toString());
 												// send to server
+												System.out.println("client send cancel_ticketMessage");
 												os.writeObject(cancel_ticketMessage);
 												os.flush();
 
@@ -1897,7 +1898,7 @@ public class ClientGUI extends JFrame {
 						Socket cs = new Socket("127.0.0.1", 3588);
 						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+						System.out.println("client send SearchCarMessage");
 						os.writeObject(SearchCarMessage);
 						os.flush();
 						Object msg = (Object) is.readObject();
@@ -2014,6 +2015,7 @@ public class ClientGUI extends JFrame {
 													/*
 													 * send to the server
 													 */
+													System.out.println("client send selected_car");
 													os.writeObject(selected_car);
 													os.flush();
 													Object msg = (Object) is.readObject();
@@ -2103,7 +2105,7 @@ public class ClientGUI extends JFrame {
 						Socket cs = new Socket("127.0.0.1", 3588);
 						ObjectOutputStream os = new ObjectOutputStream(cs.getOutputStream());
 						ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+						System.out.println("client send SearchCarMessage");
 						os.writeObject(SearchCarMessage);
 						os.flush();
 						Object msg = (Object) is.readObject();
@@ -2132,7 +2134,7 @@ public class ClientGUI extends JFrame {
 								cs = new Socket("127.0.0.1", 3588);
 								os = new ObjectOutputStream(cs.getOutputStream());
 								is = new ObjectInputStream(cs.getInputStream());
-
+								System.out.println("client send SearchCarMessage");
 								os.writeObject(SearchCarMessage);
 								os.flush();
 
@@ -2271,7 +2273,7 @@ public class ClientGUI extends JFrame {
 										Available.revalidate();
 										Available.setVisible(true);
 										// remove button confirm1
-										// Available_Holder.remove(btnConfirm1);
+									    Available_Holder.remove(btnConfirm1);
 
 										for (int i = 0; i < quantity_of_available; i++) {
 											for (int k = 0; k < 11; k++) {
@@ -2304,26 +2306,26 @@ public class ClientGUI extends JFrame {
 													break;
 												case 6:
 													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
-														temp.setText(info1.carList.get(i)
+														temp.setText(info2.carList.get(i)
 																.getRemained_Window_Standard_Seat());
 													} else {
-														temp.setText(info1.carList.get(i)
+														temp.setText(info2.carList.get(i)
 																.getRemained_Window_Business_Seat());
 													}
 													break;
 												case 7:
 													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
 														temp.setText(
-																info1.carList.get(i).getRemained_Aisle_Standard_Seat());
+																info2.carList.get(i).getRemained_Aisle_Standard_Seat());
 													} else {
 														temp.setText(
-																info1.carList.get(i).getRemained_Aisle_Business_Seat());
+																info2.carList.get(i).getRemained_Aisle_Business_Seat());
 													}
 													break;
 												case 8:
 													if (SearchCarMessage.getCarriage().equals("STANDARD")) {
 														temp.setText(
-																info1.carList.get(i).getRemained_None_Standard_Seat());
+																info2.carList.get(i).getRemained_None_Standard_Seat());
 													}
 													break;
 												case 9:
@@ -2362,6 +2364,7 @@ public class ClientGUI extends JFrame {
 													ObjectOutputStream os = new ObjectOutputStream(
 															cs.getOutputStream());
 													ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
+													System.out.println("client write" + selected_car_return.getClass().toString());
 
 													os.writeObject(selected_car1);
 													os.flush();
@@ -2399,7 +2402,7 @@ public class ClientGUI extends JFrame {
 													ObjectOutputStream os = new ObjectOutputStream(
 															cs.getOutputStream());
 													ObjectInputStream is = new ObjectInputStream(cs.getInputStream());
-
+													System.out.println("client write" + selected_car_return.getClass().toString());
 													os.writeObject(selected_car_return);
 													os.flush();
 													Object msg = (Object) is.readObject();

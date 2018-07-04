@@ -180,7 +180,7 @@ public class Database {
 								+ ticket.getDBDepartTime() + "', '" + ticket.getDBArriveTime() + "', "
 								+ ticket.getEarlyDiscount() + " , " + ticket.getUniversityDisciont() + ", 0 )");
 				int flag = pst.executeUpdate();
-
+				System.out.print(pst.toString());
 				if (flag == 0) {
 					System.out.print("a ticket finish");
 				}
@@ -238,6 +238,7 @@ public class Database {
 					+ searchTransactionNumber.getDepart() + "' AND date = '" + searchTransactionNumber.getDepartDay()
 					+ "' AND end = '" + searchTransactionNumber.getArrive() + "'" + " AND canceled = 0");
 			rs = pst.executeQuery();
+			System.out.print(pst.toString());
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
 				int flag = rs.getInt("BusinessWin") + rs.getInt("BusinessAisle");
@@ -278,6 +279,7 @@ public class Database {
 			pst = con.prepareStatement(
 					"SELECT * FROM `booking` WHERE code = '" + searchOrder.getTransactionNumber() + "' AND canceled = 0");
 			rs = pst.executeQuery();
+			System.out.print(pst.toString());
 			OrderResult result = new OrderResult();
 			while (rs.next()) {
 				int flag = rs.getInt("BusinessWin") + rs.getInt("BusinessAisle");
@@ -317,7 +319,6 @@ public class Database {
 			rs = pst.executeQuery();
 			DailyResult result = new DailyResult();
 			while (rs.next()) {
-
 				result.add(rs.getString("TrainNo"), msg.getDepartDay(), rs.getString("Nangang"), rs.getString("Taipei"),
 						rs.getString("Banciao"), rs.getString("Taoyuan"), rs.getString("Hsinchu"),
 						rs.getString("Miaoli"), rs.getString("Taichung"), rs.getString("Changhua"),
