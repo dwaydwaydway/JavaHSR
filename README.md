@@ -23,8 +23,7 @@ Client端以GUI呈現，主要為四大功能:訂票、退票、查詢、搜尋�
 4.搜尋:
 此系統提供 SearchDaily 的功能，使用者只要輸入欲搜尋的 date，Server 端便會找出當日所有車次提供給使用者參考，內容包含 carID 跟各站的出發時間。
 ### 系統架構及功能簡介
-jdatepicker-1.3.4 (GUI 套件)
-mysql-connector-java-8.0.11 (MySQL 套件)
-https://github.com/fangyidong/json-simple/tree/master/src/main/java/org/json/simple
-(json parser 套件)
+* GUI 套件(jdatepicker-1.3.4 )
+* MySQL 套件(mysql-connector-java-8.0.11)
+* json parser 套件(https://github.com/fangyidong/json-simple/tree/master/src/main/java/org/json/simple)
 
