@@ -4,6 +4,7 @@
 我們的架構以 Command design pattern 為基礎，以 Server 跟 Client 的互動作為運作機制。
 以下為我們的架構圖：
 ![N|Solid](/img/sturcture.png)
+
 Server 為伺服器端，Client 為客戶端，他們會以許多種不同的 object 來溝通(姑且先統稱他們為message object，雖然他們彼此沒有繼承關係)。
 
 當 Client 接收到使用者的指令後，會以 socket 傳送一個 message object 給 Server，Server 會新增一個 thread，再根據他接收到哪一種指令(i.e message 為哪一種 class)來做相對應的處理。
@@ -26,5 +27,4 @@ jdatepicker-1.3.4 (GUI 套件)
 mysql-connector-java-8.0.11 (MySQL 套件)
 https://github.com/fangyidong/json-simple/tree/master/src/main/java/org/json/simple
 (json parser 套件)
-### 系統架構及功能簡介
 
